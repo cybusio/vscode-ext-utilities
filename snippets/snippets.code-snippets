@@ -23,7 +23,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "role is a openprotocol resource snippet"
+    "description": "role is a openprotocol resource snippet",
+    "scope": "yaml"
   },
   "openprotocol_resource_connection-snippet": {
     "prefix": "snippet:openprotocol:resource:connection",
@@ -66,7 +67,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "connection is a openprotocol resource snippet"
+    "description": "connection is a openprotocol resource snippet",
+    "scope": "yaml"
   },
   "openprotocol_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:openprotocol:resource:endpoint-subscribe",
@@ -94,7 +96,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "endpoint-subscribe is a openprotocol resource snippet"
+    "description": "endpoint-subscribe is a openprotocol resource snippet",
+    "scope": "yaml"
   },
   "openprotocol_bridge_multi_endpoints-template": {
     "prefix": "template:openprotocol:bridge:multi_endpoints",
@@ -345,7 +348,8 @@
       "        operation: readWrite",
       "        context: mqtt"
     ],
-    "description": "multi_endpoints is a openprotocol bridge template"
+    "description": "multi_endpoints is a openprotocol bridge template",
+    "scope": "yaml"
   },
   "grafana_resource_ingressroute-snippet": {
     "prefix": "snippet:grafana:resource:ingressroute",
@@ -379,7 +383,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "ingressroute is a grafana resource snippet"
+    "description": "ingressroute is a grafana resource snippet",
+    "scope": "yaml"
   },
   "grafana_resource_volume-snippet": {
     "prefix": "snippet:grafana:resource:volume",
@@ -401,7 +406,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "volume is a grafana resource snippet"
+    "description": "volume is a grafana resource snippet",
+    "scope": "yaml"
   },
   "grafana_resource_container-snippet": {
     "prefix": "snippet:grafana:resource:container",
@@ -434,7 +440,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "container is a grafana resource snippet"
+    "description": "container is a grafana resource snippet",
+    "scope": "yaml"
   },
   "grafana_resource_link-snippet": {
     "prefix": "snippet:grafana:resource:link",
@@ -465,7 +472,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "link is a grafana resource snippet"
+    "description": "link is a grafana resource snippet",
+    "scope": "yaml"
   },
   "grafana_app_deploy-template": {
     "prefix": "template:grafana:app:deploy",
@@ -549,7 +557,8 @@
       "  # ENDPOINTS",
       "  #----------------------------------------------------------------------------"
     ],
-    "description": "deploy is a grafana app template"
+    "description": "deploy is a grafana app template",
+    "scope": "yaml"
   },
   "http_resource_endpoint-write-snippet": {
     "prefix": "snippet:http:resource:endpoint-write",
@@ -597,7 +606,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "endpoint-write is a http resource snippet"
+    "description": "endpoint-write is a http resource snippet",
+    "scope": "yaml"
   },
   "http_resource_connection-azure_datalake-snippet": {
     "prefix": "snippet:http:resource:connection-azure_datalake",
@@ -622,7 +632,8 @@
       "      scheme: https",
       "      host: !ref azureStorageHost"
     ],
-    "description": "connection-azure_datalake is a http resource snippet"
+    "description": "connection-azure_datalake is a http resource snippet",
+    "scope": "yaml"
   },
   "http_resource_connection-teams-snippet": {
     "prefix": "snippet:http:resource:connection-teams",
@@ -645,7 +656,8 @@
       "      port: 443",
       "      host: !ref webhookHost"
     ],
-    "description": "connection-teams is a http resource snippet"
+    "description": "connection-teams is a http resource snippet",
+    "scope": "yaml"
   },
   "http_resource_connection-tls-snippet": {
     "prefix": "snippet:http:resource:connection-tls",
@@ -680,7 +692,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "connection-tls is a http resource snippet"
+    "description": "connection-tls is a http resource snippet",
+    "scope": "yaml"
   },
   "http_resource_connection-snippet": {
     "prefix": "snippet:http:resource:connection",
@@ -734,7 +747,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "connection is a http resource snippet"
+    "description": "connection is a http resource snippet",
+    "scope": "yaml"
   },
   "http_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:http:resource:endpoint-subscribe",
@@ -762,7 +776,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "endpoint-subscribe is a http resource snippet"
+    "description": "endpoint-subscribe is a http resource snippet",
+    "scope": "yaml"
   },
   "http_edgeToEdge_teams_notification-to_mqtt-template": {
     "prefix": "template:http:edgeToEdge:teams_notification-to_mqtt",
@@ -824,7 +839,8 @@
       "        - transform:",
       "            expression: '{\"text\": value ? $string(value) : \"All Deviations cleared.\"}'"
     ],
-    "description": "teams_notification-to_mqtt is a http edgeToEdge template"
+    "description": "teams_notification-to_mqtt is a http edgeToEdge template",
+    "scope": "yaml"
   },
   "http_edgeToEdge_azure-datalake-template": {
     "prefix": "template:http:edgeToEdge:azure-datalake",
@@ -919,7 +935,8 @@
       "                \"body\": body",
       "              }"
     ],
-    "description": "azure-datalake is a http edgeToEdge template"
+    "description": "azure-datalake is a http edgeToEdge template",
+    "scope": "yaml"
   },
   "http_edgeToEdge_to_opcua-template": {
     "prefix": "template:http:edgeToEdge:to_opcua",
@@ -1041,7 +1058,8 @@
       "                \"value\": $.value.kWHUnitCost",
       "              }"
     ],
-    "description": "to_opcua is a http edgeToEdge template"
+    "description": "to_opcua is a http edgeToEdge template",
+    "scope": "yaml"
   },
   "mqtt_resource_endpoint-write-snippet": {
     "prefix": "snippet:mqtt:resource:endpoint-write",
@@ -1081,7 +1099,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "endpoint-write is a mqtt resource snippet"
+    "description": "endpoint-write is a mqtt resource snippet",
+    "scope": "yaml"
   },
   "mqtt_resource_connection-azure_iothub-template": {
     "prefix": "template:mqtt:resource:connection-azure_iothub",
@@ -1136,7 +1155,8 @@
       "        caCert: !ref tlsCaCert",
       "        keepalive: 3600"
     ],
-    "description": "connection-azure_iothub is a mqtt resource template"
+    "description": "connection-azure_iothub is a mqtt resource template",
+    "scope": "yaml"
   },
   "mqtt_resource_connection-azure_event_grid-template": {
     "prefix": "template:mqtt:resource:connection-azure_event_grid",
@@ -1205,7 +1225,8 @@
       "        clientCert: !ref client_cert",
       "        clientPrivateKey: !ref client_key"
     ],
-    "description": "connection-azure_event_grid is a mqtt resource template"
+    "description": "connection-azure_event_grid is a mqtt resource template",
+    "scope": "yaml"
   },
   "mqtt_resource_connection-tls-snippet": {
     "prefix": "snippet:mqtt:resource:connection-tls",
@@ -1260,7 +1281,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "connection-tls is a mqtt resource snippet"
+    "description": "connection-tls is a mqtt resource snippet",
+    "scope": "yaml"
   },
   "mqtt_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:mqtt:resource:endpoint-subscribe",
@@ -1286,7 +1308,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "endpoint-subscribe is a mqtt resource snippet"
+    "description": "endpoint-subscribe is a mqtt resource snippet",
+    "scope": "yaml"
   },
   "mqtt_resource_connection-azure_event_grid-snippet": {
     "prefix": "snippet:mqtt:resource:connection-azure_event_grid",
@@ -1327,7 +1350,8 @@
       "      clientCert: !ref client_cert",
       "      clientPrivateKey: !ref client_key"
     ],
-    "description": "connection-azure_event_grid is a mqtt resource snippet"
+    "description": "connection-azure_event_grid is a mqtt resource snippet",
+    "scope": "yaml"
   },
   "mqtt_resource_connection-mtls-snippet": {
     "prefix": "snippet:mqtt:resource:connection-mtls",
@@ -1379,7 +1403,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "connection-mtls is a mqtt resource snippet"
+    "description": "connection-mtls is a mqtt resource snippet",
+    "scope": "yaml"
   },
   "mqtt_bridge_azure_eventgrid-wirte-template": {
     "prefix": "template:mqtt:bridge:azure_eventgrid-wirte",
@@ -1485,7 +1510,8 @@
       "            locationPath: !ref location_path",
       "            identifier: !ref identifier_param"
     ],
-    "description": "azure_eventgrid-wirte is a mqtt bridge template"
+    "description": "azure_eventgrid-wirte is a mqtt bridge template",
+    "scope": "yaml"
   },
   "mqtt_bridge_azure_eventgrid-write-snippet": {
     "prefix": "snippet:mqtt:bridge:azure_eventgrid-write",
@@ -1571,7 +1597,8 @@
       "          locationPath: !ref location_path",
       "          identifier: !ref identifier_param"
     ],
-    "description": "azure_eventgrid-write is a mqtt bridge snippet"
+    "description": "azure_eventgrid-write is a mqtt bridge snippet",
+    "scope": "yaml"
   },
   "mqtt_bridge_azure_eventgrid-multiple_sessions_write-snippet": {
     "prefix": "snippet:mqtt:bridge:azure_eventgrid-multiple_sessions_write",
@@ -1687,7 +1714,8 @@
       "      publish:",
       "        topic: !sub \"${Cybus::MqttRoot}/$connectionId/set\""
     ],
-    "description": "azure_eventgrid-multiple_sessions_write is a mqtt bridge snippet"
+    "description": "azure_eventgrid-multiple_sessions_write is a mqtt bridge snippet",
+    "scope": "yaml"
   },
   "mqtt_bridge_azure_eventgrid-multiple_sessions_write-template": {
     "prefix": "template:mqtt:bridge:azure_eventgrid-multiple_sessions_write",
@@ -1814,7 +1842,8 @@
       "        publish:",
       "          topic: !sub \"${Cybus::MqttRoot}/$connectionId/set\""
     ],
-    "description": "azure_eventgrid-multiple_sessions_write is a mqtt bridge template"
+    "description": "azure_eventgrid-multiple_sessions_write is a mqtt bridge template",
+    "scope": "yaml"
   },
   "mqtt_bridge_publisher-tls-template": {
     "prefix": "template:mqtt:bridge:publisher-tls",
@@ -1860,7 +1889,8 @@
       "      write:",
       "        topic: some/test1"
     ],
-    "description": "publisher-tls is a mqtt bridge template"
+    "description": "publisher-tls is a mqtt bridge template",
+    "scope": "yaml"
   },
   "mqtt_bridge_azure_eventgrid-snippet": {
     "prefix": "snippet:mqtt:bridge:azure_eventgrid",
@@ -1918,7 +1948,8 @@
       "    write:",
       "      topic: contosotopics/topic1     # Writing to Azure event grid, target topic"
     ],
-    "description": "azure_eventgrid is a mqtt bridge snippet"
+    "description": "azure_eventgrid is a mqtt bridge snippet",
+    "scope": "yaml"
   },
   "mqtt_bridge_subsciber-tls-template": {
     "prefix": "template:mqtt:bridge:subsciber-tls",
@@ -1964,7 +1995,8 @@
       "      subscribe:",
       "        topic: some/test1"
     ],
-    "description": "subsciber-tls is a mqtt bridge template"
+    "description": "subsciber-tls is a mqtt bridge template",
+    "scope": "yaml"
   },
   "mqtt_edgeToEdge_azure_iothub-template": {
     "prefix": "template:mqtt:edgeToEdge:azure_iothub",
@@ -2048,7 +2080,8 @@
       "        publish:",
       "          endpoint: !ref d2cEndpoint"
     ],
-    "description": "azure_iothub is a mqtt edgeToEdge template"
+    "description": "azure_iothub is a mqtt edgeToEdge template",
+    "scope": "yaml"
   },
   "s7_resource_endpoint-write-snippet": {
     "prefix": "snippet:s7:resource:endpoint-write",
@@ -2078,7 +2111,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "endpoint-write is a s7 resource snippet"
+    "description": "endpoint-write is a s7 resource snippet",
+    "scope": "yaml"
   },
   "s7_resource_connection-snippet": {
     "prefix": "snippet:s7:resource:connection",
@@ -2111,7 +2145,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "connection is a s7 resource snippet"
+    "description": "connection is a s7 resource snippet",
+    "scope": "yaml"
   },
   "s7_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:s7:resource:endpoint-subscribe",
@@ -2138,7 +2173,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "endpoint-subscribe is a s7 resource snippet"
+    "description": "endpoint-subscribe is a s7 resource snippet",
+    "scope": "yaml"
   },
   "s7_bridge_read_write-template": {
     "prefix": "template:s7:bridge:read_write",
@@ -2206,7 +2242,8 @@
       "      write:",
       "        address: DB10,X0.0"
     ],
-    "description": "read_write is a s7 bridge template"
+    "description": "read_write is a s7 bridge template",
+    "scope": "yaml"
   },
   "s7_edgeToEdge_with_s7-template": {
     "prefix": "template:s7:edgeToEdge:with_s7",
@@ -2267,7 +2304,8 @@
       "        publish:",
       "          endpoint: !ref s7EndpointDB1000Write"
     ],
-    "description": "with_s7 is a s7 edgeToEdge template"
+    "description": "with_s7 is a s7 edgeToEdge template",
+    "scope": "yaml"
   },
   "testing_edgeToEdge_minimal_clock-template": {
     "prefix": "template:testing:edgeToEdge:minimal_clock",
@@ -2298,7 +2336,8 @@
       "        - transform:",
       "            expression: $now()"
     ],
-    "description": "minimal_clock is a testing edgeToEdge template"
+    "description": "minimal_clock is a testing edgeToEdge template",
+    "scope": "yaml"
   },
   "opcua_resource_endpoint-write-snippet": {
     "prefix": "snippet:opcua:resource:endpoint-write",
@@ -2335,7 +2374,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "endpoint-write is a opcua resource snippet"
+    "description": "endpoint-write is a opcua resource snippet",
+    "scope": "yaml"
   },
   "opcua_resource_connection_tls-template": {
     "prefix": "template:opcua:resource:connection_tls",
@@ -2415,7 +2455,8 @@
       "          securityPolicy: !ref opcua_security_policy",
       "          messageSecurityMode: !ref opcua_security_mode"
     ],
-    "description": "connection_tls is a opcua resource template"
+    "description": "connection_tls is a opcua resource template",
+    "scope": "yaml"
   },
   "opcua_resource_endpoint-read-snippet": {
     "prefix": "snippet:opcua:resource:endpoint-read",
@@ -2447,7 +2488,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "endpoint-read is a opcua resource snippet"
+    "description": "endpoint-read is a opcua resource snippet",
+    "scope": "yaml"
   },
   "opcua_resource_connection-snippet": {
     "prefix": "snippet:opcua:resource:connection",
@@ -2494,7 +2536,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "connection is a opcua resource snippet"
+    "description": "connection is a opcua resource snippet",
+    "scope": "yaml"
   },
   "opcua_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:opcua:resource:endpoint-subscribe",
@@ -2522,7 +2565,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "endpoint-subscribe is a opcua resource snippet"
+    "description": "endpoint-subscribe is a opcua resource snippet",
+    "scope": "yaml"
   },
   "opcua_resource_connection_tls-snippet": {
     "prefix": "snippet:opcua:resource:connection_tls",
@@ -2587,7 +2631,8 @@
       "        securityPolicy: !ref opcua_security_policy",
       "        messageSecurityMode: !ref opcua_security_mode"
     ],
-    "description": "connection_tls is a opcua resource snippet"
+    "description": "connection_tls is a opcua resource snippet",
+    "scope": "yaml"
   },
   "opcua_bridge_read-snippet": {
     "prefix": "snippet:opcua:bridge:read",
@@ -2710,7 +2755,8 @@
       "            # Publish combined data to connectware",
       "          topic: !sub '${Cybus::MqttRoot}/${MODEL_NAME}/combined'"
     ],
-    "description": "read is a opcua bridge snippet"
+    "description": "read is a opcua bridge snippet",
+    "scope": "yaml"
   },
   "opcua_edgeToEdge_handshake-to_opcua-template": {
     "prefix": "template:opcua:edgeToEdge:handshake-to_opcua",
@@ -2947,7 +2993,8 @@
       "        publish:",
       "          endpoint: !ref ReqIdRead"
     ],
-    "description": "handshake-to_opcua is a opcua edgeToEdge template"
+    "description": "handshake-to_opcua is a opcua edgeToEdge template",
+    "scope": "yaml"
   },
   "opcua_edgeToEdge_quality_check-from_influxdb-template": {
     "prefix": "template:opcua:edgeToEdge:quality_check-from_influxdb",
@@ -3245,7 +3292,8 @@
       "                }",
       "              )"
     ],
-    "description": "quality_check-from_influxdb is a opcua edgeToEdge template"
+    "description": "quality_check-from_influxdb is a opcua edgeToEdge template",
+    "scope": "yaml"
   },
   "opcua_edgeToEdge_tox_feedback-template": {
     "prefix": "template:opcua:edgeToEdge:tox_feedback",
@@ -3350,7 +3398,8 @@
       "        - transform:",
       "            expression: '{\"value\": part.id}'"
     ],
-    "description": "tox_feedback is a opcua edgeToEdge template"
+    "description": "tox_feedback is a opcua edgeToEdge template",
+    "scope": "yaml"
   },
   "opcua_edgeToEdge_batch_record-to_mssql-template": {
     "prefix": "template:opcua:edgeToEdge:batch_record-to_mssql",
@@ -3469,7 +3518,8 @@
       "                \"totalDowntime\": $.value.totalDowntime",
       "              }"
     ],
-    "description": "batch_record-to_mssql is a opcua edgeToEdge template"
+    "description": "batch_record-to_mssql is a opcua edgeToEdge template",
+    "scope": "yaml"
   },
   "influxdb_resource_endpoint-write-snippet": {
     "prefix": "snippet:influxdb:resource:endpoint-write",
@@ -3500,7 +3550,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "endpoint-write is a influxdb resource snippet"
+    "description": "endpoint-write is a influxdb resource snippet",
+    "scope": "yaml"
   },
   "influxdb_resource_ingressroute-snippet": {
     "prefix": "snippet:influxdb:resource:ingressroute",
@@ -3531,7 +3582,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "ingressroute is a influxdb resource snippet"
+    "description": "ingressroute is a influxdb resource snippet",
+    "scope": "yaml"
   },
   "influxdb_resource_volume-snippet": {
     "prefix": "snippet:influxdb:resource:volume",
@@ -3553,7 +3605,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "volume is a influxdb resource snippet"
+    "description": "volume is a influxdb resource snippet",
+    "scope": "yaml"
   },
   "influxdb_resource_connection-snippet": {
     "prefix": "snippet:influxdb:resource:connection",
@@ -3590,7 +3643,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "connection is a influxdb resource snippet"
+    "description": "connection is a influxdb resource snippet",
+    "scope": "yaml"
   },
   "influxdb_resource_container-snippet": {
     "prefix": "snippet:influxdb:resource:container",
@@ -3630,7 +3684,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "container is a influxdb resource snippet"
+    "description": "container is a influxdb resource snippet",
+    "scope": "yaml"
   },
   "influxdb_resource_link-snippet": {
     "prefix": "snippet:influxdb:resource:link",
@@ -3664,7 +3719,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "link is a influxdb resource snippet"
+    "description": "link is a influxdb resource snippet",
+    "scope": "yaml"
   },
   "influxdb_app_deploy-template": {
     "prefix": "template:influxdb:app:deploy",
@@ -3800,7 +3856,8 @@
       "        publish:",
       "          endpoint: !ref randomData_Write"
     ],
-    "description": "deploy is a influxdb app template"
+    "description": "deploy is a influxdb app template",
+    "scope": "yaml"
   },
   "influxdb_edgeToEdge_with_grafana-template": {
     "prefix": "template:influxdb:edgeToEdge:with_grafana",
@@ -3960,7 +4017,8 @@
       "        publish:",
       "          endpoint: !ref influx_Write"
     ],
-    "description": "with_grafana is a influxdb edgeToEdge template"
+    "description": "with_grafana is a influxdb edgeToEdge template",
+    "scope": "yaml"
   },
   "kafka_resource_endpoint-write-snippet": {
     "prefix": "snippet:kafka:resource:endpoint-write",
@@ -3986,7 +4044,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "endpoint-write is a kafka resource snippet"
+    "description": "endpoint-write is a kafka resource snippet",
+    "scope": "yaml"
   },
   "kafka_resource_connection-snippet": {
     "prefix": "snippet:kafka:resource:connection",
@@ -4016,7 +4075,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "connection is a kafka resource snippet"
+    "description": "connection is a kafka resource snippet",
+    "scope": "yaml"
   },
   "kafka_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:kafka:resource:endpoint-subscribe",
@@ -4043,7 +4103,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "endpoint-subscribe is a kafka resource snippet"
+    "description": "endpoint-subscribe is a kafka resource snippet",
+    "scope": "yaml"
   },
   "kafka_resource_connection-mtls-snippet": {
     "prefix": "snippet:kafka:resource:connection-mtls",
@@ -4073,7 +4134,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "connection-mtls is a kafka resource snippet"
+    "description": "connection-mtls is a kafka resource snippet",
+    "scope": "yaml"
   },
   "kafka_bridge_consumer-template": {
     "prefix": "template:kafka:bridge:consumer",
@@ -4121,7 +4183,8 @@
       "        fromBeginning: false",
       "        topic: some_test_topic"
     ],
-    "description": "consumer is a kafka bridge template"
+    "description": "consumer is a kafka bridge template",
+    "scope": "yaml"
   },
   "kafka_bridge_snowflake-write-template": {
     "prefix": "template:kafka:bridge:snowflake-write",
@@ -4186,7 +4249,8 @@
       "        bufferMaxSize: !ref buffer_maxSize",
       "        bufferMaxAge: !ref buffer_maxAge"
     ],
-    "description": "snowflake-write is a kafka bridge template"
+    "description": "snowflake-write is a kafka bridge template",
+    "scope": "yaml"
   },
   "kafka_bridge_producer-template": {
     "prefix": "template:kafka:bridge:producer",
@@ -4232,7 +4296,8 @@
       "      write:",
       "        topic: some_test_topic"
     ],
-    "description": "producer is a kafka bridge template"
+    "description": "producer is a kafka bridge template",
+    "scope": "yaml"
   },
   "kafka_edgeToEdge_snowflake-wirte-template": {
     "prefix": "template:kafka:edgeToEdge:snowflake-wirte",
@@ -4261,7 +4326,8 @@
       "        - transform:",
       "            expression: '{\"value\":{\"value\":$string($)}}'"
     ],
-    "description": "snowflake-wirte is a kafka edgeToEdge template"
+    "description": "snowflake-wirte is a kafka edgeToEdge template",
+    "scope": "yaml"
   },
   "bacnet_resource_connection-snippet": {
     "prefix": "snippet:bacnet:resource:connection",
@@ -4305,7 +4371,8 @@
       "        maxDelay: !ref maxReconnectDelay",
       "        incrementFactor: !ref factorReconnectDelay"
     ],
-    "description": "connection is a bacnet resource snippet"
+    "description": "connection is a bacnet resource snippet",
+    "scope": "yaml"
   },
   "bacnet_resource_connection-template": {
     "prefix": "template:bacnet:resource:connection",
@@ -4370,7 +4437,8 @@
       "          maxDelay: !ref maxReconnectDelay",
       "          incrementFactor: !ref factorReconnectDelay"
     ],
-    "description": "connection is a bacnet resource template"
+    "description": "connection is a bacnet resource template",
+    "scope": "yaml"
   },
   "modbus_resource_endpoint-write-snippet": {
     "prefix": "snippet:modbus:resource:endpoint-write",
@@ -4400,7 +4468,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "endpoint-write is a modbus resource snippet"
+    "description": "endpoint-write is a modbus resource snippet",
+    "scope": "yaml"
   },
   "modbus_resource_connection-snippet": {
     "prefix": "snippet:modbus:resource:connection",
@@ -4452,7 +4521,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "connection is a modbus resource snippet"
+    "description": "connection is a modbus resource snippet",
+    "scope": "yaml"
   },
   "modbus_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:modbus:resource:endpoint-subscribe",
@@ -4483,7 +4553,8 @@
       "# End of Snippet",
       "# --------------------------------------------------#"
     ],
-    "description": "endpoint-subscribe is a modbus resource snippet"
+    "description": "endpoint-subscribe is a modbus resource snippet",
+    "scope": "yaml"
   },
   "modbus_resource_connection-template": {
     "prefix": "template:modbus:resource:connection",
@@ -4538,7 +4609,8 @@
       "          maxDelay: !ref maxReconnectDelay",
       "          incrementFactor: !ref factorReconnectDelay"
     ],
-    "description": "connection is a modbus resource template"
+    "description": "connection is a modbus resource template",
+    "scope": "yaml"
   },
   "modbus_bridge_generic_write-template": {
     "prefix": "template:modbus:bridge:generic_write",
@@ -4621,7 +4693,8 @@
       "        address: 1",
       "        dataType: int16BE"
     ],
-    "description": "generic_write is a modbus bridge template"
+    "description": "generic_write is a modbus bridge template",
+    "scope": "yaml"
   },
   "modbus_bridge_generic_read-template": {
     "prefix": "template:modbus:bridge:generic_read",
@@ -4704,7 +4777,8 @@
       "        address: 1",
       "        dataType: int16BE"
     ],
-    "description": "generic_read is a modbus bridge template"
+    "description": "generic_read is a modbus bridge template",
+    "scope": "yaml"
   },
   "modbus_edgeToEdge_generic-read_write-template": {
     "prefix": "template:modbus:edgeToEdge:generic-read_write",
@@ -4830,7 +4904,8 @@
       "        publish:",
       "          endpoint: !ref writeRegister"
     ],
-    "description": "generic-read_write is a modbus edgeToEdge template"
+    "description": "generic-read_write is a modbus edgeToEdge template",
+    "scope": "yaml"
   },
   "http_server_resource_server-snippet": {
     "prefix": "snippet:http_server:resource:server",
@@ -4840,7 +4915,8 @@
       "  properties:",
       "    basePath: /cybustest"
     ],
-    "description": "server is a http_server resource snippet"
+    "description": "server is a http_server resource snippet",
+    "scope": "yaml"
   },
   "http_server_resource_route-snippet": {
     "prefix": "snippet:http_server:resource:route",
@@ -4852,7 +4928,8 @@
       "    method: <GET | PUT | POST>",
       "    route: /getRoute"
     ],
-    "description": "route is a http_server resource snippet"
+    "description": "route is a http_server resource snippet",
+    "scope": "yaml"
   },
   "http_server_app_all_routes-template": {
     "prefix": "template:http_server:app:all_routes",
@@ -4892,7 +4969,8 @@
       "      method: GET",
       "      route: /getRoute"
     ],
-    "description": "all_routes is a http_server app template"
+    "description": "all_routes is a http_server app template",
+    "scope": "yaml"
   },
   "http_server_edgeToEdge_with_http-template": {
     "prefix": "template:http_server:edgeToEdge:with_http",
@@ -4955,6 +5033,7 @@
       "        publish:",
       "          topic: destination/topic"
     ],
-    "description": "with_http is a http_server edgeToEdge template"
+    "description": "with_http is a http_server edgeToEdge template",
+    "scope": "yaml"
   }
 }

@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "HttpServer",
+  "definitions": {
+    "properties": {
+      "type": "object",
+      "required": [
+        "basePath"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "basePath": {
+          "$id": "/properties/basePath",
+          "type": "string",
+          "title": "Base Path",
+          "description": "Any additional base URL path in addition to the default /data/ base URL path",
+          "examples": ["/my/custom/path", "/"],
+          "default": ""
+        },
+        "requestMaxBodySize": {
+          "$id": "/properties/requestMaxBodySize",
+          "type": "integer",
+          "title": "Maximum request body size",
+          "definition": "Controls the maximum request body size. The value specifies the number of bytes",
+          "examples": [100000],
+          "minimum": 1,
+          "maximum": 512000,
+          "default": 100000
+        }
+      }
+    }
+  }
+}

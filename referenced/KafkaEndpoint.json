@@ -1,0 +1,51 @@
+{
+  "$id": "KafkaEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": ["topic"],
+      "additionalProperties": false,
+      "properties": {
+        "topic": {
+          "$id": "/properties/topic",
+          "type": "string",
+          "title": "Topic",
+          "description": "Any valid topic name addressing a single data-point",
+          "examples": [
+            "topic_name"
+          ]
+        },
+        "acks": {
+          "$id": "/properties/acks",
+          "type": "number",
+          "title": "Acknowledgements",
+          "default": -1,
+          "enum": [-1, 0, 1],
+          "description": "Control the number of required acknowledgements. -1 = all insync replicas must acknowledge (default); 0 = no acknowledgments; 1 = only waits for the leader to acknowledge"
+        },
+        "timeout": {
+          "$id": "/properties/timeout",
+          "type": "number",
+          "title": "Timeout",
+          "default": 30000,
+          "description": "The time to await a response from the broker in milliseconds"
+        },
+        "compression": {
+          "$id": "/properties/compression",
+          "type": "string",
+          "title": "Compression codec",
+          "enum": ["None", "GZIP"],
+          "default": "None",
+          "description": "The compression codec used to compress the messages"
+        },
+        "fromBeginning": {
+          "$id": "/properties/fromBeginning",
+          "type": "boolean",
+          "title": "Consume From Beginning",
+          "description": "Only for subscribe: Where to let the consumer start consuming messages. If true, start from the beginning of the topic. If false, start at the end.",
+          "default": false
+        }
+      }
+    }
+  }
+}

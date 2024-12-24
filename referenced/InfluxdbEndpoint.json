@@ -1,0 +1,64 @@
+{
+  "$id": "InfluxdbEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "$id": "/properties/query",
+          "type": "string",
+          "title": "Query",
+          "description": "The InfluxDB Flux query used to read or subscribe to measurements. This property is only used for read or subscribe endpoints",
+          "examples": [
+            "from(bucket:\"my-bucket\") |> range(start: -1h) |> filter(fn: (r) => r._measurement == \"temperature\")"
+          ]
+        },
+        "interval": {
+          "$id": "/properties/interval",
+          "type": "integer",
+          "title": "Query interval",
+          "description": "The amount of milliseconds between queries. If not provided defaults to 1000 milliseconds"
+        },
+        "cronExpression": {
+          "$id": "/properties/cronExpression",
+          "type": "string",
+          "title": "Cron expression",
+          "description": "The Cron expression used to poll the endpoint. (For examples, see: https://github.com/node-cron/node-cron)",
+          "examples": [
+            "1,2,4,5 * * * *",
+            "1-5 * * * *",
+            "*/2 * * * *",
+            "* * * January,September Sunday"
+          ]
+        },
+        "measurement": {
+          "$id": "/properties/measurement",
+          "type": "string",
+          "description": "The name of the measurement on which to store data points when writing data. This property can be overriden by providing the measurement in the data of a message, but it has to be set in at least one of the two places.",
+          "examples": [
+            "exhaust_temperature"
+          ]
+        },
+        "measurementPrefix": {
+          "$id": "/properties/measurementPrefix",
+          "type": "string",
+          "description": "An optional prefix for the measurement name that it is prepend to it.",
+          "examples": [
+            "engine_"
+          ]
+        },
+        "fields": {
+          "$id": "/properties/fields",
+          "type": "object",
+          "description": "An optional object made up of key value pairs. These constant fields are merged with the fields from the message."
+        },
+        "tags": {
+          "$id": "/properties/tags",
+          "type": "object",
+          "description": "An optional object made up of key value pairs. These constant tags are merged with the tags from the message."
+        }
+      }
+    }
+  }
+}

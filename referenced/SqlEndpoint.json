@@ -1,0 +1,51 @@
+{
+  "$id": "SqlEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "$id": "/properties/query",
+          "type": "string",
+          "title": "Query",
+          "description": "The SQL query used to write or to subscribe",
+          "examples": [
+            "INSERT INTO test (some_column) VALUES ($some_column)"
+          ]
+        },
+        "queryValues": {
+          "$id": "/properties/queryValues",
+          "type": "string",
+          "title": "Query values",
+          "description": "The SQL query values used to bulk insert",
+          "examples": [
+            "($id, $name, $age)"
+          ]
+        },
+        "interval": {
+          "$id": "/properties/interval",
+          "type": "integer",
+          "title": "Query interval",
+          "description": "The amount of milliseconds between queries. Only required when subscribing",
+          "default": 1000
+        },
+        "cronExpression": {
+          "$id": "/properties/cronExpression",
+          "type": "string",
+          "title": "Cron expression",
+          "description": "The Cron expression used to poll the endpoint. (For examples, see: https://github.com/node-cron/node-cron)",
+          "examples": [
+            "1,2,4,5 * * * *",
+            "1-5 * * * *",
+            "*/2 * * * *",
+            "* * * January,September Sunday"
+          ]
+        }
+      }
+    }
+  }
+}

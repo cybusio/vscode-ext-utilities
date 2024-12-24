@@ -1,0 +1,81 @@
+{
+  "$id": "AdsEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": [
+        "symbolName"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "symbolName": {
+          "$id": "/properties/symbolName",
+          "type": "string",
+          "title": "Symbol name",
+          "minLength": 1,
+          "description": "The name of the variable to read/write/subscribe",
+          "examples": [
+            "Main.byByte[4]"
+          ]
+        },
+        "interval": {
+          "$id": "/properties/interval",
+          "type": "integer",
+          "title": "Interval",
+          "description": "Only for subscribe: The time interval between subsequent reads, in milliseconds. The value is received cyclically from the PLC at this interval. The smallest possible theoretical value is the cycle time of the PLC. If the interval is set to zero, the value is read at every PLC cycle. However, when setting the time interval to a small value, the MQTT broker of the Connectware might not be able to handle the resulting high data rate and data loss might occur, hence small time intervals must be handled with care. (The maximum value of 429 seconds is caused by the data type limit of this field within the ADS protocol.)",
+          "minimum": 0,
+          "maximum": 429496,
+          "default": 1000
+        },
+        "onChange": {
+          "$id": "/properties/onChange",
+          "type": "boolean",
+          "title": "On Change",
+          "description": "Only for subscribe: How subscriptions should report the variable values. If true, a value is sent only when it changed. If false, the value is sent on each time interval.",
+          "default": false
+        },
+        "dataType": {
+          "$id": "/properties/dataType",
+          "type": "string",
+          "enum": [
+            "raw",
+            "string",
+            "boolean",
+            "doubleBE",
+            "doubleLE",
+            "floatBE",
+            "floatLE",
+            "int8",
+            "int16BE",
+            "int16LE",
+            "int32BE",
+            "int32LE",
+            "bigInt64BE",
+            "bigInt64LE",
+            "uint16BE",
+            "uint16LE",
+            "uint32BE",
+            "uint32LE",
+            "bigUInt64BE",
+            "bigUInt64LE"
+          ],
+          "title": "Data Type",
+          "description": "Convert the ADS value to this specified type. Types are available in Big Endian (BE) variants or Little Endian (LE).",
+          "examples": [
+            "floatLE",
+            "string"
+          ],
+          "default": "raw"
+        },
+        "readSize": {
+          "$id": "/properties/readSize",
+          "type": "integer",
+          "title": "Read size",
+          "description": "Only needed for read variables of type string or raw: The number of bytes to read.",
+          "minimum": 1,
+          "default": 1
+        }
+      }
+    }
+  }
+}

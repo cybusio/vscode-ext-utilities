@@ -1,0 +1,64 @@
+{
+  "$id": "EthernetIpConnection",
+  "definitions": {
+    "connection": {
+      "type": "object",
+      "required": [
+        "host"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "$id": "/properties/host",
+          "type": "string",
+          "title": "Hostname",
+          "description": "The hostname or IP address of the controller"
+        },
+        "slot": {
+          "$id": "/properties/slot",
+          "type": "integer",
+          "title": "Slot",
+          "description": "The slot of the controller",
+          "default": 0
+        },
+        "scanRate": {
+          "$id": "/properties/scanRate",
+          "type": "integer",
+          "title": "Scan rate",
+          "description": "During normal operation, this setting specifies the time interval for scanning for tag changes at the controller (in milliseconds)",
+          "default": 200
+        },
+        "scanRetryDelay": {
+          "$id": "/properties/scanRetryDelay",
+          "type": "integer",
+          "title": "scan retry delay",
+          "description": "On errors during scanning, this setting specifies the time interval until the next scan attempt (in milliseconds)",
+          "default": 2000
+        },
+        "connectionStrategy": {
+          "type": "object",
+          "description": "If a connection attempt fails, retries will be performed with increasing delay (waiting time) in between. The following parameters control how these delays behave.",
+          "properties": {
+            "initialDelay": {
+              "type": "integer",
+              "description": "Delay (waiting time) of the first connection retry (in milliseconds). For subsequent retries, the delay will be increased according to the parameter incrementFactor which has a default value of 2.",
+              "default": 1e3,
+              "minimum": 1e3
+            },
+            "maxDelay": {
+              "type": "integer",
+              "description": "Maximum delay (waiting time) to wait until the next retry (in milliseconds). The delay (waiting time) for any subsequent connection retry will not be larger than this value. Must be strictly greater than initialDelay.",
+              "default": 30e3
+            },
+            "incrementFactor": {
+              "type": "integer",
+              "description": "The factor used to increment initialDelay up to maxDelay. For example if initialDelay is set to 1000 and maxDelay to 5000 the values for the delay would be 1000, 2000, 4000, 5000.",
+              "default": 2,
+              "minimum": 2
+            }
+          }
+        }
+      }
+    }
+  }
+}

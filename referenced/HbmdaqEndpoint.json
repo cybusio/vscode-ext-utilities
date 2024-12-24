@@ -1,0 +1,29 @@
+{
+  "$id": "HbmdaqEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": ["signal"],
+      "additionalProperties": false,
+      "properties": {
+        "signal": {
+          "$id": "/properties/signal",
+          "type": "string",
+          "enum": [
+            "AnalogIn_Connector1.Signal1",
+            "AnalogIn_Connector1.Signal2",
+            "AnalogIn_Connector2.Signal1",
+            "AnalogIn_Connector2.Signal2",
+            "AnalogIn_Connector3.Signal1",
+            "AnalogIn_Connector3.Signal2",
+            "AnalogIn_Connector4.Signal1",
+            "AnalogIn_Connector4.Signal2"
+          ],
+          "title": "Signal",
+          "description": "Signal for the device",
+          "examples": [2]
+        }
+      }
+    }
+  }
+}

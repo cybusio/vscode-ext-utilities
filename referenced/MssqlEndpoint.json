@@ -1,0 +1,47 @@
+{
+  "$id": "MssqlEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "$id": "/properties/query",
+          "type": "string",
+          "title": "Query",
+          "description": "The SQL query used to write or to subscribe",
+          "examples": [
+            "INSERT INTO test (some_column) VALUES (@some_column)"
+          ]
+        },
+        "interval": {
+          "$id": "/properties/interval",
+          "type": "integer",
+          "title": "Query interval",
+          "description": "The amount of milliseconds between queries"
+        },
+        "cronExpression": {
+          "$id": "/properties/cronExpression",
+          "type": "string",
+          "title": "Cron expression",
+          "description": "The Cron expression used to poll the endpoint. (For examples, see: https://github.com/node-cron/node-cron)",
+          "examples": [
+            "1,2,4,5 * * * *",
+            "1-5 * * * *",
+            "*/2 * * * *",
+            "* * * January,September Sunday"
+          ]
+        },
+        "validateQuery": {
+          "$id": "/properties/validateQuery",
+          "type": "boolean",
+          "title": "Deprecated (Validate query)",
+          "description": "Deprecated: This property has no effect anymore, please remove it from your files (Previous description: Validate the syntax of the SQL query)"
+        }
+      }
+    }
+  }
+}

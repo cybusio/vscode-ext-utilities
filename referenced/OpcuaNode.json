@@ -1,0 +1,148 @@
+{
+  "$id": "OpcuaNode",
+  "definitions": {
+    "options": {
+      "type": "object",
+      "required": ["browseName", "nodeType"],
+      "additionalProperties": false,
+      "properties": {
+        "browseName": {
+          "$id": "/properties/browseName",
+          "type": "string",
+          "title": "Browse Name",
+          "description": "The browse name (not path) of this node",
+          "examples": ["temperature1", "pressure2"]
+        },
+        "nodeId": {
+          "$id": "/properties/nodeId",
+          "type": "string",
+          "title": "Node ID",
+          "description": "The specific node id of this node",
+          "examples": ["ns=1;s=spindleSpeed"]
+        },
+        "nodeType": {
+          "$id": "/properties/nodeType",
+          "type": "string",
+          "title": "Node Type",
+          "description": "The node type: Whether this node is a variable or an object.",
+          "enum": ["Object", "Variable"]
+        },
+        "historize": {
+          "$id": "/properties/historize",
+          "type": "boolean",
+          "title": "Historize",
+          "description": "Whether to accumulate an historian for this node",
+          "default": false
+        },
+        "interpolation": {
+          "$id": "/properties/interpolation",
+          "type": "string",
+          "title": "Interpolation",
+          "description": "The displayed interpolation mode",
+          "enum": ["stepped", "sloped"],
+          "default": "sloped"
+        },
+        "maxTimeInterval": {
+          "$id": "/properties/maxTimeInterval",
+          "type": "integer",
+          "title": "maxTimeInterval",
+          "description": "Specifies the maximum interval between data points in the history repository regardless of their value change [in milliseconds]",
+          "default": 10000,
+          "examples": [1000]
+        },
+        "minTimeInterval": {
+          "$id": "/properties/minTimeInterval",
+          "type": "integer",
+          "title": "maxTimeInterval",
+          "description": "Specifies the minimum interval between data points in the history repository regardless of their value change [in milliseconds]",
+          "default": 500,
+          "examples": [100]
+        },
+        "dataType": {
+          "$id": "/properties/dataType",
+          "type": "string",
+          "title": "Data Type",
+          "description": "The data type of this node. This can be either an OPC UA base type (see example values), or a node ID which references a data type node.",
+          "examples": [
+            "Boolean",
+            "Byte",
+            "ByteString",
+            "DataValue",
+            "DateTime",
+            "DiagnosticInfo",
+            "Double",
+            "ExpandedNodeId",
+            "ExtensionObject",
+            "Float",
+            "Guid",
+            "Int16",
+            "Int32",
+            "Int64",
+            "LocalizedText",
+            "NodeId",
+            "Null",
+            "QualifiedName",
+            "SByte",
+            "StatusCode",
+            "String",
+            "UInt16",
+            "UInt32",
+            "UInt64",
+            "Variant",
+            "XmlElement"
+          ]
+        },
+        "serializeDataType": {
+          "$id": "/properties/serializeDataType",
+          "type": "string",
+          "title": "Serialization Data Type",
+          "description": "For nodes where the data type is not an OPC UA base type but a node reference, the data type for serialization of values sometimes needs to be specified separately here. This must be a basic OPC UA data type.",
+          "enum": [
+            "Boolean",
+            "Byte",
+            "ByteString",
+            "DataValue",
+            "DateTime",
+            "DiagnosticInfo",
+            "Double",
+            "ExpandedNodeId",
+            "ExtensionObject",
+            "Float",
+            "Guid",
+            "Int16",
+            "Int32",
+            "Int64",
+            "LocalizedText",
+            "NodeId",
+            "Null",
+            "QualifiedName",
+            "SByte",
+            "StatusCode",
+            "String",
+            "UInt16",
+            "UInt32",
+            "UInt64",
+            "Variant",
+            "XmlElement"
+          ]
+        },
+        "valueRank": {
+          "$id": "/properties/valueRank",
+          "type": "integer",
+          "title": "Value Rank",
+          "description": "The rank of the transported data, default is scalar (-1), use 1 for array of scalars",
+          "enum": [-3, -2, -1, 0, 1, 2],
+          "default": -1
+        },
+        "arrayDimensions": {
+          "$id": "/properties/arrayDimensions",
+          "type": "array",
+          "title": "Array Dimensions",
+          "description": "For nodes that represent an array or a multi-dimensional array (e.g. a matrix), this array value specifies the size in each of the dimensions.",
+          "items": { "type": "number" },
+          "examples": [[6, 4]]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "$id": "OpcuaServer",
+  "definitions": {
+    "properties": {
+      "type": "object",
+      "required": [],
+      "additionalProperties": false,
+      "properties": {
+        "port": {
+          "$id": "/properties/port",
+          "type": "integer",
+          "title": "Port",
+          "description": "Port of the listening socket",
+          "minimum": 0,
+          "default": 4841,
+          "examples": [4841]
+        },
+        "maxSessions": {
+          "$id": "/properties/maxSessions",
+          "type": "integer",
+          "title": "Max Sessions by User",
+          "description": "Max Sessions allowed by user",
+          "minimum": 0,
+          "default": 20,
+          "examples": [1000]
+        },
+        "maxConnections": {
+          "$id": "/properties/maxConnections",
+          "type": "integer",
+          "title": "Max Connections by Connections",
+          "description": "Max Connections allowed for a single endpoint to prevent DDoS attacks",
+          "minimum": 0,
+          "default": 20,
+          "examples": [1000]
+        },
+        "resourcePath": {
+          "$id": "/properties/resourcePath",
+          "type": "string",
+          "title": "Resource Path",
+          "description": "Resource Path of the OPC Server. This must be added to the OPC UA connection URN of the client",
+          "default": "/UA/CybusOpcuaServer",
+          "examples": [
+            "/UA/CybusOpcuaServer",
+            "/My/IndividualName"
+          ]
+        },
+        "alternateHostname": {
+          "$id": "/properties/alternateHostname",
+          "type": "string",
+          "title": "(Deprecated, replaced by hostname) Server Hostname",
+          "description": "This setting is deprecated, has been renamed into 'hostname', and will be removed in a future release",
+          "examples": [
+            "10.20.30.40",
+            "my.connectware-host.company.com"
+          ]
+        },
+        "hostname": {
+          "$id": "/properties/hostname",
+          "type": "string",
+          "title": "Server Hostname",
+          "description": "The hostname by which the Connectware with the OPC UA server will be reachable on the system. This can be either an IP address or a DNS name.",
+          "examples": [
+            "10.20.30.40",
+            "my.connectware-host.company.com"
+          ]
+        },
+        "applicationUri": {
+          "$id": "/properties/applicationUri",
+          "type": "string",
+          "title": "Application URI",
+          "description": "The application URI is used to define the namespace name of the Connectware defined NodeIds",
+          "default": "urn:cybus:opcua:server:1",
+          "examples": [
+            "urn:cybus:opcua:server:1"
+          ]
+        },
+        "allowAnonymous": {
+          "$id": "/properties/allowAnonymous",
+          "type": "boolean",
+          "title": "Allow Anonymous",
+          "description": "If true, usage of anonymous access token is allowed. In that case, OPC UA clients are allowed to connect without any authentication. Note: This is a high security risk and must not be used in production deployments.",
+          "default": false,
+          "examples": [true]
+        },
+        "certificateFile": {
+          "$id": "/properties/certificateFile",
+          "type": "string",
+          "title": "Certificate File",
+          "description": "Absolute path to the server certificate file",
+          "default": "/connectware_certs/cybus_server.crt",
+          "examples": ["/connectware_certs/cybus_server.crt"]
+        },
+        "privateKeyFile": {
+          "$id": "/properties/privateKeyFile",
+          "type": "string",
+          "title": "Private Key File",
+          "description": "Absolute path to the server private key file",
+          "default": "/connectware_certs/cybus_server.key",
+          "examples": ["/connectware_certs/cybus_server.key"]
+        },
+        "securityPolicies": {
+          "$id": "/properties/securityPolicies",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["Basic256Sha256", "None"],
+            "uniqueItems": true
+          },
+          "title": "Available Security Policies",
+          "description": "Defines the list of OPC UA securityPolicies that will be available on the server. Note: The policy \"None\" is a high security risk and must not be used in production deployments.",
+          "default": ["Basic256Sha256"],
+          "examples": ["[\"Basic256Sha256\", \"None\"]"]
+        },
+        "nodesetFiles": {
+          "$id": "/properties/nodesetFiles",
+          "type": "array",
+          "title": "Nodeset files to load on startup",
+          "description": "Predefined Nodeset files to load on startup",
+          "items": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "di",
+              "ia",
+              "machinery",
+              "machineTool",
+              "packML",
+              "robotics",
+              "Opc.Ua.PlasticsRubber.GeneralTypes.NodeSet2.xml",
+              "Opc.Ua.PlasticsRubber.IMM2MES.NodeSet2.xml",
+              "Opc.Ua.PLCopen.NodeSet2.xml"
+            ],
+            "uniqueItems": true
+          }
+        },
+        "securityModes": {
+          "$id": "/properties/securityModes",
+          "type": "array",
+          "title": "Available Security Modes",
+          "items": {
+            "type": "string",
+            "enum": ["Invalid", "None", "Sign", "SignAndEncrypt"],
+            "uniqueItems": true
+          },
+          "description": "Defines the list of OPC UA security modes which an OPC client can use to establish a connection to the Cybus OPC UA server",
+          "default": ["SignAndEncrypt"],
+          "examples": ["[\"None\", \"SignAndEncrypt\"]"]
+        },
+        "database": {
+          "type": "object",
+          "additionalProperties": false,
+          "title": "Database definition",
+          "description": "Definition of the database for historical access of the data. If this property exists, historical access is enabled, otherwise it is not enabled.",
+          "properties": {
+            "type": {
+              "$id": "/properties/database/type",
+              "type": "string",
+              "title": "Type",
+              "description": "Type of the history database",
+              "default": "influx",
+              "enum": ["influx"],
+              "examples": ["influx"]
+            },
+            "host": {
+              "$id": "/properties/database/host",
+              "type": "string",
+              "title": "Host",
+              "description": "Database Host",
+              "examples": ["10.20.30.40"]
+            },
+            "port": {
+              "$id": "/properties/database/port",
+              "type": "integer",
+              "title": "Port",
+              "description": "Port of the database server",
+              "default": 8086,
+              "examples": [8086]
+            },
+            "name": {
+              "$id": "/properties/database/name",
+              "type": "string",
+              "title": "Name",
+              "description": "Database Name",
+              "examples": ["opcuaHistory"]
+            },
+            "retention": {
+              "$id": "/properties/database/retention",
+              "type": "integer",
+              "title": "Retention Policy",
+              "description": "Data older than the specified number of days will be automatically discarded",
+              "examples": [356]
+            }
+          }
+        }
+      }
+    }
+  }
+}

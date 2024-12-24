@@ -1,0 +1,237 @@
+{
+  "$id": "HttpConnection",
+  "definitions": {
+    "connection": {
+      "type": "object",
+      "required": [
+        "host",
+        "port"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "scheme": {
+          "$id": "/properties/scheme",
+          "type": "string",
+          "title": "Scheme",
+          "description": "Transport scheme to be used",
+          "enum": [
+            "http",
+            "https"
+          ],
+          "examples": [
+            "https"
+          ]
+        },
+        "host": {
+          "$id": "/properties/host",
+          "type": "string",
+          "minLength": 1,
+          "title": "Hostname",
+          "description": "Domain name or IP Address of the server to connect to",
+          "examples": [
+            "126.4.10.52",
+            "example.org"
+          ]
+        },
+        "port": {
+          "$id": "/properties/port",
+          "type": "integer",
+          "title": "Port",
+          "description": "HTTP Port to use, usually 80 or 443",
+          "minimum": 0,
+          "default": 443,
+          "examples": [
+            "15200"
+          ]
+        },
+        "prefix": {
+          "$id": "/properties/prefix",
+          "type": "string",
+          "title": "Prefix",
+          "description": "Path prefix that is applied to all endpoints",
+          "default": "",
+          "examples": [
+            "/api/v1"
+          ]
+        },
+        "headers": {
+          "$id": "/properties/headers",
+          "type": "object",
+          "title": "Headers",
+          "description": "HTTP Headers that are added to all requests",
+          "default": {},
+          "examples": [
+            "{\"Content-type\": \"application/json\"}"
+          ]
+        },
+        "query": {
+          "$id": "/properties/query",
+          "type": "object",
+          "title": "Query",
+          "description": "Query variables that are added to all requests",
+          "examples": [
+            "{\"foo\": \"bar\"}"
+          ]
+        },
+        "auth": {
+          "$id": "/properties/auth",
+          "type": "object",
+          "title": "Auth",
+          "description": "Credentials for Basic Auth",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+        },
+        "oauthClientCredentials": {
+          "$id": "/properties/oauthCredentials",
+          "type": "object",
+          "title": "Oauth Client Credentials",
+          "description": "Oauth Client Credentials flow configuration",
+          "properties": {
+            "auth_url": {
+              "type": "string"
+            },
+            "client_id": {
+              "type": "string"
+            },
+            "client_secret": {
+              "type": "string"
+            },
+            "grant_type": {
+              "type": "string",
+              "default": "client_credentials"
+            },
+            "audience": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "client_secret",
+            "client_id",
+            "auth_url"
+          ]
+        },
+        "probeInterval": {
+          "$id": "/properties/probeInterval",
+          "type": "integer",
+          "title": "Probe Interval",
+          "description": "Interval in milliseconds to check if connection is still there",
+          "default": 10000
+        },
+        "probeTimeout": {
+          "$id": "/properties/probeTimeout",
+          "type": "integer",
+          "title": "Probe Timeout",
+          "description": "Timeout in milliseconds after which the probe request gets abort. (Defaults to 0, because of backwards compatibility - no timeout)",
+          "examples": [
+            0,
+            1000,
+            3000
+          ],
+          "minimum": 0,
+          "default": 0
+        },
+        "probePath": {
+          "type": "string",
+          "title": "Probe path",
+          "description": "The path that should be used to check the health of the server",
+          "default": "/"
+        },
+        "probeMethod": {
+          "type": "string",
+          "title": "Probe HTTP method",
+          "enum": [
+            "GET",
+            "HEAD"
+          ],
+          "description": "The HTTP method to use for contacting the configured Probe URL",
+          "default": "HEAD"
+        },
+        "mutualAuthentication": {
+          "$id": "/properties/mutualAuthentication",
+          "type": "boolean",
+          "title": "Activate mutual authentication",
+          "description": "If true, a full certificate chain including client certificate is expected to connect properly with validated certificates.",
+          "default": false,
+          "examples": [
+            true,
+            false
+          ]
+        },
+        "trustAllCertificates": {
+          "$id": "/properties/trustAllCertificates",
+          "type": "boolean",
+          "title": "Trust all certificates",
+          "description": "If true, all server certificates will be accepted, regardless of whether they can be validated or not. Use this option if self-signed server certificates should be accepted, or if there are other reasons which prevent this client to validate the certificates.",
+          "default": false,
+          "examples": [
+            true,
+            false
+          ]
+        },
+        "caCert": {
+          "$id": "/properties/caCert",
+          "type": "string",
+          "title": "Client CA certificate",
+          "description": "The root CA certificate as Base64 encoded PEM file content"
+        },
+        "clientCert": {
+          "$id": "/properties/clientCert",
+          "type": "string",
+          "title": "Client certificate",
+          "description": "The client certificate as Base64 encoded PEM CRT file content"
+        },
+        "clientPrivateKey": {
+          "$id": "/properties/clientPrivateKey",
+          "type": "string",
+          "title": "Client private private key",
+          "description": "The client private key as Base64 encoded PEM CRT file content"
+        },
+        "connectionStrategy": {
+          "type": "object",
+          "description": "If a connection attempt fails, retries will be performed with increasing delay (waiting time) in between. The following parameters control how these delays behave.",
+          "properties": {
+            "initialDelay": {
+              "type": "integer",
+              "description": "Delay (waiting time) of the first connection retry (in milliseconds). For subsequent retries, the delay will be increased according to the parameter incrementFactor which has a default value of 2.",
+              "default": 1e3,
+              "minimum": 1e3
+            },
+            "maxDelay": {
+              "type": "integer",
+              "description": "Maximum delay (waiting time) to wait until the next retry (in milliseconds). The delay (waiting time) for any subsequent connection retry will not be larger than this value. Must be strictly greater than initialDelay.",
+              "default": 30e3
+            },
+            "incrementFactor": {
+              "type": "integer",
+              "description": "The factor used to increment initialDelay up to maxDelay. For example if initialDelay is set to 1000 and maxDelay to 5000 the values for the delay would be 1000, 2000, 4000, 5000.",
+              "default": 2,
+              "minimum": 2
+            }
+          }
+        }
+      },
+      "if": {
+        "properties": {
+          "mutualAuthentication": {
+            "const": true
+          }
+        },
+        "required": [
+          "mutualAuthentication"
+        ]
+      },
+      "then": {
+        "required": [
+          "clientCert",
+          "clientPrivateKey"
+        ]
+      }
+    }
+  }
+}

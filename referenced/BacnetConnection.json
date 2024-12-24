@@ -1,0 +1,65 @@
+{
+  "$id": "BacnetConnection",
+  "definitions": {
+    "connection": {
+      "type": "object",
+      "required": ["deviceInstance", "deviceAddress"],
+      "additionalProperties": false,
+      "properties": {
+        "localInterface": {
+          "$id": "/properties/localInterface",
+          "type": "string",
+          "title": "Local Interface",
+          "description": "Local interface used to receive data",
+          "default": "eth0",
+          "examples": ["lo", "eth0"]
+        },
+        "localPort": {
+          "$id": "/properties/localPort",
+          "type": "integer",
+          "title": "Local Port",
+          "description": "Local port used to receive data",
+          "default": 47808,
+          "examples": [47808]
+        },
+        "deviceInstance": {
+          "$id": "/properties/deviceInstance",
+          "type": "integer",
+          "title": "Device Instance",
+          "description": "Integer number describing the device instance",
+          "examples": [27335]
+        },
+        "deviceAddress": {
+          "$id": "/properties/deviceAddress",
+          "type": "string",
+          "title": "Device Address",
+          "description": "Device address as UDP network address in the form ip-address:port-number. The port can be skipped if only one device is available under the given IP address",
+          "examples": ["192.168.2.114:40426"]
+        },
+        "connectionStrategy": {
+          "type": "object",
+          "description": "If a connection attempt fails, retries will be performed with increasing delay (waiting time) in between. The following parameters control how these delays behave.",
+          "properties": {
+            "initialDelay": {
+              "type": "integer",
+              "description": "Delay (waiting time) of the first connection retry (in milliseconds). For subsequent retries, the delay will be increased according to the parameter incrementFactor which has a default value of 2.",
+              "default": 1e3,
+              "minimum": 1e3
+            },
+            "maxDelay": {
+              "type": "integer",
+              "description": "Maximum delay (waiting time) to wait until the next retry (in milliseconds). The delay (waiting time) for any subsequent connection retry will not be larger than this value. Must be strictly greater than initialDelay.",
+              "default": 30e3
+            },
+            "incrementFactor": {
+              "type": "integer",
+              "description": "The factor used to increment initialDelay up to maxDelay. For example if initialDelay is set to 1000 and maxDelay to 5000 the values for the delay would be 1000, 2000, 4000, 5000.",
+              "default": 2,
+              "minimum": 2
+            }
+          }
+        }
+      }
+    }
+  }
+}

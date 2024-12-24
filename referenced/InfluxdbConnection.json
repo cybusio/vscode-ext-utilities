@@ -1,0 +1,214 @@
+{
+  "$id": "InfluxdbConnection",
+  "definitions": {
+    "connection": {
+      "type": "object",
+      "required": [
+        "host"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "scheme": {
+          "$id": "/properties/scheme",
+          "type": "string",
+          "title": "Scheme",
+          "description": "Transport scheme to be used",
+          "enum": [
+            "http",
+            "https"
+          ],
+          "default": "http",
+          "examples": [
+            "https"
+          ]
+        },
+        "host": {
+          "$id": "/properties/host",
+          "type": "string",
+          "title": "Host",
+          "description": "The HTTP host of the InfluxDB server",
+          "examples": [
+            "connectware"
+          ]
+        },
+        "port": {
+          "$id": "/properties/port",
+          "type": "integer",
+          "title": "Port",
+          "description": "The port of the InfluxDB server",
+          "default": 8086,
+          "examples": [
+            8086
+          ]
+        },
+        "token": {
+          "$id": "properties/token",
+          "type": "string",
+          "title": "Token",
+          "description": "An InfluxDB authentication token",
+          "default": "",
+          "examples": [
+            "an-influx-auth-token"
+          ]
+        },
+        "probeInterval": {
+          "$id": "/properties/probeInterval",
+          "type": "integer",
+          "minimum": 1000,
+          "title": "Probe Interval",
+          "description": "Time interval to check if connection is still there, in milliseconds",
+          "default": 2000
+        },
+        "timeout": {
+          "$id": "properties/timeout",
+          "type": "integer",
+          "title": "Timeout",
+          "description": "Connection timeout, in milliseconds",
+          "minimum": 1000,
+          "default": 10000,
+          "examples": [
+            10000
+          ]
+        },
+        "transportOptions": {
+          "$id": "properties/transportOptions",
+          "type": "object",
+          "title": "Transport Options",
+          "description": "Additional connection options for InfluxDB",
+          "default": {}
+        },
+        "org": {
+          "$id": "properties/org",
+          "type": "string",
+          "title": "Organization",
+          "description": "Organization for InfluxDB. An Organization is a workspace for a group of users, all objects stored in Influxdb belong to an organization",
+          "default": "generic"
+        },
+        "bucket": {
+          "$id": "properties/bucket",
+          "type": "string",
+          "title": "Bucket",
+          "description": "InfluxDB bucket",
+          "default": "measurement_data"
+        },
+        "precision": {
+          "$id": "properties/precision",
+          "type": "string",
+          "title": "Precision",
+          "description": "Defines the precision to use for timestamps for InfluxDB",
+          "enum": [
+            "ns",
+            "us",
+            "ms",
+            "s"
+          ],
+          "default": "ms"
+        },
+        "maxRetryDelay": {
+          "$id": "properties/maxRetryDelay",
+          "type": "integer",
+          "title": "Max Retry Delay",
+          "description": "Maximum delay between write retries in milliseconds",
+          "default": 180000,
+          "examples": [
+            180000
+          ]
+        },
+        "minRetryDelay": {
+          "$id": "properties/minRetryDelay",
+          "type": "integer",
+          "title": "Min Retry Delay",
+          "description": "Minimum delay between write retries in milliseconds",
+          "default": 5000,
+          "examples": [
+            5000
+          ]
+        },
+        "retryJitter": {
+          "$id": "properties/retryJitter",
+          "type": "integer",
+          "title": "Retry Jitter",
+          "description": "Random value of up to Retry Jitter is added when attempting the next retry",
+          "default": 200,
+          "examples": [
+            200
+          ]
+        },
+        "maxBufferLines": {
+          "$id": "properties/maxBufferLines",
+          "type": "integer",
+          "title": "Max Buffer Lines",
+          "description": "Maximum size of the buffer for items that could not be sent in a previous write",
+          "default": 100000,
+          "examples": [
+            100000
+          ]
+        },
+        "maxRetries": {
+          "$id": "properties/maxRetries",
+          "type": "integer",
+          "title": "Max Retries",
+          "description": "Maximum number of retries to attempt a write",
+          "default": 3,
+          "examples": [
+            3
+          ]
+        },
+        "exponentialBase": {
+          "$id": "properties/exponentialBase",
+          "type": "integer",
+          "title": "Exponential Base",
+          "description": "Exponential base of the Retry Jitter used when computing the next delay",
+          "default": 5,
+          "examples": [
+            5
+          ]
+        },
+        "batchSize": {
+          "$id": "properties/batchSize",
+          "type": "integer",
+          "title": "Batch Size",
+          "description": "Maximum points/line to send in a single batch to InfluxDB",
+          "default": 1000,
+          "examples": [
+            1000
+          ]
+        },
+        "flushInterval": {
+          "$id": "properties/flushInterval",
+          "type": "integer",
+          "title": "Flush Interval",
+          "description": "Maximum time in milliseconds to keep points in an unflushed batch",
+          "minimum": 1,
+          "default": 10000,
+          "examples": [
+            10000
+          ]
+        },
+        "connectionStrategy": {
+          "type": "object",
+          "description": "If a connection attempt fails, retries will be performed with increasing delay (waiting time) in between. The following parameters control how these delays behave.",
+          "properties": {
+            "initialDelay": {
+              "type": "integer",
+              "description": "Delay (waiting time) of the first connection retry (in milliseconds). For subsequent retries, the delay will be increased according to the parameter incrementFactor which has a default value of 2.",
+              "default": 1e3,
+              "minimum": 1e3
+            },
+            "maxDelay": {
+              "type": "integer",
+              "description": "Maximum delay (waiting time) to wait until the next retry (in milliseconds). The delay (waiting time) for any subsequent connection retry will not be larger than this value. Must be strictly greater than initialDelay.",
+              "default": 30e3
+            },
+            "incrementFactor": {
+              "type": "integer",
+              "description": "The factor used to increment initialDelay up to maxDelay. For example if initialDelay is set to 1000 and maxDelay to 5000 the values for the delay would be 1000, 2000, 4000, 5000.",
+              "default": 2,
+              "minimum": 2
+            }
+          }
+        }
+      }
+    }
+  }
+}

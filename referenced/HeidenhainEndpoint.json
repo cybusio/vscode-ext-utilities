@@ -1,0 +1,96 @@
+{
+  "$id": "HeidenhainEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": [
+        "method"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "description": {
+          "$id": "/properties/description",
+          "type": "string",
+          "title": "Description",
+          "description": "Some descriptive text about the endpoint"
+        },
+        "method": {
+          "$id": "/properties/method",
+          "type": "string",
+          "title": "Method",
+          "description": "The function to call on the DNC control",
+          "examples": [
+            "isConnected"
+          ]
+        },
+        "params": {
+          "$id": "/properties/params",
+          "type": "array",
+          "title": "Parameters",
+          "description": "Only for subscribe: The parameter values for the function call to set up subscriptions. (For read calls, the function parameters are given in the payload data instead.)",
+          "default": [],
+          "examples": [
+            [
+              1,
+              "NAME"
+            ],
+            [
+              "this",
+              "that"
+            ]
+          ],
+          "items": {
+            "$id": "/properties/params/items",
+            "title": "Function call parameters",
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        },
+        "pollInterval": {
+          "$id": "/properties/pollInterval",
+          "type": "integer",
+          "title": "Poll interval",
+          "description": "Only for subscribe operation using type poll: Interval in milliseconds to poll the property",
+          "default": 1000,
+          "examples": [
+            1000
+          ]
+        },
+        "type": {
+          "$id": "/properties/type",
+          "type": "string",
+          "title": "Subscription type",
+          "description": "Only subscribe operation: Choose whether the subscription should be polled by the Connectware or whether it should be notified by DNC event notifiers.",
+          "enum": [
+            "poll",
+            "notify"
+          ],
+          "examples": [
+            "notify"
+          ]
+        }
+      }
+    }
+  }
+}

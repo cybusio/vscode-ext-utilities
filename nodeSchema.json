@@ -1,0 +1,171 @@
+{
+  "type": "object",
+  "description": "Schema for resource node\n",
+  "additionalProperties": true,
+  "properties": {
+      "type": {
+          "type": "string",
+          "title": "Resource Type",
+          "enum": [
+              "Cybus::Node::Opcua",
+              "Cybus::Node::OpcuaObject",
+              "Cybus::Node::OpcuaReference",
+              "Cybus::Node::Http"
+          ],
+          "examples": [
+              "Cybus::Node::Opcua"
+          ]
+      },
+      "properties": {
+          "type": "object",
+          "description": "Resource configuration",
+          "additionalProperties": true,
+          "properties": {
+              "parent": {
+                  "type": "string",
+                  "title": "Physical address of an existing parent node",
+                  "examples": [
+                      "!ref myParentNode"
+                  ]
+              },
+              "topic": {
+                  "type": "string",
+                  "title": "Custom topic this node should use",
+                  "pattern": "^[^#+]*$",
+                  "examples": [
+                      "hall1/sensor1"
+                  ]
+              },
+              "topicPrefix": {
+                  "type": "string",
+                  "title": "Prefixes all topics",
+                  "pattern": "^[^#+]*$",
+                  "examples": [
+                      "cybus"
+                  ]
+              },
+              "qos": {
+                  "type": "integer",
+                  "default": 0,
+                  "description": "Quality of service for mqtt messages"
+              },
+              "retain": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether the last message should be retained (last-value-cached) on the internal broker"
+              },
+              "targetState": {
+                  "type": "string",
+                  "title": "The targeted state for this connection",
+                  "enum": [
+                      "disabled",
+                      "enabled"
+                  ],
+                  "default": "enabled",
+                  "examples": [
+                      "disabled"
+                  ]
+              },
+              "rules": {
+                  "type": "array",
+                  "title": "Rules to be applied to the endpoint",
+                  "items": {
+                      "type": "object"
+                  }
+              },
+              "initialValue": {
+                  "type": [
+                      "number",
+                      "integer",
+                      "string",
+                      "boolean"
+                  ],
+                  "title": "Initial value",
+                  "description": "The initially provided value"
+              },
+              "operation": {
+                  "type": "string",
+                  "title": "Operation",
+                  "enum": [
+                      "serverProvides",
+                      "serverReceives",
+                      "serverProvidesAndReceives"
+                  ]
+              },
+              "options": {
+                  "type": "object"
+              },
+              "inputBuffering": {
+                  "type": "object",
+                  "title": "Input buffering properties",
+                  "description": "Properties to define the behaviour of the input buffering",
+                  "additionalProperties": false,
+                  "properties": {
+                      "enabled": {
+                          "title": "Enable Buffering",
+                          "type": "boolean",
+                          "description": "Whether input buffering should be enabled or not",
+                          "default": false
+                      },
+                      "maxConcurrentMessages": {
+                          "title": "Maximum concurrent messages",
+                          "type": "integer",
+                          "description": "Maximum number of concurrently processed messages as long as the input buffer queue is non-empty.",
+                          "default": 2
+                      },
+                      "maxInputBufferSize": {
+                          "title": "Maximum input buffer size",
+                          "type": "integer",
+                          "description": "Maximum number of input messages that are queued in the input buffer. Exceeding messages will be discarded. Adjust this to a higher value if you are handling bursty traffic.",
+                          "default": 5000
+                      },
+                      "waitingTimeOnEmptyQueue": {
+                          "title": "Waiting time during empty queue",
+                          "type": "integer",
+                          "description": "Waiting time in milliseconds after the input buffer queue ran empty and before checking again for newly queued input messages. Regardless of this value, on non-empty input buffer queue all messages will be processed without waiting time in between until the queue is empty again.",
+                          "default": 10
+                      }
+                  }
+              }
+          }
+      }
+  },
+  "allOf": [
+      {
+          "if": {
+              "properties": {
+                  "type": {
+                      "const": "Cybus::Node::Opcua"
+                  }
+              }
+          },
+          "then": {
+              "properties": {
+                  "properties": {
+                      "options": {
+                          "$ref": "OpcuaNode#/definitions/options"
+                      }
+                  }
+              }
+          }
+      },
+      {
+          "if": {
+              "properties": {
+                  "type": {
+                      "const": "Cybus::Node::Http"
+                  }
+              }
+          },
+          "then": {
+              "properties": {
+                  "properties": {
+                      "options": {
+                          "$ref": "HttpNode#/definitions/options"
+                      }
+                  }
+              }
+          }
+      }
+  ]
+}

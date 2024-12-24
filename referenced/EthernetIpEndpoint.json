@@ -1,0 +1,47 @@
+{
+  "$id": "EthernetIpEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": [
+        "tagName"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "tagName": {
+          "$id": "/properties/tagName",
+          "type": "string",
+          "title": "Tag name",
+          "description": "The name of the tag",
+          "examples": [
+            "contTag",
+            "Program:prog.progTag",
+            "arrayTag[0]",
+            "arrayTag[0,1,2]",
+            "integerTag.0"
+          ]
+        },
+        "programName": {
+          "$id": "/properties/programName",
+          "type": ["string", "null"],
+          "title": "Program name",
+          "description": "The name of the program. If this property is not set (and is null), the global program will be used.",
+          "default": null
+        },
+        "tagType": {
+          "$id": "/properties/tagType",
+          "type": "string",
+          "title": "Tag type",
+          "description": "The type of the tag",
+          "enum": [
+            "SINT",
+            "INT",
+            "DINT",
+            "REAL",
+            "BOOL"
+          ]
+        }
+      }
+    }
+  }
+}

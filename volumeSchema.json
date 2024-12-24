@@ -1,0 +1,5 @@
+{
+  "type": "object",
+  "description": "Schema for resources volume\n",
+  "additionalProperties": false
+}

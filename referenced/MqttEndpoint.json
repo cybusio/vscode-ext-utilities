@@ -1,0 +1,130 @@
+{
+  "$id": "MqttEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": ["topic"],
+      "additionalProperties": false,
+      "properties": {
+        "topic": {
+          "$id": "/properties/topic",
+          "type": "string",
+          "title": "Topic",
+          "description":"Any valid topic name addressing a single data-point",
+          "examples": [
+            "path/of/endpoint"
+          ]
+        },
+        "qos": {
+          "$id": "/properties/qos",
+          "type": "integer",
+          "title": "QoS",
+          "description": "Quality of service (QOS) level for this subscription at the external MQTT broker. Watch out: If the internal message forwarding should continue with the same non-zero QOS level, this must additionally be configured by specifiying the same qos value also in the general Endpoint properties (one level higher in the commissioning file), and in the subscribe and publish side of each involved Mapping, too.",
+          "default": 0,
+          "enum": [0, 1, 2],
+          "examples": [
+            1
+          ]
+        },
+        "retain": {
+          "$id": "/properties/retain",
+          "type": "boolean",
+          "title": "Retain",
+          "description": "Whether the last message should be retained (last-value-cached) on the broker (default: false)",
+          "default": false,
+          "examples": [
+            false
+          ]
+        },
+        "burstInterval": {
+          "$id": "/properties/burstInterval",
+          "type": "integer",
+          "title": "Burst interval",
+          "description": "Interval in ms during which incoming data-point values are aggregated (default: 0 = no aggregation)",
+          "default": 0,
+          "examples": [
+            1000
+          ]
+        },
+        "nl": {
+          "$id": "/properties/nl",
+          "type": "boolean",
+          "title": "No Local",
+          "description": "Controls whether a message should be forwarded to a connection with a ClientID equal to the ClientID of the publishing connection",
+          "default": true
+        },
+        "rap": {
+          "$id": "/properties/rap",
+          "type": "boolean",
+          "title": "Retain as Published",
+          "description": "Controls whether a message with the retain flag set to true maintains the flag when being forwarded",
+          "default": false
+        },
+        "rh": {
+          "$id": "/properties/rh",
+          "type": "number",
+          "enum": [0, 1, 2],
+          "title": "Retain Handling",
+          "description": "Controls whether retained messages are sent when subscription is established",
+          "default": 0
+        },
+        "properties": {
+          "$id": "/properties/properties",
+          "type": "object",
+          "description": "MQTT v5 specific properties",
+          "additionalProperties": false,
+          "properties": {
+            "correlationData": {
+              "$id": "/properties/properties/correlationData",
+              "type": "string",
+              "title": "Correlation Data",
+              "description": "The Correlation Data is used by the sender of the Request Message to identify which request the Response Message is for when it is received"
+            },
+            "contentType": {
+              "$id": "/properties/properties/contentType",
+              "type": "string",
+              "title": "Subscription Identifier",
+              "description": "String describing the content of the Application Message"
+            },
+            "messageExpiryInterval": {
+              "$id": "/properties/properties/messageExpiryInterval",
+              "type": "number",
+              "title": "Message Expiry Interval",
+              "description": "Lifetime in seconds of the Application Message"
+            },
+            "payloadFormatIndicator": {
+              "$id": "/properties/properties/payloadFormatIndicator",
+              "type": "boolean",
+              "title": "Payload Format Indicator",
+              "description": "Indicates whether the payload is UTF-8 encoded or not"
+            },
+            "responseTopic": {
+              "$id": "/properties/properties/responseTopic",
+              "type": "string",
+              "title": "Response Topic",
+              "description": "String which is used as the Topic Name for a response message in a request/response context"
+            },
+            "subscriptionIdentifier": {
+              "$id": "/properties/properties/subscriptionIdentifier",
+              "type": "number",
+              "title": "Subscription Identifier",
+              "description": "Represents the identifier of the subscription"
+            },
+            "topicAlias": {
+              "$id": "/properties/properties/topicAlias",
+              "type": "number",
+              "title": "Topic Alias",
+              "description": "A Topic Alias is an integer value that is used to identify the Topic instead of using the Topic Name. This reduces the size of the PUBLISH packet"
+            },
+            "userProperties": {
+              "$id": "/properties/properties/userProperties",
+              "type": "object",
+              "title": "Correlation Data",
+              "description": "Application specific key value pairs"
+            }
+          }
+        }
+      }
+    }
+  }
+}

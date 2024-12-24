@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "AdsConnection",
+  "definitions": {
+    "connection": {
+      "title": "Ada Connection",
+      "description": "Ada Connection",
+      "examples": [
+        {
+          "$ref": "localAddress"
+        }
+      ],
+      "type": "object",
+      "required": ["localAddress", "localPort", "host", "port", "netId"],
+      "additionalProperties": false,
+      "properties": {
+        "localAddress": {
+          "$id": "/properties/localAddress",
+          "type": "string",
+          "title": "Client local address (local AMS NetID)",
+          "description": "The local address of the client",
+          "examples": ["192.168.7.20.1.1"]
+        },
+        "localPort": {
+          "$id": "/properties/localPort",
+          "type": "integer",
+          "title": "Local port",
+          "description": "The local TCP port used to communicate to the device.",
+          "examples": [32750]
+        },
+        "host": {
+          "$id": "/properties/host",
+          "type": "string",
+          "title": "Device Address",
+          "description": "The device address. It can be an IP address or a hostname.",
+          "examples": ["192.168.2.114"]
+        },
+        "routerTcpPort": {
+          "$id": "/properties/routerTcpPort",
+          "type": "integer",
+          "title": "Router TCP Port",
+          "description": "The ADS Router TCP port",
+          "default": 48898,
+          "examples": [48898]
+        },
+        "port": {
+          "$id": "/properties/port",
+          "type": "integer",
+          "title": "AMS port (device PortNr)",
+          "description": "AMS port of the ADS device. This is not the TCP port used but the setting usually known as PortNr.; the actual TCP port is adsRouterTcpPort.",
+          "examples": [851]
+        },
+        "netId": {
+          "$id": "/properties/netId",
+          "type": "string",
+          "title": "Device Net ID",
+          "description": "AMS Net ID of the ADS device.",
+          "examples": ["192.168.2.114.1.1"]
+        },
+        "timeoutDelay": {
+          "$id": "/properties/timeoutDelay",
+          "type": "integer",
+          "title": "Timeout Delay",
+          "default": 2000,
+          "description": "Time (milliseconds) after connecting to the router or waiting for command response is canceled due to timeout"
+        },
+        "connectionCheckEnabled": {
+          "$id": "/properties/connectionCheckEnabled",
+          "type": "boolean",
+          "title": "Connection Check Enabled",
+          "default": true,
+          "description": "If true, the connection will be regularly checked for existing connectivity in the time interval as defined in the parameter connectionCheckInterval. Otherwise no additional connectivity check is run."
+        },
+        "connectionCheckInterval": {
+          "$id": "/properties/connectionCheckInterval",
+          "type": "integer",
+          "title": "Connection Check Interval",
+          "default": 5000,
+          "description": "How often to check the connection (in milliseconds)"
+        },
+        "connectionDownDelay": {
+          "$id": "/properties/connectionDownDelay",
+          "type": "integer",
+          "title": "Connection Down Delay",
+          "default": 25000,
+          "description": "How much time should pass without response to mark the connection down (in milliseconds)"
+        },
+        "connectionStrategy": {
+          "type": "object",
+          "description": "If a connection attempt fails, retries will be performed with increasing delay (waiting time) in between. The following parameters control how these delays behave.",
+          "properties": {
+            "initialDelay": {
+              "type": "integer",
+              "description": "Delay (waiting time) of the first connection retry (in milliseconds). For subsequent retries, the delay will be increased according to the parameter incrementFactor which has a default value of 2.",
+              "default": 1e3,
+              "minimum": 1e3
+            },
+            "maxDelay": {
+              "type": "integer",
+              "description": "Maximum delay (waiting time) to wait until the next retry (in milliseconds). The delay (waiting time) for any subsequent connection retry will not be larger than this value. Must be strictly greater than initialDelay.",
+              "default": 30e3
+            },
+            "incrementFactor": {
+              "type": "integer",
+              "description": "The factor used to increment initialDelay up to maxDelay. For example if initialDelay is set to 1000 and maxDelay to 5000 the values for the delay would be 1000, 2000, 4000, 5000.",
+              "default": 2,
+              "minimum": 2
+            }
+          }
+        }
+      }
+    }
+  }
+}

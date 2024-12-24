@@ -1,0 +1,120 @@
+{
+  "$id": "OpcuaEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "anyOf": [
+        {
+          "properties": {
+            "nodeId": {
+              "$ref": "#/definitions/address/properties/nodeId"
+            }
+          },
+          "required": [
+            "nodeId"
+          ]
+        },
+        {
+          "properties": {
+            "browsePath": {
+              "$ref": "#/definitions/address/properties/browsePath"
+            }
+          },
+          "required": [
+            "browsePath"
+          ]
+        }
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "nodeId": {
+          "$id": "/properties/nodeId",
+          "type": "string",
+          "title": "Node Id",
+          "description": "String of the exact location of the endpoint. Either nodeId or browsePath are required. A nodeId value is encoded as an xs:string with the syntax `ns=<namespaceIndex>;<type>=<value>`. The fields have the following meaning: `<namespaceIndex>` is an integer number such as 0 or 10, denoting the namespace. `<type>` is a flag that specifies the identifier type and can be: `i` for numeric (integer), `s` for string, `g` for guid, or `b` for opaque (byte string). `<value>` is the identifier itself, encoded as a string and in the format according to the identifierType. Examples of nodeIds: `i=13` , `ns=10;i=-1` , `ns=10;s=Hello:World` . See also https://reference.opcfoundation.org/v104/Core/docs/Part6/5.3.1 section 5.3.1.10",
+          "examples": [
+            "i=2258",
+            "ns=2;s=StepUp"
+          ]
+        },
+        "browsePath": {
+          "$id": "/properties/browsePath",
+          "type": "string",
+          "title": "Browsepath",
+          "description": "String containing the relative path to the endpoint. Either `nodeId` or `browsePath` are required.",
+          "examples": [
+            "0:CurrentTime",
+            "2:StepUp"
+          ]
+        },
+        "fields": {
+          "$id": "/properties/fields",
+          "type": "array",
+          "title": "Event Fields",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          },
+          "description": "array of browsenames to variables defined in the Eventtype"
+        },
+        "eventTypes": {
+          "$id": "/properties/eventTypes",
+          "type": "array",
+          "title": "Event Fields",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          },
+          "description": "lists node ids of OPC UA defined eventtypes in the server namespace as nodeId definition strings"
+        },
+        "browsePathPrefix": {
+          "$id": "/properties/browsePathPrefix",
+          "type": "string",
+          "title": "Browsepath Prefix",
+          "description": "Optional, can be used to set a prefix for the browsePath. Both strings will be concatenated using a forward slash /."
+        },
+        "publishInterval": {
+          "$id": "/propertis/publishInterval",
+          "type": "integer",
+          "title": "Publish Interval",
+          "description": "Time interval (in milliseconds) in which the server should publish its node values within the subscription (but in any case the actual value updates are published usually only on change of values).",
+          "default": 1000
+        },
+        "samplingInterval": {
+          "$id": "/propertis/samplingInterval",
+          "type": "integer",
+          "title": "Sampling Interval",
+          "description": "Time interval (in milliseconds) in which the published values from the server should be sampled for a particular node subscription. All nodes (=monitored items) with the same samplingInterval will be combined into one monitored item group.",
+          "default": 1000
+        },
+        "maxNotificationsPerPublish": {
+          "$id": "/properties/maxNotificationsPerPublish",
+          "type": "integer",
+          "description": "Sets the maximum number of monitor notifications that are in a single publish message of the OPC UA subscription. Setting this to a lower value will lead to more network traffic.",
+          "minimum": 0,
+          "default": 100
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 10
+        },
+        "requestedLifetimeCount": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 30
+        },
+        "requestedMaxKeepAliveCount": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 10
+        },
+        "retryMonitorTimeout": {
+          "type": "integer",
+          "minimum": 10e3,
+          "default": 300e3
+        }
+      }
+    }
+  }
+}

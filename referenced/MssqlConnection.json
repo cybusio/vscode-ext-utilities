@@ -1,0 +1,139 @@
+{
+  "$id": "MssqlConnection",
+  "definitions": {
+    "connection": {
+      "type": "object",
+      "required": [
+        "host",
+        "username",
+        "password",
+        "database"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "$id": "/properties/host",
+          "type": "string",
+          "title": "Hostname",
+          "description": "The hostname or ip address of the MSSQL server",
+          "examples": [
+            "example.org"
+          ]
+        },
+        "port": {
+          "$id": "/properties/port",
+          "type": "integer",
+          "title": "Port",
+          "description": "The port of the MSSQL server",
+          "default": 1433,
+          "examples": [
+            1433
+          ]
+        },
+        "username": {
+          "$id": "/properties/username",
+          "type": "string",
+          "title": "Username",
+          "description": "The username to connect to the MSSQL server"
+        },
+        "password": {
+          "$id": "/properties/password",
+          "type": "string",
+          "title": "Password",
+          "description": "The password to connect to the MSSQL server"
+        },
+        "domain": {
+          "$id": "/properties/domain",
+          "type": "string",
+          "title": "Domain",
+          "description": "The domain to use"
+        },
+        "database": {
+          "$id": "/properties/database",
+          "type": "string",
+          "title": "Database",
+          "description": "The database to use"
+        },
+        "protocol": {
+          "$id": "/properties/protocol",
+          "type": "string",
+          "title": "Protocol",
+          "default": "7_4",
+          "description": "The protocol version to use for the connection to the MSSQL server",
+          "enum": [
+            "7_1",
+            "7_2",
+            "7_3_A",
+            "7_3_B",
+            "7_4"
+          ]
+        },
+        "useEncryption": {
+          "$id": "/properties/useEncryption",
+          "type": "boolean",
+          "title": "Use encryption",
+          "description": "Use encryption for the connection to the MSSQL server",
+          "default": true
+        },
+        "assumeUTC": {
+          "$id": "/properties/assumeUTC",
+          "type": "boolean",
+          "title": "Assume UTC",
+          "description": "Assume UTC values for the connection",
+          "default": true
+        },
+        "connectTimeout": {
+          "$id": "/properties/connectTimeout",
+          "type": "integer",
+          "title": "Connect timeout",
+          "description": "The number of milliseconds before the attempt to connect is considered failed",
+          "default": 15000
+        },
+        "requestTimeout": {
+          "$id": "/properties/requestTimeout",
+          "type": "integer",
+          "title": "Request timeout",
+          "description": "The number of milliseconds before a request is considered failed, or 0 for no timeout",
+          "default": 15000
+        },
+        "cancelTimeout": {
+          "$id": "/properties/cancelTimeout",
+          "type": "integer",
+          "title": "Cancel timeout",
+          "description": "The number of milliseconds before the cancel (abort) of a request is considered failed",
+          "default": 5000
+        },
+        "maxPoolSize": {
+          "$id": "/properties/maxPoolSize",
+          "type": "integer",
+          "title": "Max pool size",
+          "description": "The maximum number of connection mantained in the connection pool",
+          "default": 5
+        },
+        "connectionStrategy": {
+          "type": "object",
+          "description": "If a connection attempt fails, retries will be performed with increasing delay (waiting time) in between. The following parameters control how these delays behave.",
+          "properties": {
+            "initialDelay": {
+              "type": "integer",
+              "description": "Delay (waiting time) of the first connection retry (in milliseconds). For subsequent retries, the delay will be increased according to the parameter incrementFactor which has a default value of 2.",
+              "default": 1e3,
+              "minimum": 1e3
+            },
+            "maxDelay": {
+              "type": "integer",
+              "description": "Maximum delay (waiting time) to wait until the next retry (in milliseconds). The delay (waiting time) for any subsequent connection retry will not be larger than this value. Must be strictly greater than initialDelay.",
+              "default": 30e3
+            },
+            "incrementFactor": {
+              "type": "integer",
+              "description": "The factor used to increment initialDelay up to maxDelay. For example if initialDelay is set to 1000 and maxDelay to 5000 the values for the delay would be 1000, 2000, 4000, 5000.",
+              "default": 2,
+              "minimum": 2
+            }
+          }
+        }
+      }
+    }
+  }
+}

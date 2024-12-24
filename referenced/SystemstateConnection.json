@@ -1,0 +1,9 @@
+{
+  "$id": "SystemstateConnection",
+  "definitions": {
+    "connection": {
+      "type": "object",
+      "additionalProperties": false
+    }
+  }
+}

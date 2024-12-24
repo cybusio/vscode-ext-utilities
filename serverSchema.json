@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "description": "Schema for resource server\\n",
+  "properties": {
+      "type": {
+          "type": "string",
+          "title": "Resource Type",
+          "enum": [
+              "Cybus::Server::Opcua",
+              "Cybus::Server::Http"
+          ],
+          "examples": [
+              "Cybus::Server::Opcua"
+          ]
+      },
+      "properties": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+              "targetState": {
+                  "type": "string",
+                  "enum": [
+                      "enabled",
+                      "disabled"
+                  ]
+              },
+              "properties":{
+
+              }
+          }
+      }
+  },
+  "allOf": [
+      {
+          "if": {
+              "required": [
+                "type"
+              ],
+              "properties": {
+                  "type": {
+                      "const": "Cybus::Server::Opcua"
+                  }
+              }
+          },
+          "then": {
+              "properties": {
+                  "properties": {
+                      "$ref": "referenced/OpcuaServer.json#/definitions/properties"
+                  }
+              }
+          }
+      },
+      {
+          "if": {
+               "required": [
+                "type"
+              ],
+              "properties": {
+                  "type": {
+                      "const": "Cybus::Server::Http"
+                  }
+              }
+          },
+          "then": {
+              "properties": {
+                  "properties": {
+                    "$ref": "referenced/HttpServer.json#/definitions/properties" 
+                  }
+              }
+          }
+      }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "$id": "WermaEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": ["mac"],
+      "additionalProperties": false,
+      "properties": {
+        "mac": {
+          "$id": "/properties/mac",
+          "type": "string",
+          "title": "MAC address",
+          "description": "The MAC address of the slave",
+          "examples": ["00BCDD"]
+        },
+        "field": {
+          "$id": "/properties/field",
+          "type": "string",
+          "enum": ["t1", "t2", "t3", "t4", "all", "rssi", "raw"],
+          "title": "Field",
+          "description": "Selector for the field to be mapped",
+          "examples": ["00BCDD"]
+        }
+      }
+    }
+  }
+}

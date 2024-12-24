@@ -1,0 +1,74 @@
+{
+  "$id": "SqlConnection",
+  "definitions": {
+    "connection": {
+      "type": "object",
+      "required": [
+        "url"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "$id": "/properties/url",
+          "type": "string",
+          "title": "URL",
+          "description": "The URL of the database server",
+          "examples": [
+            "mariadb://user:pass@example.com:5432/dbname"
+          ]
+        },
+        "probeConnectionDelay": {
+          "$id": "/properties/probeConnectionDelay",
+          "type": "integer",
+          "title": "Probe connection delay",
+          "description": "The number of milliseconds between checking the connection for connectivity",
+          "default": 10000
+        },
+        "logLevel": {
+          "$id": "/properties/logLevel",
+          "type": "string",
+          "enum": [
+            "error",
+            "debug"
+          ],
+          "description": "Configures the additional log level for the connection.  If set to error (default), only errors are logged. If set to debug, additionally all SQL queries are logged.",
+          "default": "error"
+        },
+        "trustAllCertificates": {
+          "$id": "/properties/trustAllCertificates",
+          "type": "boolean",
+          "title": "Trust all certificates",
+          "description": "If true, all certificates will be accepted, regardless of whether they can be validated or not. Use this option if self-signed server certificates should be accepted, or if there are other reasons which prevent this client to validate the certificates.",
+          "default": false,
+          "examples": [
+            true,
+            false
+          ]
+        },
+        "connectionStrategy": {
+          "type": "object",
+          "description": "If a connection attempt fails, retries will be performed with increasing delay (waiting time) in between. The following parameters control how these delays behave.",
+          "properties": {
+            "initialDelay": {
+              "type": "integer",
+              "description": "Delay (waiting time) of the first connection retry (in milliseconds). For subsequent retries, the delay will be increased according to the parameter incrementFactor which has a default value of 2.",
+              "default": 1e3,
+              "minimum": 1e3
+            },
+            "maxDelay": {
+              "type": "integer",
+              "description": "Maximum delay (waiting time) to wait until the next retry (in milliseconds). The delay (waiting time) for any subsequent connection retry will not be larger than this value. Must be strictly greater than initialDelay.",
+              "default": 30e3
+            },
+            "incrementFactor": {
+              "type": "integer",
+              "description": "The factor used to increment initialDelay up to maxDelay. For example if initialDelay is set to 1000 and maxDelay to 5000 the values for the delay would be 1000, 2000, 4000, 5000.",
+              "default": 2,
+              "minimum": 2
+            }
+          }
+        }
+      }
+    }
+  }
+}

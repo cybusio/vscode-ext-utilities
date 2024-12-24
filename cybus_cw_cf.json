@@ -1,0 +1,445 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/schemas/baseSchema",
+  "title": "Connectware file",
+  "type": "object",
+  "description": "Cybus Connectware service commissioning File",
+  "additionalProperties": false,
+  "required": [
+    "description",
+    "metadata",
+    "resources"
+  ],  
+  "definitions": {
+    "connectionSchema": {
+      "$ref": "./connectionSchema.json"
+    },
+    "endpointSchema": {
+      "$ref": "./endpointSchema.json"
+    },
+    "mappingSchema": {
+      "$ref": "./mappingSchema.json"
+    },
+    "userSchema": {
+      "$ref": "./userSchema.json"
+    },
+    "containerSchema": {
+      "$ref": "./containerSchema.json"
+    },
+    "fileSchema": {
+      "$ref": "./fileSchema.json"
+    },
+    "ingressRouteSchema": {
+      "$ref": "./ingressRouteSchema.json"
+    },
+    "linkSchema": {
+      "$ref": "./linkSchema.json"
+    },
+    "nodeSchema": {
+      "$ref": "./nodeSchema.json"
+    },
+    "roleSchema": {
+      "$ref": "./roleSchema.json"
+    },
+    "serverSchema": {
+      "$ref": "./serverSchema.json"
+    },
+    "volumeSchema": {
+      "$ref": "./volumeSchema.json"
+    }
+  },
+  "properties": {
+    "version": {
+      "description": "Version of the commissioning file schema",
+      "type": "number",
+      "enum": [
+        1
+      ],
+      "default": 1
+    },
+    "description": {
+      "description": "description of the service and what it is supposed to do",
+      "type": "string",
+      "maxLength": 512
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "the name of the service",
+          "maxLength": 80
+        },
+        "icon": {
+          "type": "string",
+          "description": "link to icon, that will be shown in service card"
+        },
+        "provider": {
+          "type": "string",
+          "description": "the provider of the service"
+        },
+        "homepage": {
+          "type": "string",
+          "description": "URL to the homepage of the provider",
+          "format": "uri"
+        },
+        "version": {
+          "type": "string",
+          "description": "version of the service"
+        }
+      }
+    },
+    "resources": {
+      "title": "resources",
+      "description": "This Object will contain your resources services, create a new yaml object and give it a name to create your next resource",
+      "type": "object",
+      "additionalProperties": false,
+      "default": {
+        "<ResourceName>": {
+          "type": "<ctl + space to choose resource type>"
+          }
+      },
+      "examples": [
+        {
+          "<Resource 1 name>":{},
+          "<Resource 2 name>":{}
+        }
+      ],
+      "patternProperties": {
+        "^[a-zA-Z0-9][a-zA-Z0-9_.]*$": {
+          "type": "object",
+          "propertyNames": {
+            "enum": ["type", "properties"]
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": true,
+          "description": "give your resource a name",
+          "properties": {
+            "type": {
+              "title": "Resource type",
+              "type": "string",
+              "description": "type of the resource",
+              "enum": [
+                "Cybus::Container",
+                "Cybus::Endpoint",
+                "Cybus::Volume",
+                "Cybus::Connection",
+                "Cybus::Mapping",
+                "Cybus::Link",
+                "Cybus::File",
+                "Cybus::IngressRoute",
+                "Cybus::Node",
+                "Cybus::Role",
+                "Cybus::User",
+                "Cybus::Server"
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "Cybus::Connection"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "properties": {
+                    "$ref": "#/definitions/connectionSchema"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "Cybus::Endpoint"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "properties": {
+                    "$ref": "#/definitions/endpointSchema"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "Cybus::Mapping"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "properties": {
+                    "$ref": "#/definitions/mappingSchema"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "Cybus::User"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "properties": {
+                    "$ref": "#/definitions/userSchema"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "Cybus::Container"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "properties": {
+                    "$ref": "#/definitions/containerSchema"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "Cybus::File"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "properties": {
+                    "$ref": "#/definitions/fileSchema"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "Cybus::IngressRoute"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "properties": {
+                    "$ref": "#/definitions/ingressRouteSchema"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "Cybus::Role"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "properties": {
+                    "$ref": "#/definitions/roleSchema"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "Cybus::Node"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "properties": {
+                    "$ref": "#/definitions/nodeSchema"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "Cybus::Link"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "properties": {
+                    "$ref": "#/definitions/linkSchema"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "Cybus::Volume"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "properties": {
+                    "$ref": "#/definitions/volumeSchema"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "Cybus::Server"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "properties": {
+                    "$ref": "#/definitions/serverSchema"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "parameters": {
+        "type": "object",
+        "additionalProperties": true,
+        "patternProperties": {
+          "^.*$": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "enum": [
+                  "string",
+                  "number",
+                  "integer",
+                  "boolean",
+                  "array"
+                ]
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        }
+      }
+    },
+    "definitions": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "CYBUS_MQTT_ROOT": {
+          "type": "string",
+          "pattern": "^[^/#+][^#+]*[^/#+]$",
+          "description": "Potential override of the corresponding pseudo-parameter"
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": true,
+      "default": {
+        "<parameterName>": {
+            "type": "integer",
+            "description": "",
+            "default": 8080
+          }
+      },
+      "examples": [
+        "myparameter"
+      ],
+      "patternProperties": {
+        "^.*$": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": [
+                "string",
+                "number",
+                "integer",
+                "boolean",
+                "array"
+              ]
+            }
+          },
+          "required": [
+            "type"
+          ]
+        }
+      }
+    }
+  }
+}

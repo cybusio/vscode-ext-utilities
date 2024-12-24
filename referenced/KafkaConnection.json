@@ -1,0 +1,123 @@
+{
+  "$id": "KafkaConnection",
+  "definitions": {
+    "connection": {
+      "type": "object",
+      "required": ["brokers"],
+      "additionalProperties": false,
+      "properties": {
+        "brokers": {
+          "$id": "/properties/brokers",
+          "type": "array",
+          "title": "Brokers",
+          "description": "The host names of the Kafka brokers",
+          "examples": [
+            ["kafka1:9092", "kafka2:9092"],
+            ["kafka1:9092", "kafka2:9092", "kafka3:9092"]
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "clientType": {
+          "$id": "/properties/clientType",
+          "type": "string",
+          "title": "Client type",
+          "enum": ["producer", "consumer"],
+          "default": "producer",
+          "description": "Configure the connection to be a producer for a consumer. Defaults to producer."
+        },
+        "groupId": {
+          "$id": "/properties/groupId",
+          "type": "string",
+          "title": "Group Id",
+          "description": "Only for consumer clients: The group id for the Kafka consumer. It defaults to the id of the Connection resource."
+        },
+        "clientId": {
+          "$id": "/properties/clientId",
+          "type": "string",
+          "title": "Client ID",
+          "description": "The client id used when connecting to the broker",
+          "default": "protocol-mapper-kafka",
+          "examples": [
+            "connectware_13462"
+          ]
+        },
+        "connectionTimeout": {
+          "$id": "/properties/connectionTimeout",
+          "type": "integer",
+          "title": "Connection timeout",
+          "description": "Time in milliseconds to wait for a successful connection",
+          "default": 1000
+        },
+        "requestTimeout": {
+          "$id": "/properties/requestTimeout",
+          "type": "integer",
+          "title": "Request timeout",
+          "description": "Time in milliseconds to wait for a successful request",
+          "default": 30000
+        },
+        "trustAllCertificates": {
+          "$id": "/properties/trustAllCertificates",
+          "type": "boolean",
+          "title": "Trust all certificates",
+          "description": "If true, all broker certificates will be accepted, regardless of whether they can be validated or not. Use this option if self-signed server certificates should be accepted, or if there are other reasons which prevent this client to validate the certificates.",
+          "default": false,
+          "examples":[
+            true,
+            false
+          ]
+        },
+        "mutualAuthentication": {
+          "$id": "/properties/mutualAuthentication",
+          "type": "boolean",
+          "title": "Activate mutual authentication",
+          "description": "If true, a full certificate chain including client certificate is expected to connect properly with validated certificates.",
+          "default": false,
+          "examples": [
+            true,
+            false
+          ]
+        },
+        "caCert": {
+          "$id": "/properties/ca-certificate",
+          "type": "string",
+          "title": "CA certificate",
+          "description": "The root CA certificate as Base64 encoded PEM file content"
+        },
+        "clientCert": {
+          "$id": "/properties/device-certificate",
+          "type": "string",
+          "title": "Device certificate",
+          "description": "The device certificate as Base64 encoded PEM CRT file content"
+        },
+        "clientPrivateKey": {
+          "$id": "/properties/device-private-key",
+          "type": "string",
+          "title": "Device private key",
+          "description": "The device private key as Base64 encoded PEM CRT file content"
+        },
+        "sasl": {
+          "type": "object",
+          "required": ["mechanism", "username", "password"],
+          "description": "SASL stands for Simple Authentication and Security Layer. With this property you can configure the authentification scheme to be used when contacting the Kafka broker.",
+          "properties": {
+            "mechanism": {
+              "type": "string",
+              "enum": ["plain", "scram-sha-256", "scram-sha-512"],
+              "description": "The strategy used to carry on authentification"
+            },
+            "username": {
+              "type": "string",
+              "description": "The username used in the authentification procedure"
+            },
+            "password": {
+              "type": "string",
+              "description": "The password used in the authentification procedure"
+            }
+          }
+        }
+      }
+    }
+  }
+}

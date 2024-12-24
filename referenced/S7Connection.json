@@ -1,0 +1,72 @@
+{
+  "$id": "S7Connection",
+  "definitions": {
+    "connection": {
+      "type": "object",
+      "required": ["host", "port"],
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "$id": "/properties/host",
+          "type": "string",
+          "title": "Host",
+          "description": "IP Address or hostname of the PLC to connect to",
+          "examples": ["192.168.2.60"]
+        },
+        "port": {
+          "$id": "/properties/port",
+          "type": "integer",
+          "title": "Port",
+          "description": "Port of the s7 device",
+          "minimum": 0,
+          "default": 102,
+          "examples": [102]
+        },
+        "rack": {
+          "$id": "/properties/rack",
+          "type": "integer",
+          "title": "Rack",
+          "description": "The rack index, as part of the addressing scheme for SIMATIC PLCs. This may be fixed depending on your PLC.",
+          "minimum": 0,
+          "default": 0,
+          "examples": [0]
+        },
+        "slot": {
+          "$id": "/properties/slot",
+          "type": "integer",
+          "title": "Slot",
+          "description": "The slot index, as part of the addressing scheme for SIMATIC PLCs. This may be fixed depending on your PLC.",
+          "minimum": 0,
+          "default": 1,
+          "examples": [1]
+        },
+        "pollInterval": {
+          "$id": "/properties/pollInterval",
+          "type": "integer",
+          "title": "Poll Interval",
+          "description": "The polling interval for reading data. This is implemented as a best-effort polling, if reading is slower than the interval, you should expect that data is coming at a slightly lower rate.",
+          "minimum": 0,
+          "default": 1000,
+          "examples": [2000]
+        },
+        "probeInterval": {
+          "$id": "/properties/probeInterval",
+          "type": "integer",
+          "title": "Probe Interval",
+          "description": "Interval to check if connection is still there",
+          "default": 2000,
+          "examples": [2000]
+        },
+        "writingHighWaterMark": {
+          "$id": "/properties/writingHighWaterMark",
+          "type": "integer",
+          "title": "Write Queue Threshold",
+          "description": "Defines a threshold for the internal write queue. When reached, a warning is issued.",
+          "minimum": 1,
+          "default": 100,
+          "examples": [1000]
+        }
+      }
+    }
+  }
+}

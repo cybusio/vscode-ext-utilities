@@ -1,0 +1,353 @@
+{
+  "$id": "MqttConnection",
+  "definitions": {
+    "connection": {
+      "type": "object",
+      "required": [
+        "host"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "$id": "/properties/host",
+          "type": "string",
+          "title": "Hostname",
+          "description": "The host name of the broker",
+          "examples": [
+            "test.mosquitto.org"
+          ]
+        },
+        "port": {
+          "$id": "/properties/port",
+          "type": "integer",
+          "title": "Port",
+          "description": "The port of the broker",
+          "default": 1883,
+          "examples": [
+            1883
+          ]
+        },
+        "scheme": {
+          "$id": "/properties/scheme",
+          "type": "string",
+          "title": "Connection (= URL scheme)",
+          "description": "The protocol scheme",
+          "default": "mqtt",
+          "enum": [
+            "mqtt",
+            "mqtts",
+            "tcp",
+            "tls",
+            "ws",
+            "wss"
+          ],
+          "examples": [
+            "mqtt"
+          ]
+        },
+        "url": {
+          "$id": "/properties/url",
+          "type": "string",
+          "title": "Connection String",
+          "description": "Complete connection string (takes precedence over host, port and scheme)",
+          "examples": [
+            "mqtt://some.host.org:1883",
+            "mqtts://some.host.org:8883"
+          ]
+        },
+        "keepalive": {
+          "$id": "/properties/keepalive",
+          "type": "integer",
+          "title": "Keepalive",
+          "description": "Time to keep the connection alive without any message send (in seconds)",
+          "default": 0,
+          "examples": [
+            60
+          ]
+        },
+        "reschedulePings": {
+          "$id": "/properties/reschedulePings",
+          "type": "boolean",
+          "title": "Reschedule pings",
+          "description": "Whether to reschedule pings after sending packets",
+          "default": true
+        },
+        "clientId": {
+          "$id": "/properties/clientId",
+          "type": "string",
+          "title": "Client ID",
+          "description": "The client id used when connecting to the broker",
+          "examples": [
+            "mqttjs_13462"
+          ]
+        },
+        "connectionId": {
+          "$id": "/properties/connectionId",
+          "type": "string",
+          "title": "Connection ID",
+          "description": "DEPRECATED - this is probably going to be removed soon, right? The id of the connection",
+          "examples": [
+            "MQTT"
+          ]
+        },
+        "protocolVersion": {
+          "$id": "/properties/protocolVersion",
+          "type": "integer",
+          "description": "The protocol version used for the connection to the broker",
+          "title": "Protocol version",
+          "examples": [
+            4
+          ]
+        },
+        "clean": {
+          "$id": "/properties/clean",
+          "type": "boolean",
+          "title": "Clean",
+          "description": "Set to false to receive QoS 1 and 2 messages while offline",
+          "default": true
+        },
+        "reconnectPeriod": {
+          "$id": "/properties/reconnectPeriod",
+          "type": "integer",
+          "title": "Reconnect period",
+          "description": "Interval between two reconnections (milliseconds)",
+          "default": 1000
+        },
+        "connectTimeout": {
+          "$id": "/properties/connectTimeout",
+          "type": "integer",
+          "title": "Connect timeout",
+          "description": "Time (in ms) to wait before a CONNACK is received",
+          "default": 30000
+        },
+        "username": {
+          "$id": "/properties/username",
+          "type": "string",
+          "title": "Username",
+          "description": "The username required by your broker, if any",
+          "examples": [
+            ""
+          ]
+        },
+        "password": {
+          "$id": "/properties/password",
+          "type": "string",
+          "title": "Password",
+          "description": "The password required by your broker, if any",
+          "examples": [
+            ""
+          ]
+        },
+        "queueQoSZero": {
+          "$id": "/properties/queueQoSZero",
+          "type": "boolean",
+          "title": "Queue QoS Zero",
+          "description": "If connection is broken, queue outgoing QoS zero messages",
+          "default": true
+        },
+        "filterOverlappingWildcardSubscriptions": {
+          "$id": "/properties/filterOverlappingWildcardSubscriptions",
+          "type": "boolean",
+          "title": "Filter overlapping wildcard subscriptions",
+          "description": "If true, wildcard subscriptions that are overlapping with other subscriptions will be filtered to avoid additional duplicated messages, additional to the duplicates the broker is sending. Can be set to true if the MQTT broker already sends multiple duplicates on overlapping subscriptions (e.g. vernemq) but only if you need at most one target topic or Mapping, otherwise some targets do not get the message anymore. Should be left at false for brokers that do not do this  (e.g. mosquitto).",
+          "default": false
+        },
+        "trustAllCertificates": {
+          "$id": "/properties/trustAllCertificates",
+          "type": "boolean",
+          "title": "Trust all certificates",
+          "description": "If true, all broker certificates will be accepted, regardless of whether they can be validated or not. Use this option if self-signed server certificates should be accepted, or if there are other reasons which prevent this client to validate the certificates.",
+          "default": false
+        },
+        "mutualAuthentication": {
+          "$id": "/properties/mutualAuthentication",
+          "type": "boolean",
+          "title": "Activate mutual authentication",
+          "description": "If true, a full certificate chain including client certificate is expected to connect properly with validated certificates.",
+          "default": false
+        },
+        "caCert": {
+          "$id": "/properties/ca-certificate",
+          "type": "string",
+          "title": "CA certificate",
+          "description": "The root CA certificate as Base64 encoded PEM file content"
+        },
+        "clientCert": {
+          "$id": "/properties/device-certificate",
+          "type": "string",
+          "title": "Device certificate",
+          "description": "The device certificate as Base64 encoded PEM CRT file content"
+        },
+        "clientPrivateKey": {
+          "$id": "/properties/device-private-key",
+          "type": "string",
+          "title": "Device private key",
+          "description": "The device private key as Base64 encoded PEM CRT file content"
+        },
+        "will": {
+          "$id": "/properties/will",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "topic": {
+              "$id": "/properties/will/properties/topic",
+              "type": "string",
+              "title": "LWT topic",
+              "description": "Last will topic (LWT)",
+              "examples": [
+                "last/will/topic"
+              ]
+            },
+            "payload": {
+              "$id": "/properties/will/properties/payload",
+              "type": "string",
+              "title": "LWT message",
+              "description": "Last will message payload",
+              "examples": [
+                ""
+              ]
+            },
+            "qos": {
+              "$id": "/properties/will/properties/qos",
+              "type": "integer",
+              "title": "LWT QoS",
+              "description": "Last will message quality of service",
+              "default": 0,
+              "enum": [
+                0,
+                1,
+                2
+              ],
+              "examples": [
+                1
+              ]
+            },
+            "retain": {
+              "$id": "/properties/will/properties/retain",
+              "type": "boolean",
+              "title": "LWT retain",
+              "description": "Retain last message (Last-Value-Cached)",
+              "default": false
+            },
+            "contentType": {
+              "$id": "/properties/will/contentType",
+              "type": "string",
+              "title": "Content Type",
+              "description": "String describing the content of the Application Message (mqtt5 only)"
+            },
+            "correlationData": {
+              "$id": "/properties/will/correlationData",
+              "type": "string",
+              "title": "Correlation Data",
+              "description": "The Correlation Data is used by the sender of the Request Message to identify which request the Response Message is for when it is received (mqtt5 only)"
+            },
+            "messageExpiryInterval": {
+              "$id": "/properties/will/messageExpiryInterval",
+              "type": "number",
+              "title": "Message Expiry Interval",
+              "description": "Lifetime in seconds of the Will Message (mqtt5 only)"
+            },
+            "payloadFormatIndicator": {
+              "$id": "/properties/will/payloadFormatIndicator",
+              "type": "boolean",
+              "title": "Payload Format Indicator",
+              "description": "Will Message is UTF-8 Encoded Character Data or not (mqtt5 only)"
+            },
+            "responseTopic": {
+              "$id": "/properties/will/responseTopic",
+              "type": "string",
+              "title": "Content Type",
+              "description": "String which is used as the Topic Name for a response message in a request/response context (mqtt5 only)"
+            },
+            "userProperties": {
+              "$id": "/properties/will/userProperties",
+              "type": "object",
+              "title": "User Properties",
+              "description": "Application specific key value pairs (mqtt5 only)"
+            },
+            "willDelayInterval": {
+              "$id": "/properties/will/willDelayInterval",
+              "type": "number",
+              "title": "Will Delay Interval",
+              "description": "Delay in seconds until the server publishes the Client's Will Message (mqtt5 only)"
+            }
+          },
+          "required": [
+            "topic",
+            "payload"
+          ]
+        },
+        "authenticationMethod": {
+          "$id": "/properties/authenticationMethod",
+          "type": "string",
+          "title": "Authentication Method",
+          "description": "Identifier of the Authentication Method (mqtt5 only)"
+        },
+        "authenticationData": {
+          "$id": "/properties/authenticationData",
+          "type": "string",
+          "title": "Authentication Data",
+          "description": "Binary data containing authentication data (mqtt5 only)"
+        },
+        "maximumPacketSize": {
+          "$id": "/properties/maximumPacketSize",
+          "type": "number",
+          "title": "Maximum Packet Size",
+          "description": "Maximum Packet Size in bytes the Client is willing to accept (mqtt5 only)"
+        },
+        "receiveMaximum": {
+          "$id": "/properties/receiveMaximum",
+          "type": "number",
+          "title": "Receive Maximum",
+          "description": "The Client uses this value to limit the number of QoS 1 and QoS 2 publications that it is willing to process concurrently (mqtt5 only)"
+        },
+        "requestResponseInformation": {
+          "$id": "/properties/requestResponseInformation",
+          "type": "boolean",
+          "title": "Request Response Information",
+          "description": "The Client uses this value to request the Server to return Response Information in the CONNACK (mqtt5 only)"
+        },
+        "requestProblemInformation": {
+          "$id": "/properties/requestProblemInformation",
+          "type": "boolean",
+          "title": "Request Problem Information",
+          "description": "The Client uses this value to indicate whether the Reason String or User Properties are sent in the case of failures (mqtt5 only)"
+        },
+        "sessionExpiryInterval": {
+          "$id": "/properties/sessionExpiryInterval",
+          "type": "number",
+          "title": "Session Expiry Interval",
+          "description": "Session Expiry Interval in seconds (mqtt5 only)"
+        },
+        "topicAliasMaximum": {
+          "$id": "/properties/topicAliasMaximum",
+          "type": "number",
+          "title": "Topic Alias Maximum",
+          "description": "The Client uses this value to limit the number of Topic Aliases that it is willing to hold on this Connection (mqtt5 only)"
+        },
+        "userProperties": {
+          "$id": "/properties/userProperties",
+          "type": "object",
+          "title": "User Properties",
+          "description": "Application specific key value pairs (mqtt5 only)"
+        }
+      },
+      "if": {
+        "required": [
+          "mutualAuthentication"
+        ],
+        "properties": {
+          "mutualAuthentication": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "clientCert",
+          "clientPrivateKey"
+        ]
+      }
+    }
+  }
+}

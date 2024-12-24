@@ -1,0 +1,942 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "description": "Endpoint Resource: Required properties are 1_the protocol, 2_the connection resource and 3_the endpoint function (read, subscribe or write) \n",
+    "additionalProperties": true,
+    "definitions": {
+        "AdsEndpoint": {
+            "$ref": "referenced/AdsEndpoint.json#/definitions/address"
+        },
+        "BacnetEndpoint": {
+            "$ref": "referenced/BacnetEndpoint.json#/definitions/address"
+        },
+        "EthernetIpEndpoint": {
+            "$ref": "referenced/EthernetIpEndpoint.json#/definitions/address"
+        },
+        "FocasEndpoint": {
+            "$ref": "referenced/FocasEndpoint.json#/definitions/address"
+        },
+        "GenericVrpcEndpoint": {
+            "$ref": "referenced/GenericVrpcEndpoint.json#/definitions/address"
+        },
+        "HbmdaqEndpoint": {
+            "$ref": "referenced/HbmdaqEndpoint.json#/definitions/address"
+        },
+        "HeidenhainEndpoint": {
+            "$ref": "referenced/HeidenhainEndpoint.json#/definitions/address"
+        },
+        "HttpEndpoint": {
+            "$ref": "referenced/HttpEndpoint.json#/definitions/address"
+        },
+        "InfluxdbEndpoint": {
+            "$ref": "referenced/InfluxdbEndpoint.json#/definitions/address"
+        },
+        "KafkaEndpoint": {
+            "$ref": "referenced/KafkaEndpoint.json#/definitions/address"
+        },
+        "ModbusEndpoint": {
+            "$ref": "referenced/ModbusEndpoint.json#/definitions/address"
+        },
+        "MqttEndpoint": {
+            "$ref": "referenced/MqttEndpoint.json#/definitions/address"
+        },
+        "MssqlEndpoint": {
+            "$ref": "referenced/MssqlEndpoint.json#/definitions/address"
+        },
+        "OpcdaEndpoint": {
+            "$ref": "referenced/OpcdaEndpoint.json#/definitions/address"
+        },
+        "OpcuaEndpoint": {
+            "$ref": "referenced/OpcuaEndpoint.json#/definitions/address"
+        },
+        "ProfinetEndpoint": {
+            "$ref": "referenced/ProfinetEndpoint.json#/definitions/address"
+        },
+        "S7Endpoint": {
+            "$ref": "referenced/S7Endpoint.json#/definitions/address"
+        },
+        "ShdrEndpoint": {
+            "$ref": "referenced/ShdrEndpoint.json#/definitions/address"
+        },
+        "SinumerikEndpoint": {
+            "$ref": "referenced/SinumerikEndpoint.json#/definitions/address"
+        },
+        "SystemstateEndpoint": {
+            "$ref": "referenced/SystemstateEndpoint.json#/definitions/address"
+        },
+        "SopasEndpoint": {
+            "$ref": "referenced/SopasEndpoint.json#/definitions/address"
+        },
+        "SqlEndpoint": {
+            "$ref": "referenced/SqlEndpoint.json#/definitions/address"
+        },
+        "WermaEndpoint": {
+            "$ref": "referenced/WermaEndpoint.json#/definitions/address"
+        },
+        "CybusRule": {
+            "$ref": "./objects/CybusRule.json"
+        }
+    },
+    "properties": {
+        "protocol": {
+            "description": "Identifies the protocol for which a connection should be established",
+            "type": "string",
+            "enum": [
+                "Ads",
+                "Bacnet",
+                "EthernetIp",
+                "Focas",
+                "GenericVrpc",
+                "Hbmdaq",
+                "Heidenhain",
+                "Http",
+                "Influxdb",
+                "Kafka",
+                "Modbus",
+                "Mqtt",
+                "Mssql",
+                "Opcda",
+                "Opcua",
+                "Profinet",
+                "S7",
+                "Shdr",
+                "Sinumerik",
+                "Sopas",
+                "Sql",
+                "Systemstate",
+                "Werma"
+            ]
+        },
+        "agentName": {
+            "type": "string",
+            "description": "Obsolete - this value is no longer being used. The agentName of the referenced connection is used always.",
+            "default": "protocol-mapper"
+        },
+        "connection": {
+            "type": "string",
+            "title": "Physical address of an existing connection resource",
+            "description": "refrence a connection resource or type your conntion hostName",
+            "examples": [
+                "<hostName>",
+                "test.mosquitto.org",
+                "!ref <YourConnectionResourceName>",
+                "!ref myMqttConnection"
+            ],
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.]*$"
+        },
+        "qos": {
+            "type": "integer",
+            "default": 0,
+            "description": "Quality of service for mqtt messages"
+        },
+        "retain": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether the last message should be retained (last-value-cached) on the internal broker"
+        },
+        "targetState": {
+            "type": "string",
+            "title": "The targeted state for this connection",
+            "enum": [
+                "disabled",
+                "enabled"
+            ],
+            "default": "enabled",
+            "examples": [
+                "disabled"
+            ]
+        }
+    },
+    "required": [
+        "protocol",
+        "connection"
+        ],
+
+    "oneOf": [
+        {
+            "propertyNames": {
+                "enum": [
+                    "protocol",
+                    "connection",
+                    "targetState",
+                    "agentName",
+                    "read",
+                    //"write",
+                    //"subscribe",
+                    "topic",
+                    "topicPrefix",
+                    "qos",
+                    "retain",
+                    "rules",
+                    "inputBuffering"
+                ]
+            },
+            "properties": {
+                "inputBuffering": {
+                    "type": "object",
+                    "title": "Input buffering properties",
+                    "description": "Properties to define the behaviour of the input buffering",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "title": "Enable Buffering",
+                            "type": "boolean",
+                            "description": "Whether input buffering should be enabled or not",
+                            "default": false
+                        },
+                        "maxConcurrentMessages": {
+                            "title": "Maximum concurrent messages",
+                            "type": "integer",
+                            "description": "Maximum number of concurrently processed messages as long as the input buffer queue is non-empty.",
+                            "default": 2
+                        },
+                        "maxInputBufferSize": {
+                            "title": "Maximum input buffer size",
+                            "type": "integer",
+                            "description": "Maximum number of input messages that are queued in the input buffer. Exceeding messages will be discarded. Adjust this to a higher value if you are handling bursty traffic.",
+                            "default": 5000
+                        },
+                        "waitingTimeOnEmptyQueue": {
+                            "title": "Waiting time during empty queue",
+                            "type": "integer",
+                            "description": "Waiting time in milliseconds after the input buffer queue ran empty and before checking again for newly queued input messages. Regardless of this value, on non-empty input buffer queue all messages will be processed without waiting time in between until the queue is empty again.",
+                            "default": 10
+                        }
+                    }
+                },
+                "rules": {
+                    "type": "array",
+                    "title": "Rules to be applied to the endpoint",
+                    "items": {
+                        "$ref": "#/definitions/CybusRule"
+                    }
+                },
+                "topic": {
+                    "type": "string",
+                    "title": "Custom topic this endpoint should use",
+                    "pattern": "^[^#+]*$",
+                    "examples": [
+                        "hall1/sensor1"
+                    ]
+                },
+                "topicPrefix": {
+                    "type": "string",
+                    "title": "Prefixes all topics",
+                    "pattern": "^[^#+]*$",
+                    "examples": [
+                        "cybus"
+                    ]
+                }
+            },
+            "required": [
+                "read"
+            ]
+        },
+        {
+            "propertyNames": {
+                "enum": [
+                    "protocol",
+                    "connection",
+                    "targetState",
+                    "agentName",
+                    //"read",
+                    //"write",
+                    "subscribe",
+                    "topic",
+                    "topicPrefix",
+                    "qos",
+                    "retain",
+                    "rules",
+                    "inputBuffering"
+                ]
+            },
+            "properties": {
+                "inputBuffering": {
+                    "type": "object",
+                    "title": "Input buffering properties",
+                    "description": "Properties to define the behaviour of the input buffering",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "title": "Enable Buffering",
+                            "type": "boolean",
+                            "description": "Whether input buffering should be enabled or not",
+                            "default": false
+                        },
+                        "maxConcurrentMessages": {
+                            "title": "Maximum concurrent messages",
+                            "type": "integer",
+                            "description": "Maximum number of concurrently processed messages as long as the input buffer queue is non-empty.",
+                            "default": 2
+                        },
+                        "maxInputBufferSize": {
+                            "title": "Maximum input buffer size",
+                            "type": "integer",
+                            "description": "Maximum number of input messages that are queued in the input buffer. Exceeding messages will be discarded. Adjust this to a higher value if you are handling bursty traffic.",
+                            "default": 5000
+                        },
+                        "waitingTimeOnEmptyQueue": {
+                            "title": "Waiting time during empty queue",
+                            "type": "integer",
+                            "description": "Waiting time in milliseconds after the input buffer queue ran empty and before checking again for newly queued input messages. Regardless of this value, on non-empty input buffer queue all messages will be processed without waiting time in between until the queue is empty again.",
+                            "default": 10
+                        }
+                    }
+                },
+                "rules": {
+                    "type": "array",
+                    "title": "Rules to be applied to the endpoint",
+                    "items": {
+                        "$ref": "#/definitions/CybusRule"
+                    }
+                },
+                "topic": {
+                    "type": "string",
+                    "title": "Custom topic this endpoint should use",
+                    "pattern": "^[^#+]*$",
+                    "examples": [
+                        "hall1/sensor1"
+                    ]
+                },
+                "topicPrefix": {
+                    "type": "string",
+                    "title": "Prefixes all topics",
+                    "pattern": "^[^#+]*$",
+                    "examples": [
+                        "cybus"
+                    ]
+                }
+            },
+            "required": [
+                "subscribe"
+            ]
+        },
+        {
+            "propertyNames": {
+                "enum": [
+                    "protocol",
+                    "connection",
+                    "targetState",
+                    "agentName",
+                    //"read",
+                    "write",
+                    //"subscribe",
+                    "topic",
+                    "topicPrefix",
+                    "qos",
+                    "retain",
+                    "rules",
+                    "inputBuffering",
+                    "buffering"
+                ]
+            },
+            "properties": {
+                "buffering": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "title": "Output Buffering for write endpoints",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "title": "Enable Buffering",
+                            "default": false
+                        },
+                        "keepOrder": {
+                            "type": "boolean",
+                            "title": "Keep Delivery Order",
+                            "default": true
+                        },
+                        "burstInterval": {
+                            "type": "number",
+                            "title": "Burst Interval",
+                            "default": 100
+                        },
+                        "burstSize": {
+                            "type": "number",
+                            "title": "Burst Size",
+                            "default": 1
+                        },
+                        "bufferMaxSize": {
+                            "type": "number",
+                            "title": "Buffer Max Size",
+                            "default": 100000
+                        },
+                        "bufferMaxAge": {
+                            "type": "number",
+                            "title": "Buffer Max Age",
+                            "default": 86400
+                        }
+                    }
+                }
+            },
+            "required": [
+                "write"
+            ]
+        }
+    ],
+    "allOf": [
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Ads"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/AdsEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/AdsEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/AdsEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Bacnet"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/BacnetEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/BacnetEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/BacnetEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "EthernetIp"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/EthernetIpEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/EthernetIpEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/EthernetIpEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Focas"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/FocasEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/FocasEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "GenericVrpc"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/GenericVrpcEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/GenericVrpcEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/GenericVrpcEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Hbmdaq"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/HbmdaqEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/HbmdaqEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/HbmdaqEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Heidenhain"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/HeidenhainEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/HeidenhainEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/HeidenhainEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Http"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/HttpEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/HttpEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/HttpEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Influxdb"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/InfluxdbEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/InfluxdbEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/InfluxdbEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Kafka"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "write": {
+                        "$ref": "#/definitions/KafkaEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Modbus"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/ModbusEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/ModbusEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/ModbusEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Mqtt"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/MqttEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/MqttEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/MqttEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Mssql"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/MssqlEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/MssqlEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/MssqlEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Opcda"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/OpcdaEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/OpcdaEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/OpcdaEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Opcua"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/OpcuaEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/OpcuaEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/OpcuaEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Profinet"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/ProfinetEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/ProfinetEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/ProfinetEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "S7"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/S7Endpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/S7Endpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/S7Endpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Shdr"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/ShdrEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/ShdrEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/ShdrEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Sinumerik"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/SinumerikEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/SinumerikEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/SinumerikEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Sopas"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/SopasEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/SopasEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/SopasEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Sql"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/SqlEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/SqlEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/SqlEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Systemstate"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/SystemstateEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/SystemstateEndpoint"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Werma"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "read": {
+                        "$ref": "#/definitions/WermaEndpoint"
+                    },
+                    "subscribe": {
+                        "$ref": "#/definitions/WermaEndpoint"
+                    },
+                    "write": {
+                        "$ref": "#/definitions/WermaEndpoint"
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+{
+  "type": "object",
+  "description": "Schema for resources user\n",
+  "additionalProperties": false,
+  "properties": {
+      "password": {
+          "type": "string",
+          "minLength": 5
+      },
+      "roles": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+              "type": "string"
+          }
+      },
+      "permissions": {
+          "type": "array",
+          "items": {
+              "type": "object",
+              "required": [
+                  "resource",
+                  "operation",
+                  "context"
+              ],
+              "properties": {
+                  "resource": {
+                      "type": "string"
+                  },
+                  "operation": {
+                      "type": "string",
+                      "enum": [
+                          "read",
+                          "write",
+                          "readWrite"
+                      ]
+                  },
+                  "context": {
+                      "type": "string",
+                      "enum": [
+                          "mqtt",
+                          "http"
+                      ]
+                  }
+              }
+          }
+      }
+  }
+}

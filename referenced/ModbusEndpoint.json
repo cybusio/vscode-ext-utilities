@@ -1,0 +1,115 @@
+{
+  "$id": "ModbusEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": [
+        "fc",
+        "address",
+        "length"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "unitId": {
+          "$id": "/properties/unitId",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 255,
+          "description": "By setting this optional parameter, the unitId defined in the Connection resource will be overwritten.",
+          "example": [
+            1,
+            2
+          ]
+        },
+        "fc": {
+          "$id": "/properties/fc",
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            15,
+            16
+          ],
+          "title": "Function Code",
+          "description": "The Function Code (fc) defines the operation of the request. This can be any of the common Modbus codes, but the exact implementation depends on the concrete device manufacturer.",
+          "examples": [
+            2
+          ]
+        },
+        "address": {
+          "$id": "/properties/address",
+          "type": "integer",
+          "title": "Address of the datapoint",
+          "examples": [
+            0
+          ]
+        },
+        "length": {
+          "$id": "/properties/length",
+          "type": "integer",
+          "title": "Length",
+          "description": "The length describes how many registers should be read starting at the specified address. The registers of a modbus device have a length of 16 bits.",
+          "minimum": 0,
+          "examples": [
+            4
+          ]
+        },
+        "dataType": {
+          "$id": "/properties/dataType",
+          "type": "string",
+          "enum": [
+            "raw",
+            "base64",
+            "boolean",
+            "doubleBE",
+            "doubleLE",
+            "floatBE",
+            "floatBEWS",
+            "floatLE",
+            "floatLEWS",
+            "int16BE",
+            "int16LE",
+            "int32BE",
+            "int32LE",
+            "uint16BE",
+            "uint16LE",
+            "uint32BE",
+            "uint32LE"
+          ],
+          "title": "Data Type",
+          "description": "If given, convert the Modbus value to this specified type. Types are available in byte ordering Big Endian (BE), or Little Endian (LE), or with additional word swap (BEWS, LEWS).",
+          "examples": [
+            "floatLE"
+          ]
+        },
+        "interval": {
+          "$id": "/properties/interval",
+          "type": "integer",
+          "title": "Poll Interval",
+          "description": "Poll interval (best effort) in milliseconds",
+          "minimum": 0,
+          "default": 1000,
+          "examples": [
+            2000
+          ]
+        },
+        "cronExpression": {
+          "$id": "/properties/cronExpression",
+          "type": "string",
+          "title": "Cron expression",
+          "description": "The Cron expression used to poll the endpoint. (For examples, see: https://github.com/node-cron/node-cron)",
+          "examples": [
+            "1,2,4,5 * * * *",
+            "1-5 * * * *",
+            "*/2 * * * *",
+            "* * * January,September Sunday"
+          ]
+        }
+      }
+    }
+  }
+}

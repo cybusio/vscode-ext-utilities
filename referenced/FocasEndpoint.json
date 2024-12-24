@@ -1,0 +1,148 @@
+{
+  "$id": "FocasEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": [
+        "method"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "$id": "/properties/method",
+          "type": "string",
+          "title": "Method",
+          "minLength": 1,
+          "description": "The method to run on the device",
+          "enum": [
+            "cnc_sysinfo",
+            "cnc_statinfo2",
+            "cnc_rdprgnum",
+            "cnc_exeprgname",
+            "cnc_rdopnlsgnl",
+            "pmc_rdpmcrng",
+            "cnc_rdspeed",
+            "cnc_rdspload",
+            "cnc_rdgcode",
+            "program_download"
+          ],
+          "examples": [
+            "cnc_sysinfo"
+          ]
+        },
+        "interval": {
+          "$id": "/properties/interval",
+          "type": "integer",
+          "title": "Interval",
+          "description": "The interval between reads (only for the subscribe operation)",
+          "minimum": 500,
+          "default": 1000
+        },
+        "cronExpression": {
+          "$id": "/properties/cronExpression",
+          "type": "string",
+          "title": "Cron expression",
+          "description": "The Cron expression used to poll the endpoint. (For examples, see: https://github.com/node-cron/node-cron)",
+          "examples": [
+            "1,2,4,5 * * * *",
+            "1-5 * * * *",
+            "*/2 * * * *",
+            "* * * January,September Sunday"
+          ]
+        },
+        "slctData": {
+          "$id": "/properties/slctData",
+          "type": "integer",
+          "title": "Data select flag",
+          "description": "Specify the data select flag (only applies for the cnc_rdopnlsgnl method)",
+          "minimum": 0,
+          "maximum": 32767,
+          "default": 32767
+        },
+        "addressType": {
+          "$id": "/properties/addressType",
+          "type": "integer",
+          "title": "Address type",
+          "description": "Specify the identification code corresponding to the kind of the PMC address (only applies for the pmc_rdpmcrng method)",
+          "minimum": 0,
+          "maximum": 13,
+          "default": 0
+        },
+        "dataType": {
+          "$id": "/properties/dataType",
+          "type": "integer",
+          "title": "Data type",
+          "description": "Specify the type of the PMC data or CNC feed rate/spindle speed (only applies for the methods pmc_rdpmcrng and cnc_rdspeed), which can be byte (0), word (1), long (2), float32 (4) or float64 (5). float32 and float64 apply for 30i-B Series/0i-F/PMi-A only. For method cnc_rdspeed valid values are 0 (feed rate), 1 (spindle speed), -1 (all)",
+          "default": 0,
+          "enum": [
+            -1,
+            0,
+            1,
+            2,
+            4,
+            5
+          ]
+        },
+        "spindleNumber": {
+          "$id": "/properties/spindleNumber",
+          "type": "integer",
+          "title": "Spindle Number",
+          "description": "Specify spindle number to read. from 1 up to 8 for Series 30i, 0i-D/F. 1 up to 4 for Series 15/15i, 16i/18i/21i, 16i/18i/21i, 0i-A/B/C. And only number 1 for Power Mate i-D",
+          "minimum": 1,
+          "maximum": 8,
+          "default": 1
+        },
+        "type": {
+          "$id": "/properties/type",
+          "type": "integer",
+          "title": "Spindle Number",
+          "description": "Specify the group of G code. Only applies for method cnc_rdgcode. Series 15i: goes from 0 to 18,24,25,27/-1/100 to 103/-2. For Series 30i, 0i-D/F, PMi-A: goes from 0 to 36/-1/100 to 103/-2",
+          "minimum": -2,
+          "maximum": 103,
+          "default": -1
+        },
+        "block": {
+          "$id": "/properties/block",
+          "type": "integer",
+          "title": "Block",
+          "description": "Specify the block to be read. 0 -> previus block, 1 -> active block, 2 -> next block. Only applies for method cnc_rdgcode",
+          "minimum": 0,
+          "maximum": 2,
+          "default": 1
+        },
+        "numGcd": {
+          "$id": "/properties/numGcd",
+          "type": "integer",
+          "title": "Spindle Number",
+          "description": "number of G code data to be read. Only applies for method cnc_rdgcode",
+          "minimum": 1,
+          "default": 1
+        },
+        "addressStart": {
+          "$id": "/properties/addressStart",
+          "type": "integer",
+          "title": "Address start",
+          "description": "Specify the start PMC address number (only applies for the pmc_rdpmcrng method)",
+          "minimum": 0,
+          "default": 0
+        },
+        "addressEnd": {
+          "$id": "/properties/addressEnd",
+          "type": "integer",
+          "title": "Address start",
+          "description": "Specify the end PMC address number (only applies for the pmc_rdpmcrng method)",
+          "minimum": 0,
+          "default": 0
+        },
+        "dataLength": {
+          "$id": "/properties/dataLength",
+          "type": "integer",
+          "title": "Data length",
+          "description": "Specify the data block length (only applies for the pmc_rdpmcrng method)",
+          "minimum": 8,
+          "default": 8
+        }
+      }
+    }
+  }
+}

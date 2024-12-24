@@ -1,0 +1,104 @@
+{
+  "$id": "OpcdaConnection",
+  "definitions": {
+    "connection": {
+      "type": "object",
+      "required": ["host", "username", "password", "classId"],
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "$id": "/properties/host",
+          "type": "string",
+          "title": "Host",
+          "description": "Hostname or IP of the OPC DA server",
+          "examples": ["192.168.0.1"]
+        },
+        "port": {
+          "$id": "/properties/port",
+          "type": "integer",
+          "title": "Port",
+          "description": "Port of the OPC DA server",
+          "minimum": 0,
+          "default": 135
+        },
+        "domain": {
+          "$id": "/properties/domain",
+          "type": "string",
+          "title": "Domain",
+          "description": "Microsoft Windows domain of the OPC DA server",
+          "default": "WORKGROUP"
+        },
+        "username": {
+          "$id": "/properties/username",
+          "type": "string",
+          "title": "Username",
+          "description": "Username for OPC DA server (usually a user on the Windows computer of the OPC DA server)",
+          "examples": ["user"]
+        },
+        "password": {
+          "$id": "/properties/password",
+          "type": "string",
+          "title": "Password",
+          "description": "Password for the user on the OPC DA server (usually the password of the Windows user)",
+          "examples": ["user"]
+        },
+        "classId": {
+          "$id": "/properties/classId",
+          "type": "string",
+          "title": "Class ID",
+          "description": "Microsoft Windows DCOM class ID of the OPC DA server",
+          "default": "F8582CF2-88FB-11D0-B850-00C0F0104305",
+          "examples": ["F8582CF2-88FB-11D0-B850-00C0F0104305"]
+        },
+        "group": {
+          "$id": "/properties/group",
+          "type": "string",
+          "title": "Group Name",
+          "description": "OPC DA group name for the tags that will be accessed",
+          "default": "Connectware Group",
+          "examples": ["Some Name"]
+        },
+        "timeout": {
+          "$id": "/properties/timeout",
+          "type": "integer",
+          "title": "Timeout",
+          "description": "Timeout, in milliseconds",
+          "minimum": 0,
+          "default": 5000,
+          "examples": [2000, 5000, 10000]
+        },
+        "comVersionMinor": {
+          "$id": "/properties/comVersionMinor",
+          "type": "integer",
+          "title": "DCOM Protocol Minor Version",
+          "description": "The minor part of the DCOM protocol version. The major protocol version is fixed at 5, but the minor version can be configured to choose between 5.7 (default) or the older 5.4.",
+          "default": 7,
+          "examples": [4, 7]
+        },
+        "connectionStrategy": {
+          "type": "object",
+          "description": "If a connection attempt fails, retries will be performed with increasing delay (waiting time) in between. The following parameters control how these delays behave.",
+          "properties": {
+            "initialDelay": {
+              "type": "integer",
+              "description": "Delay (waiting time) of the first connection retry (in milliseconds). For subsequent retries, the delay will be increased according to the parameter incrementFactor which has a default value of 2.",
+              "default": 1e3,
+              "minimum": 1e3
+            },
+            "maxDelay": {
+              "type": "integer",
+              "description": "Maximum delay (waiting time) to wait until the next retry (in milliseconds). The delay (waiting time) for any subsequent connection retry will not be larger than this value. Must be strictly greater than initialDelay.",
+              "default": 30e3
+            },
+            "incrementFactor": {
+              "type": "integer",
+              "description": "The factor used to increment initialDelay up to maxDelay. For example if initialDelay is set to 1000 and maxDelay to 5000 the values for the delay would be 1000, 2000, 4000, 5000.",
+              "default": 2,
+              "minimum": 2
+            }
+          }
+        }
+      }
+    }
+  }
+}

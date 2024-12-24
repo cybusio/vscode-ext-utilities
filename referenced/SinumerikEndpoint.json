@@ -1,0 +1,93 @@
+{
+  "$id": "SinumerikEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": [
+        "method"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "type": {
+          "$id": "/properties/type",
+          "type": "string",
+          "title": "Type",
+          "description": "The type of subscription",
+          "enum": [
+            "notify",
+            "poll"
+          ]
+        },
+        "method": {
+          "$id": "/properties/method",
+          "type": "string",
+          "title": "Method",
+          "description": "The method to use"
+        },
+        "params": {
+          "$id": "/properties/params",
+          "type": "array",
+          "title": "Parameters",
+          "description": "The method parameters",
+          "items": {
+            "$id": "/properties/params/items",
+            "title": "Parameters"
+          }
+        },
+        "pollInterval": {
+          "$id": "/properties/pollInterval",
+          "type": "integer",
+          "title": "Poll interval",
+          "description": "The amount of time between polls",
+          "minimum": 1000,
+          "default": 1000
+        },
+        "publishInterval": {
+          "$id": "/properties/publishInterval",
+          "type": "integer",
+          "title": "Publish Interval",
+          "description": "Optional, sets the interval in which values are sent to their appropriate publish methods.",
+          "default": 1000
+        },
+        "samplingInterval": {
+          "$id": "/properties/samplingInterval",
+          "type": "integer",
+          "title": "Sampling Interval",
+          "description": "Integer, that sets the interval in which values are read from the server.",
+          "default": 1000
+        },
+        "maxNotificationsPerPublish": {
+          "$id": "/properties/maxNotificationsPerPublish",
+          "type": "integer",
+          "description": "Sets the maximum number of monitor notifications that are in a single publish message of the OPC UA subscription. Setting this to a lower value will lead to more network traffic.",
+          "minimum": 0,
+          "default": 100
+        },
+        "priority": {
+          "$id": "/properties/priority",
+          "type": "integer",
+          "minimum": 0,
+          "default": 10
+        },
+        "requestedLifetimeCount": {
+          "$id": "/properties/requestedLifetimeCount",
+          "type": "integer",
+          "minimum": 0,
+          "default": 30
+        },
+        "requestedMaxKeepAliveCount": {
+          "$id": "/properties/requestedMaxKeepAliveCount",
+          "type": "integer",
+          "minimum": 0,
+          "default": 10
+        },
+        "retryMonitorTimeout": {
+          "$id": "/properties/retryMonitorTimeout",
+          "type": "integer",
+          "minimum": 10000,
+          "default": 300000
+        }
+      }
+    }
+  }
+}

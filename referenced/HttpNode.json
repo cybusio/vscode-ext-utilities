@@ -1,0 +1,25 @@
+{
+  "$id": "HttpNode",
+  "definitions": {
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "$id": "/properties/method",
+          "type": "string",
+          "title": "Method",
+          "enum": ["POST", "PUT", "GET"],
+          "description": "The HTTP method to be offered by this particular route node"
+        },
+        "route": {
+          "$id": "/properties/route",
+          "type": "string",
+          "title": "Route",
+          "description": "The additional route path of this particular HTTP node, preceded by the server's base url",
+          "examples": ["/my/individual/route", "/testroute"]
+        }
+      }
+    }
+  }
+}

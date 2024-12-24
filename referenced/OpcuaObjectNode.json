@@ -1,0 +1,40 @@
+{
+  "$id": "OpcUaObjectNode",
+  "definitions": {
+    "options": {
+      "type": "object",
+      "required": [],
+      "additionalProperties": false,
+      "properties": {
+        "objectTypeName": {
+          "$id": "/properties/objectTypeName",
+          "type": "string",
+          "title": "ObjectType Name",
+          "description": "Name of the Object Type to instantiate",
+          "examples": ["MachineToolType"]
+        },
+        "sourceNamespaceUrl": {
+          "$id": "/properties/sourceNamespaceUrl",
+          "type": "string",
+          "title": "ObjectType Name",
+          "description": "URL of the namespace that contains the the object type to instantiate",
+          "examples": ["http://opcfoundation.org/UA/MachineTool/"]
+        },
+        "browseName": {
+          "$id": "/properties/browseName",
+          "type": "string",
+          "title": "Browse Name",
+          "description": "BrowseName that shall be assigned to the Objecttype Instance",
+          "examples": ["TestMachineToolTypeInstance"]
+        },
+        "parent": {
+          "$id": "/properties/parent",
+          "type": "string",
+          "title": "ObjectType Name",
+          "description": "Reference to parent node Id in the commissioning file",
+          "examples": ["http://opcfoundation.org/UA/MachineTool/"]
+        }
+      }
+    }
+  }
+}

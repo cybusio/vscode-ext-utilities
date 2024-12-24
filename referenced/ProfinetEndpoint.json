@@ -1,0 +1,72 @@
+{
+  "$id": "ProfinetEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": [
+        "deviceName",
+        "api",
+        "slot",
+        "subSlot"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "deviceName": {
+          "$id": "/properties/deviceName",
+          "type": "string",
+          "title": "Device Name",
+          "description": "Name of the Profinet Device",
+          "examples": [
+            "egl-90"
+          ]
+        },
+        "api": {
+          "$id": "/properties/api",
+          "type": "integer",
+          "title": "Application Process Identifier",
+          "description": "Integer number describing identifying the application process",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        },
+        "slot": {
+          "$id": "/properties/slot",
+          "type": "integer",
+          "title": "Slot",
+          "description": "Slot number",
+          "examples": [
+            1
+          ]
+        },
+        "subSlot": {
+          "$id": "/properties/subSlot",
+          "type": "integer",
+          "title": "Sub-Slot",
+          "description": "Sub-Slot number",
+          "examples": [
+            0
+          ]
+        },
+        "propertyName": {
+          "$id": "/properties/propertyName",
+          "type": "string",
+          "title": "Property Name",
+          "description": "Name of the property to read as defined in the GSD file",
+          "examples": [
+            "actual value"
+          ]
+        },
+        "propertyIndex": {
+          "$id": "/properties/propertyIndex",
+          "type": "integer",
+          "title": "Property Index",
+          "description": "Index of the property as defined in the GSD file",
+          "examples": [
+            0
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "type": "object",
+  "description": "Schema for resources ingress routes\n",
+  "additionalProperties": true,
+  "required": [
+      "container"
+  ],
+  "properties": {
+      "container": {
+          "type": "string",
+          "description": "reference to the container resource"
+      },
+      "type": {
+          "type": "string",
+          "default": "http",
+          "enum": [
+              "http",
+              "tcp"
+          ]
+      }
+  },
+  "allOf": [
+      {
+          "if": {
+              "properties": {
+                  "type": {
+                      "const": "http"
+                  }
+              }
+          },
+          "then": {
+              "properties": {
+                  "slug": {
+                      "type": "string",
+                      "pattern": "^[a-z-]+",
+                      "maxLength": 20
+                  },
+                  "target": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                          "path"
+                      ],
+                      "properties": {
+                          "port": {
+                              "type": "integer",
+                              "default": 80
+                          },
+                          "path": {
+                              "type": "string"
+                          }
+                      }
+                  },
+                  "headers": {
+                      "type": "array",
+                      "items": {
+                          "type": "string"
+                      }
+                  }
+              },
+              "else": {
+                  "properties": {
+                      "containerPort": {
+                          "type": "integer",
+                          "description": "The port on the container (upstream to ingress)"
+                      },
+                      "connectwarePort": {
+                          "type": "integer",
+                          "description": "The port on the connectware (downstream to ingress)"
+                      }
+                  }
+              }
+          }
+      }
+  ]
+}

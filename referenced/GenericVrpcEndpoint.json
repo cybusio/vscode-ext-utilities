@@ -1,0 +1,10 @@
+{
+  "$id": "GenericVrpcEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "For any of the read(), write() or subscribe() functions, further parameters can be added that will be passed through to the generic VRPC agent client"
+    }
+  }
+}

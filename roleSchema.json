@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "description": "Schema for resources role\n",
+  "additionalProperties": false,
+  "required": [
+      "permissions"
+  ],
+  "properties": {
+      "permissions": {
+          "description": "The permissions associated to this role",
+          "type": "array",
+          "items": {
+              "type": "object",
+              "required": [
+                  "resource",
+                  "operation",
+                  "context"
+              ],
+              "properties": {
+                  "resource": {
+                      "description": "Resource path, can be REST-ful API path or MQTT topic",
+                      "type": "string"
+                  },
+                  "operation": {
+                      "description": "The allowed access operation in the resource",
+                      "type": "string",
+                      "enum": [
+                          "read",
+                          "write",
+                          "readWrite"
+                      ]
+                  },
+                  "context": {
+                      "description": "The context in which the resource should be interpreted.",
+                      "type": "string",
+                      "enum": [
+                          "mqtt",
+                          "http"
+                      ]
+                  }
+              }
+          }
+      }
+  }
+}

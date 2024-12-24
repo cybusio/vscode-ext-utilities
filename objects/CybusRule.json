@@ -1,0 +1,215 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "CybusRule",
+  "type": "object",
+  "propertyNames": {
+    "enum": [
+      "parse",
+      "transform",
+      "filter",
+      "setContextVars",
+      "cov",
+      "burst",
+      "stash",
+      "collect"
+    ]
+  },
+  "properties": {
+    "parse": {
+      "$ref": "#/$defs/parse"
+    },
+    "transform": {
+      "$ref": "#/$defs/transform"
+    },
+    "filter": {
+      "$ref": "#/$defs/filter"
+    },
+    "setContextVars": {
+      "$ref": "#/$defs/setContextVars"
+    },
+    "cov": {
+      "$ref": "#/$defs/cov"
+    },
+    "burst": {
+      "$ref": "#/$defs/burst"
+    },
+    "stash": {
+      "$ref": "#/$defs/stash"
+    },
+    "collect": {
+      "$ref": "#/$defs/collect"
+    }
+  },
+  "$defs": {
+    "parse": {
+      "title": "parse",
+      "$id": "/rule/parse",
+      "type": "object",
+      "required": [
+        "format"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "utf8",
+            "latin1",
+            "ascii",
+            "boolean",
+            "int8",
+            "int16BE",
+            "int16LE",
+            "int32BE",
+            "int32LE",
+            "uint8",
+            "uint16BE",
+            "uint16LE",
+            "uint32BE",
+            "uint32LE",
+            "floatBE",
+            "floatLE",
+            "doubleBE",
+            "doubleLE",
+            "toBase64",
+            "fromBase64"
+          ]
+        }
+      }
+    },
+    "transform": {
+      "title": "transform",
+      "$id": "/rule/transform",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expression"
+      ],
+      "properties": {
+        "expression": {
+          "type": "string"
+        }
+      }
+    },
+    "filter": {
+      "title": "filter",
+      "$id": "/rule/filter",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expression"
+      ],
+      "properties": {
+        "expression": {
+          "type": "string"
+        }
+      }
+    },
+    "setContextVars": {
+      "title": "setContextVars",
+      "$id": "/rule/setContextVars",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "vars"
+      ],
+      "properties": {
+        "setMissingAsUndefined": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, set missing values as 'undefined', otherwise throw an error and reject this erroneous message."
+        },
+        "vars": {
+          "type": "object"
+        }
+      }
+    },
+    "cov": {
+      "title": "changeOfValue",
+      "$id": "/rule/cov",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key"
+      ],
+      "properties": {
+        "key": {
+          "anyOf": [
+            {
+              "title": "stringKey",
+              "type": "string"
+            },
+            {
+              "title": "integerKey",
+              "type": "integer"
+            },
+            {
+              "title": "arrayOfKeys",
+              "type": "array",
+              "items": {
+                "title": "stringOrIntegerKey",
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "deadband": {
+          "type": "number"
+        },
+        "deadbandMode": {
+          "type": "string",
+          "enum": [
+            "absolute",
+            "relative"
+          ]
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "burst": {
+      "title": "burst",
+      "$id": "/rule/burst",
+      "type": "object",
+      "properties": {
+        "interval": {
+          "type": "integer"
+        },
+        "maxSize": {
+          "type": "integer"
+        },
+        "label":{
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stash": {
+      "title": "stash",
+      "$id": "/rule/stash",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "collect": {
+      "title": "collect",
+      "$id": "/rule/collect",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {}
+    }
+  }
+}

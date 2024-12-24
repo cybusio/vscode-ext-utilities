@@ -1,0 +1,136 @@
+{
+  "$id": "OpcdaEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "anyOf": [
+        {
+          "properties": {
+            "tag": {
+              "$ref": "#/definitions/address/properties/tag"
+            }
+          },
+          "required": [
+            "tag"
+          ]
+        },
+        {
+          "properties": {
+            "tags": {
+              "$ref": "#/definitions/address/properties/tags"
+            }
+          },
+          "required": [
+            "tags"
+          ]
+        },
+        {
+          "properties": {
+            "browse": {
+              "$ref": "#/definitions/address/properties/browse"
+            }
+          },
+          "required": [
+            "browse"
+          ]
+        }
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "tag": {
+          "$id": "/properties/tag",
+          "type": "string",
+          "title": "Tag",
+          "description": "The name of the tag that should be accessed. Use this property for a single tag, or alternatively the tags property for multiple ones.",
+          "examples": [
+            "Random.Real4",
+            "Triangle Waves.Int2"
+          ]
+        },
+        "type": {
+          "$id": "/properties/type",
+          "type": "string",
+          "title": "Type",
+          "description": "The type of the tag",
+          "enum": [
+            "DATE",
+            "CURRENCY",
+            "VARIANTBODY",
+            "VARIANT",
+            "DOUBLE",
+            "COMARRAY",
+            "BOOLEAN",
+            "SHORT",
+            "INTEGER",
+            "FLOAT",
+            "STRING",
+            "UUID",
+            "BYTE",
+            "LONG",
+            "CHARACTER",
+            "INTERFACEPOINTER",
+            "INTERFACEPOINTERBODY",
+            "DISPATCH",
+            "COMOBJECT",
+            "POINTER",
+            "STRUCT",
+            "UNION",
+            "COMSTRING",
+            "UNSIGNEDBYTE",
+            "UNSIGNEDSHORT",
+            "UNSIGNEDINTEGER",
+            "DUALSTRINGARRAY"
+          ]
+        },
+        "tags": {
+          "$id": "/properties/tags",
+          "type": "array",
+          "title": "Tags",
+          "description": "An array of names of the tags that should be accessed. Use this property for multiple tags, or alternatively tag for a single one.",
+          "examples": [
+            [
+              "Random.Real4",
+              "Triangle Waves.Int2"
+            ]
+          ],
+          "items": {
+            "$id": "/properties/tags/items",
+            "type": "string",
+            "title": "Tags"
+          }
+        },
+        "browse": {
+          "$id": "/properties/browse",
+          "type": "string",
+          "title": "Browse",
+          "description": "The method for browsing this OPC DA server. Use this property if the endpoint should serve as a browse endpoint, alternative to the tag or tags endpoint.",
+          "default": "flat",
+          "enum": [
+            "flat",
+            "tree"
+          ]
+        },
+        "interval": {
+          "$id": "/properties/interval",
+          "type": "integer",
+          "title": "Interval",
+          "description": "Polling interval in ms for subscriptions",
+          "minimum": 0,
+          "default": 1000
+        },
+        "cronExpression": {
+          "$id": "/properties/cronExpression",
+          "type": "string",
+          "title": "Cron expression",
+          "description": "The Cron expression used to poll the endpoint. (For examples, see: https://github.com/node-cron/node-cron)",
+          "examples": [
+            "1,2,4,5 * * * *",
+            "1-5 * * * *",
+            "*/2 * * * *",
+            "* * * January,September Sunday"
+          ]
+        }
+      }
+    }
+  }
+}

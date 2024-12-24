@@ -1,0 +1,19 @@
+{
+  "$id": "TcpEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": ["tag"],
+      "additionalProperties": false,
+      "properties": {
+        "tag": {
+          "$id": "/properties/tag",
+          "type": "string",
+          "title": "Tag",
+          "description": "Identifies an individual data point",
+          "examples": ["machineState"]
+        }
+      }
+    }
+  }
+}

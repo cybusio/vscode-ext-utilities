@@ -1,0 +1,48 @@
+{
+  "$id": "OpcuaReferenceNode",
+  "definitions": {
+    "options": {
+      "type": "object",
+      "required": [],
+      "additionalProperties": false,
+      "properties": {
+        "referenceNodeId": {
+          "$id": "/properties/referenceNodeId",
+          "type": "string",
+          "title": "Node Id reference",
+          "description": "reference Nodes in OPC UA server and publish them into the comissioning file context",
+          "examples": [
+            "MachineToolType"
+          ]
+        },
+        "namespaceUrl": {
+          "$id": "/properties/namespaceUrl",
+          "type": "string",
+          "title": "Namespace URL of the node to reference",
+          "description": "URL of the namespace that contains the the object type to instantiate",
+          "examples": [
+            "http://opcfoundation.org/UA/MachineTool/"
+          ]
+        },
+        "relativeBrowsePath": {
+          "$id": "/properties/relativeBrowsePath",
+          "type": "string",
+          "title": "Relative Browse Path",
+          "description": "This follows the OPC UA specification for relative browse path values relative to the given reference Node Id",
+          "examples": [
+            "/Server/ServerCapabilities/OperationLimits/MaxNodesPerBrowse"
+          ]
+        },
+        "startNodeId": {
+          "$id": "/properties/startNodeId",
+          "type": "string",
+          "title": "Start Node Id",
+          "description": "Address to the Starting Point for the relative browse path",
+          "examples": [
+            "ns=0;i=85"
+          ]
+        }
+      }
+    }
+  }
+}

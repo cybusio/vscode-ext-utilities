@@ -1,0 +1,106 @@
+{
+  "$id": "BacnetEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": [
+        "objectType",
+        "objectInstance",
+        "property"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "objectType": {
+          "$id": "/properties/objectType",
+          "type": "string",
+          "title": "Object type",
+          "description": "Identifier of the BACnet object type of this endpoint",
+          "enum": [
+            "analog-input",
+            "analog-output",
+            "analog-value",
+            "binary-input",
+            "binary-output",
+            "binary-value",
+            "calendar",
+            "command",
+            "device",
+            "event-enrollment",
+            "file",
+            "group",
+            "loop",
+            "multi-state-input",
+            "multi-state-output",
+            "notification-class",
+            "program",
+            "schedule"
+          ],
+          "examples": [
+            "analog-input"
+          ]
+        },
+        "objectInstance": {
+          "$id": "/properties/objectInstance",
+          "type": "integer",
+          "title": "Object Instance",
+          "description": "Integer number to describe the concrete object instance that should be accessed",
+          "examples": [
+            1
+          ]
+        },
+        "property": {
+          "$id": "/properties/property",
+          "type": "string",
+          "title": "Name of the property",
+          "description": "The name of this property. The most common property has the name present-value. Other typically available property names are: object-name, description, status-flags, units. On the device object the properties location, object-list and system_status are typically available",
+          "examples": [
+            "present-value"
+          ]
+        },
+        "interval": {
+          "$id": "/properties/interval",
+          "type": "integer",
+          "title": "Interval",
+          "description": "The poll interval in milliseconds",
+          "default": 1000,
+          "examples": [
+            1000
+          ]
+        },
+        "cronExpression": {
+          "$id": "/properties/cronExpression",
+          "type": "string",
+          "title": "Cron expression",
+          "description": "The Cron expression used to poll the endpoint. (For examples, see: https://github.com/node-cron/node-cron)",
+          "examples": [
+            "1,2,4,5 * * * *",
+            "1-5 * * * *",
+            "*/2 * * * *",
+            "* * * January,September Sunday"
+          ]
+        },
+        "priority": {
+          "$id": "/properties/priority",
+          "type": "integer",
+          "title": "Priority",
+          "description": "Only effective during writing to BACnet: Defines the priority (highest: 1, lowest 16 = default)",
+          "minimum": 0,
+          "maximum": 16,
+          "examples": [
+            16
+          ]
+        },
+        "propertyTag": {
+          "$id": "/properties/priorityTag",
+          "type": "integer",
+          "title": "Property Tag",
+          "description": "Only effective during writing to BACnet: Forces the data type of the provided value into the provided BACnet type (called propertyTag). The propertyTag is an integer value (enumeration), please see the documentation for the encoding",
+          "minimum": 0,
+          "examples": [
+            4
+          ]
+        }
+      }
+    }
+  }
+}

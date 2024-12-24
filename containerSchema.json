@@ -1,0 +1,159 @@
+{
+  "type": "object",
+  "description": "Schema for resources container\n",
+  "additionalProperties": false,
+  "required": [
+      "image"
+  ],
+  "properties": {
+      "image": {
+          "description": "Location of the required container image. Can either be a public docker hub repository or an image located at the Cybus registry.\n",
+          "type": "string"
+      },
+      "volumes": {
+          "description": "A reference to a volume resource that should be attached to this container",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+              "type": "string"
+          }
+      },
+      "command": {
+          "type": "array",
+          "items": {
+              "type": "string"
+          }
+      },
+      "entrypoint": {
+          "type": "array",
+          "items": {
+              "type": "string"
+          }
+      },
+      "workingDir": {
+          "type": "string"
+      },
+      "environment": {
+          "description": "Object of environment variables defining undetermined values of the executed application.",
+          "type": "object",
+          "patternProperties": {
+              "^[A-Za-z ]+": {
+                  "type": [
+                      "string",
+                      "integer",
+                      "boolean"
+                  ]
+              }
+          }
+      },
+      "labels": {
+          "type": "object"
+      },
+      "restart": {
+          "description": "The behavior to apply when the container exits.",
+          "type": "string",
+          "default": "unless-stopped",
+          "enum": [
+              "no",
+              "always",
+              "on-failure",
+              "unless-stopped"
+          ]
+      },
+      "ports": {
+          "description": "Defines port mappings between host and container OS",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+              "type": "string"
+          }
+      },
+      "capAdd": {
+          "type": "array",
+          "items": {
+              "type": "string",
+              "enum": [
+                  "ALL",
+                  "AUDIT_CONTROL",
+                  "AUDIT_WRITE",
+                  "CHOWN",
+                  "DAC_OVERRIDE",
+                  "DAC_READ_SEARCH",
+                  "FOWNER",
+                  "FSETID",
+                  "IPC_LOCK",
+                  "IPC_OWNER",
+                  "KILL",
+                  "LEASE",
+                  "LINUX_IMMUTABLE",
+                  "MAC_ADMIN",
+                  "MAC_OVERRIDE",
+                  "MKNOD",
+                  "NET_ADMIN",
+                  "NET_BIND_SERVICE",
+                  "NET_BROADCAST",
+                  "NET_RAW",
+                  "SETFCAP",
+                  "SETGID",
+                  "SETPCAP",
+                  "SETUID",
+                  "SYSLOG",
+                  "SYS_ADMIN",
+                  "SYS_BOOT",
+                  "SYS_CHROOT",
+                  "SYS_MODULE",
+                  "SYS_NICE",
+                  "SYS_PACCT",
+                  "SYS_PTRACE",
+                  "SYS_RAWIO",
+                  "SYS_RESOURCE",
+                  "SYS_TIME",
+                  "SYS_TTY_CONFIG",
+                  "WAKE_ALARM"
+              ]
+          }
+      },
+      "devices": {
+          "type": "array",
+          "items": {
+              "type": "object",
+              "required": [
+                  "PathOnHost",
+                  "PathInContainer",
+                  "CgroupPermissions"
+              ],
+              "properties": {
+                  "PathOnHost": {
+                      "type": "string"
+                  },
+                  "PathInContainer": {
+                      "type": "string"
+                  },
+                  "CgroupPermissions": {
+                      "type": "string"
+                  }
+              }
+          }
+      },
+      "privileged": {
+          "description": "Defines whether the container is privileged",
+          "type": "boolean",
+          "default": false
+      },
+      "cpus": {
+          "description": "Specify how much of the available CPU resources a container can use. If zero, no limit is set. If you want to set a limit here by specifying a non-zero value, For instance, if the host machine has two CPUs and you set cpus to 1.5, the container is guaranteed at most one and a half of the CPUs.",
+          "type": "number",
+          "default": 0
+      },
+      "memory": {
+          "description": "The maximum amount of memory the container can use, in bytes. If zero, no limit is set. If you set a limit (by specifying a non-zero value here) the minimum allowed value is 4194304 bytes (equal to 4 megabyte).",
+          "type": "integer",
+          "default": 0
+      },
+      "ulimit": {
+          "description": "Specify how many open files per processes are allowed inside the container. If not provided it defaults to the value configured by the Docker service for max open files. If provided both soft and hard ulimit NOFILES is set to this value (if the Docker host allows this property to be set).",
+          "type": "integer",
+          "minimum": 1024
+      }
+  }
+}

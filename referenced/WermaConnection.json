@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "WermaConnection",
+  "title": "WermaConnection",
+  "type": "object",
+  "required": ["connections"],  
+  "definitions": {
+      "connection": {
+        "type": "object",
+        "required": ["host", "port", "password"],
+        "additionalProperties": false,
+        "properties": {
+          "host": {
+            "$id": "/properties/host",
+            "type": "string",
+            "title": "Host",
+            "description": "Hostname or IP of the Werma device",
+            "examples": ["126.4.10.52"]
+          },
+          "port": {
+            "$id": "/properties/port",
+            "type": "integer",
+            "title": "Port",
+            "description": "Port of the Werma device",
+            "examples": ["15200"]
+          },
+          "password": {
+            "$id": "/properties/password",
+            "type": "string",
+            "title": "Password",
+            "description": "Password of the Werma device",
+            "examples": ["abcd1234"],
+            "default": "b1b0",
+            "minLength": 1
+          },
+          "connectionStrategy": {
+            "type": "object",
+            "description": "If a connection attempt fails, retries will be performed with increasing delay (waiting time) in between. The following parameters control how these delays behave.",
+            "properties": {
+              "initialDelay": {
+                "type": "integer",
+                "description": "Delay (waiting time) of the first connection retry (in milliseconds). For subsequent retries, the delay will be increased according to the parameter incrementFactor which has a default value of 2.",
+                "default": 1e3,
+                "minimum": 1e3
+              },
+              "maxDelay": {
+                "type": "integer",
+                "description": "Maximum delay (waiting time) to wait until the next retry (in milliseconds). The delay (waiting time) for any subsequent connection retry will not be larger than this value. Must be strictly greater than initialDelay.",
+                "default": 30e3
+              },
+              "incrementFactor": {
+                "type": "integer",
+                "description": "The factor used to increment initialDelay up to maxDelay. For example if initialDelay is set to 1000 and maxDelay to 5000 the values for the delay would be 1000, 2000, 4000, 5000.",
+                "default": 2,
+                "minimum": 2
+              }
+            }
+          }
+        }
+      }
+  }
+}

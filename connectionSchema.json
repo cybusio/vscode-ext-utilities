@@ -1,0 +1,571 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "https://example.com/schemas/ConnectionSchema",
+    "type": "object",
+    "propertyNames": {
+        "enum": ["protocol", "connection", "targetState","agentName"]
+    }, //used to allow connection despite the conditional defination
+    "additionalProperties": true,
+    "definitions": {
+        "AdsConnection": {
+           "$ref": "referenced/AdsConnection.json#/definitions/connection"
+        },
+        "BacnetConnection": {
+            "$ref": "referenced/BacnetConnection.json#/definitions/connection"
+        },
+        "EthernetIpConnection": {
+            "$ref": "referenced/EthernetIpConnection.json#/definitions/connection"
+        },
+        "FocasConnection": {
+            "$ref": "referenced/FocasConnection.json#/definitions/connection"
+        },
+        "GenericVrpcConnection": {
+            "$ref": "referenced/GenericVrpcConnection.json#/definitions/connection"
+        },
+        "HbmdaqConnection": {
+            "$ref": "referenced/HbmdaqConnection.json#/definitions/connection"
+        },
+        "HeidenhainConnection": {
+            "$ref": "referenced/HeidenhainConnection.json#/definitions/connection"
+        },
+        "HttpConnection": {
+            "$ref": "referenced/HttpConnection.json#/definitions/connection"
+        },
+        "InfluxdbConnection": {
+            "$ref": "referenced/InfluxdbConnection.json#/definitions/connection"
+        },
+        "KafkaConnection": {
+            "$ref": "referenced/KafkaConnection.json#/definitions/connection"
+        },
+        "ModbusConnection": {
+            "$ref": "referenced/ModbusConnection.json#/definitions/connection"
+        },
+        "MqttConnection": {
+            "$ref": "referenced/MqttConnection.json#/definitions/connection"
+        },
+        "MssqlConnection": {
+            "$ref": "referenced/MssqlConnection.json#/definitions/connection"
+        },
+        "OpcdaConnection": {
+            "$ref": "referenced/OpcdaConnection.json#/definitions/connection"
+        },
+        "OpcuaConnection": {
+            "$ref": "referenced/OpcuaConnection.json#/definitions/connection"
+        },
+        "ProfinetConnection": {
+            "$ref": "referenced/ProfinetConnection.json#/definitions/connection"
+        },
+        "S7Connection": {
+            "$ref": "referenced/S7Connection.json#/definitions/connection"
+        },
+        "ShdrConnection": {
+            "$ref": "referenced/ShdrConnection.json#/definitions/connection"
+        },
+        "SinumerikConnection": {
+            "$ref": "referenced/SinumerikConnection.json#/definitions/connection"
+        },
+        "SystemstateConnection": {
+            "$ref": "referenced/SystemstateConnection.json#/definitions/connection"
+        },
+        "SopasConnection": {
+            "$ref": "referenced/SopasConnection.json#/definitions/connection"
+        },
+        "SqlConnection": {
+            "$ref": "referenced/SqlConnection.json#/definitions/connection"
+        },
+        "WermaConnection": {
+            "$ref": "referenced/WermaConnection.json#/definitions/connection"
+        }
+
+
+    },
+    "required": [
+        "protocol",
+        "connection"
+    ],
+    "properties": {
+        "protocol": {
+            "type": "string",
+            "description": "Identifies the protocol for which a connection should be established",
+            "enum": [
+                "Ads",
+                "Bacnet",
+                "EthernetIp",
+                "Focas",
+                "GenericVrpc",
+                "Hbmdaq",
+                "Heidenhain",
+                "Http",
+                "Influxdb",
+                "Kafka",
+                "Modbus",
+                "Mqtt",
+                "Mssql",
+                "Opcda",
+                "Opcua",
+                "Profinet",
+                "S7",
+                "Shdr",
+                "Sinumerik",
+                "Sopas",
+                "Sql",
+                "Systemstate",
+                "Werma"
+            ],
+            "default": "<ctl + space to choose protocol name>"
+        },
+        "targetState": {
+            "type": "string",
+            "enum": [
+                "connected",
+                "disconnected"
+            ]
+        },
+        "agentName": {
+            "type": "string",
+            "description": "Name of the protocol-mapper agent",
+            "default": "protocol-mapper"
+        }
+    },
+    "allOf": [
+        {
+            "if": {
+                
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Ads"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/AdsConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Bacnet"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/BacnetConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "EthernetIp"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/EthernetIpConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Focas"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/FocasConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "GenericVrpc"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/GenericVrpcConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Hbmdaq"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/HbmdaqConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Heidenhain"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/HeidenhainConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Http"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "additionalProperties": false,
+                        "$ref": "#/definitions/HttpConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Influxdb"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/InfluxdbConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Kafka"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/KafkaConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Modbus"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/ModbusConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Mqtt"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/MqttConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Mssql"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/MssqlConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Opcda"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/OpcdaConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Opcua"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/OpcuaConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Profinet"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/ProfinetConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "S7"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/S7Connection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Shdr"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/ShdrConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Sinumerik"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/SinumerikConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Sopas"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/SopasConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Sql"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/SqlConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Systemstate"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/SystemstateConnection"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "protocol"
+                ],
+                "properties": {
+                    "protocol": {
+                        "const": "Werma"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "connection": {
+                        "$ref": "#/definitions/WermaConnection"
+                    }
+                }
+            }
+        }
+    ]
+}

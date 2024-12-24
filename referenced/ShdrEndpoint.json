@@ -1,0 +1,28 @@
+{
+  "$id": "ShdrEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": ["key", "type"],
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "$id": "/properties/key",
+          "type": "string",
+          "title": "Key",
+          "description": "Key of the data item in the information flow. May be Source, name or id of the MTConnect Item",
+          "examples": ["Xact"]
+        },
+        "type": {
+          "$id": "/properties/type",
+          "type": "string",
+          "title": "Type",
+          "enum": ["sample", "event", "condition", "message", "alarm"],
+          "description": "Any valid topic name addressing a single data-point",
+          "examples": ["sample"],
+          "default": ["sample"]
+        }
+      }
+    }
+  }
+}

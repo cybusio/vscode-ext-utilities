@@ -1,0 +1,139 @@
+{
+  "$id": "SinumerikConnection",
+  "definitions": {
+    "connection": {
+      "type": "object",
+      "required": ["host", "port"],
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "$id": "/properties/host",
+          "type": "string",
+          "title": "Host",
+          "description": "Hostname or IP of the Sinumerik device",
+          "examples": ["192.168.2.60"]
+        },
+        "port": {
+          "$id": "/properties/port",
+          "type": "integer",
+          "title": "Port",
+          "description": "Port of the Sinumerik device",
+          "minimum": 0,
+          "default": 4840,
+          "examples": [4840]
+        },
+        "resourcePath": {
+          "$id": "/properties/resourcePath",
+          "type": "string",
+          "title": "Resource Path",
+          "description": "Path of the Sinumerik server",
+          "default": "",
+          "examples": [""]
+        },
+        "username": {
+          "$id": "/properties/username",
+          "type": "string",
+          "title": "Username",
+          "description": "Username for Sinumerik server",
+          "examples": ["user"]
+        },
+        "password": {
+          "$id": "/properties/password",
+          "type": "string",
+          "title": "Password",
+          "description": "Password for Sinumerik server",
+          "examples": ["user"]
+        },
+        "timeout": {
+          "$id": "/properties/timeout",
+          "type": "integer",
+          "title": "Timeout",
+          "description": "Timeout, in milliseconds",
+          "minimum": 0,
+          "default": 1000,
+          "examples": [1000, 2000]
+        },
+        "options": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "defaultSecureTokenLifetime": {
+              "type": "integer",
+              "description": "Lifetime of the secure token. Specified in milliseconds.",
+              "default": 3600000
+            },
+            "requestedSessionTimeout": {
+              "type": "integer",
+              "description": "OPC UA sessions may survive TCP connection breaks and are only deleted if no message from a client is received within the timeout period. Specified in milliseconds.",
+              "default": 3600000
+            },
+            "endpointMustExist": {
+              "type": "boolean",
+              "description": "Specifies if the connection is strictly meant for the given endpoint. If false and the endpoint doesn’t exist, a reasonable default endpoint is automatically chosen.",
+              "default": false
+            },
+            "messageSecurityMode": {
+              "type": "string",
+              "default": "None",
+              "enum": [
+                "None",
+                "Sign",
+                "SignAndEncrypt"
+              ]
+            },
+            "securityPolicy": {
+              "type": "string",
+              "default": "None",
+              "enum": [
+                "Aes128_Sha256_RsaOaep",
+                "Basic128",
+                "Basic128Rsa15",
+                "Basic192",
+                "Basic192Rsa15",
+                "Basic256",
+                "Basic256Rsa15",
+                "Basic256Sha256",
+                "None",
+                "PubSub_Aes128_CTR",
+                "PubSub_Aes256_CTR"
+              ]
+            },
+            "watchInterval": {
+              "type": "integer",
+              "description": "For observing connection breaks, a connection watchdog runs regularly. Short intervals guarantee short notice on break but lead to higher load. Specified in milliseconds",
+              "default": 30e3
+            },
+            "connectionStrategy": {
+              "type": "object",
+              "description": "If a connection attempt failes, retries will be performed with growing delays in between. The following parameter control how these delays behave.",
+              "properties": {
+                "maxRetry": {
+                  "type": "integer",
+                  "description": "Maximum number of connection retries in case of failure.",
+                  "default": 1e9
+                },
+                "initialDelay": {
+                  "type": "integer",
+                  "description": "Delay of the first retry. Consecutive retries will randomly take longer delays.",
+                  "default": 1e3
+                },
+                "maxDelay": {
+                  "type": "integer",
+                  "description": "Maximum delay of a retry.",
+                  "default": 60e3
+                },
+                "randomisationFactor": {
+                  "type": "number",
+                  "description": "This parameter controls added randomisation to the retry attempts. Must be a number between 0 and 1. If set to 0, retries will be performed with exponentially growing delay until maxDelay. If set to 1, a maximum noise will be added to the retry delays.",
+                  "default": 0,
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

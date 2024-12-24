@@ -1,0 +1,173 @@
+{
+  "$id": "OpcuaConnection",
+  "definitions": {
+    "connection": {
+      "type": "object",
+      "required": ["host", "port"],
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "$id": "/properties/host",
+          "type": "string",
+          "title": "Host",
+          "description": "Hostname or IP of the OPC UA device",
+          "examples": ["192.168.2.60"]
+        },
+        "port": {
+          "$id": "/properties/port",
+          "type": "integer",
+          "title": "Port",
+          "description": "Port of the OPC UA device",
+          "minimum": 0,
+          "default": 4840,
+          "examples": [4840]
+        },
+        "resourcePath": {
+          "$id": "/properties/resourcePath",
+          "type": "string",
+          "title": "Resource Path",
+          "description": "Resource Path of the OPC UA server. Please note that this should be set to a valid value as some OPC-UA servers experience issues when connecting without one",
+          "default": "",
+          "examples": [""]
+        },
+        "username": {
+          "$id": "/properties/username",
+          "type": "string",
+          "title": "Username",
+          "description": "Username for OPC UA server",
+          "examples": ["user"]
+        },
+        "password": {
+          "$id": "/properties/password",
+          "type": "string",
+          "title": "Password",
+          "description": "Password for OPC UA server",
+          "examples": ["user"]
+        },
+        "timeout": {
+          "$id": "/properties/timeout",
+          "type": "integer",
+          "title": "Timeout",
+          "description": "Timeout, in milliseconds",
+          "minimum": 0,
+          "default": 1000,
+          "examples": [1000, 2000]
+        },
+        "certificateFile": {
+          "$id": "/properties/certificateFile",
+          "type": "string",
+          "title": "Certificate File",
+          "description": "Absolute path to the client certificate file",
+          "examples": ["/connectware_certs/cybus_client.crt"]
+        },
+        "privateKeyFile": {
+          "$id": "/properties/privateKeyFile",
+          "type": "string",
+          "title": "Private Key File",
+          "description": "Absolute path to the client private key file",
+          "examples": ["/connectware_certs/cybus_client.key"]
+        },
+        "checkHostReachable": {
+          "$id": "/properties/checkHostReachable",
+          "type": "boolean",
+          "title": "Check Host Reachable",
+          "description": "Checks if a low level TCP connection can be made to the configured host and port",
+          "default": false
+        },
+        "maxMonitoredItemsPerCall": {
+          "$id": "/properties/maxMonitoredItemsPerCall",
+          "type": "integer",
+          "title": "MaxMonitoredItemsPerCall",
+          "description": "If non-zero, multiple monitoredItems (i.e. multiple endpoints/nodes) will be registered in groups of maximum size of this given number. This is a server configuration property that can be queried on the server at nodeId: ns=0;i=11714. If this value is zero, no maximum value is assumed and all endpoints will be registered in one call.",
+          "minimum": 0,
+          "default": 0
+        },
+        "options": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "defaultSecureTokenLifetime": {
+              "type": "integer",
+              "description": "Lifetime of the secure token. Specified in milliseconds.",
+              "default": 3600000
+            },
+            "requestedSessionTimeout": {
+              "type": "integer",
+              "description": "OPC UA sessions may survive TCP connection breaks and are only deleted if no message from a client is received within the timeout period. Specified in milliseconds.",
+              "default": 3600000
+            },
+            "transportTimeout": {
+              "type": "integer",
+              "description": "Secure channel creating timeout, used before connecting or reconnecting to an OPC UA host. Has an impact on when a deviation is thrown as reconnect is first trying to connect to the host.",
+              "default": 60000
+            },
+            "endpointMustExist": {
+              "type": "boolean",
+              "description": "Specifies if the connection is strictly meant for the given endpoint. If false and the endpoint doesn’t exist, a reasonable default endpoint is automatically chosen.",
+              "default": false
+            },
+            "messageSecurityMode": {
+              "type": "string",
+              "default": "None",
+              "enum": [
+                "None",
+                "Sign",
+                "SignAndEncrypt"
+              ]
+            },
+            "securityPolicy": {
+              "type": "string",
+              "default": "None",
+              "enum": [
+                "Aes128_Sha256_RsaOaep",
+                "Basic128",
+                "Basic128Rsa15",
+                "Basic192",
+                "Basic192Rsa15",
+                "Basic256",
+                "Basic256Rsa15",
+                "Basic256Sha256",
+                "None",
+                "PubSub_Aes128_CTR",
+                "PubSub_Aes256_CTR"
+              ]
+            },
+            "watchInterval": {
+              "type": "integer",
+              "description": "For observing connection breaks, a connection watchdog runs regularly. Short intervals guarantee short notice on break but lead to higher load. Specified in milliseconds",
+              "default": 30e3
+            },
+            "connectionStrategy": {
+              "type": "object",
+              "description": "If a connection attempt fails, retries will be performed with increasing delay (waiting time) in between. The following parameters control how these delays behave.",
+              "properties": {
+                "maxRetry": {
+                  "type": "integer",
+                  "description": "Maximum number of connection retries in case of failure.",
+                  "default": 1e9
+                },
+                "initialDelay": {
+                  "type": "integer",
+                  "description": "Delay (waiting time) of the first connection retry (in milliseconds). For subsequent retries, the delay will be increased by a factor of 2, and also by a potential random increase according to the parameter randomisationFactor.",
+                  "default": 1e3
+                },
+                "maxDelay": {
+                  "type": "integer",
+                  "description": "Maximum delay (waiting time) to wait until the next retry (in milliseconds). The delay (waiting time) for any subsequent connection retry will not be larger than this value. Must be strictly greater than initialDelay.",
+                  "default": 30e3
+                },
+                "randomisationFactor": {
+                  "type": "number",
+                  "description": "This parameter controls added randomisation to the retry attempts. Must be a number between 0 and 1. If set to 0, retries will be performed with exponentially growing delay until maxDelay. If set to 1, a maximum noise will be added to the retry delays.",
+                  "default": 0,
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "$id": "SopasEndpoint",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "required": ["type", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$id": "/properties/type",
+          "type": "string",
+          "enum": ["event", "method", "variable"],
+          "title": "Type",
+          "description": "The type of the identifier. It can be one of the following: event, method or variable."
+        },
+        "name": {
+          "$id": "/properties/name",
+          "type": "string",
+          "title": "Name",
+          "description": "The name of the method to call. For example MIStartIn."
+        },
+        "index": {
+          "$id": "/properties/index",
+          "type": "string",
+          "title": "Index",
+          "description": "The index number of the method to call."
+        },
+        "accessMode": {
+          "$id": "/properties/accessMode",
+          "type": "integer",
+          "title": "AccessMode",
+          "default": 0,
+          "minimum": 0,
+          "maximum": 7,
+          "description": "The access mode (user level) when writing to a variable in the device. The default access mode 0 (zero) is always active. Higher access modes such as 1 (Operator), 2 (Maintenance), 3 (Authorized Client), or 4 (Service) all require some password, which should be listed in the manufacturer's documentation. (The numbers 5 through 7 are internal values of the manufacturer.)"
+        },
+        "password": {
+          "$id": "/properties/password",
+          "type": "string",
+          "title": "Password",
+          "description": "Only needed with an increased access mode (user level) parameter, when writing to a variable in the device."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "$id": "HeidenhainConnection",
+  "definitions": {
+    "connection": {
+      "type": "object",
+      "required": ["agent"],
+      "additionalProperties": false,
+      "properties": {
+        "agent": {
+          "$id": "/properties/agent",
+          "type": "string",
+          "title": "Agent",
+          "description": "The name of the agent connecting to the CNC machine. Must match the name that is being used at the heidenhain-agent.exe executable.",
+          "examples": ["heidenhain-agent-1"]
+        },
+        "ipAddress": {
+          "$id": "/properties/ipAddress",
+          "type": "string",
+          "title": "IP Address",
+          "description": "IP Address or hostname of the CNC machine",
+          "examples": ["localhost", "192.168.1.2"]
+        },
+        "cncType": {
+          "$id": "/properties/cncType",
+          "type": "string",
+          "title": "CNC Type",
+          "description": "Type of the CNC control",
+          "default": "tnc640",
+          "enum": ["tnc640", "itnc530", "tnc426"],
+          "examples": ["tnc640", "itnc530", "tnc426"]
+        },
+        "domain": {
+          "$id": "/properties/domain",
+          "type": "string",
+          "title": "Communication domain",
+          "description": "Name of the edge communication domain",
+          "default": "edge.cybus",
+          "examples": ["edge.cybus"]
+        },
+        "plcPassword": {
+          "$id": "/properties/plcPassword",
+          "type": "string",
+          "title": "PLC password",
+          "description": "Password to grant access to PLC functionality",
+          "examples": ["807667"]
+        },
+        "tablePassword": {
+          "$id": "/properties/tablePassword",
+          "type": "string",
+          "title": "Table password",
+          "description": "Password to grant access to TABLE functionality",
+          "examples": ["807667"]
+        },
+        "usrPassword": {
+          "$id": "/properties/usrPassword",
+          "type": "string",
+          "title": "Usr password",
+          "description": "Password to grant access to USR functionality",
+          "examples": ["807667"]
+        },
+        "sysPassword": {
+          "$id": "/properties/sysPassword",
+          "type": "string",
+          "title": "Sys password",
+          "description": "Password to grant access to SYS functionality",
+          "examples": ["807667"]
+        },
+        "connectionStrategy": {
+          "type": "object",
+          "description": "If a connection attempt fails, retries will be performed with increasing delay (waiting time) in between. The following parameters control how these delays behave.",
+          "properties": {
+            "initialDelay": {
+              "type": "integer",
+              "description": "Delay (waiting time) of the first connection retry (in milliseconds). For subsequent retries, the delay will be increased according to the parameter incrementFactor which has a default value of 2.",
+              "default": 5e3,
+              "minimum": 1e3
+            },
+            "maxDelay": {
+              "type": "integer",
+              "description": "Maximum delay (waiting time) to wait until the next retry (in milliseconds). The delay (waiting time) for any subsequent connection retry will not be larger than this value. Must be strictly greater than initialDelay.",
+              "default": 30e3
+            },
+            "incrementFactor": {
+              "type": "integer",
+              "description": "The factor used to increment initialDelay up to maxDelay. For example if initialDelay is set to 1000 and maxDelay to 5000 the values for the delay would be 1000, 2000, 4000, 5000.",
+              "default": 2,
+              "minimum": 2
+            }
+          }
+        }
+      }
+    }
+  }
+}

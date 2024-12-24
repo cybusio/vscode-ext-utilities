@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "description": "Schema for resources link\n",
+  "additionalProperties": false,
+  "required": [
+      "name",
+      "href"
+  ],
+  "properties": {
+      "ingressRoute": {
+          "type": "string",
+          "description": "reference to an ingress route"
+      },
+      "name": {
+          "type": "string",
+          "minLength": 2
+      },
+      "href": {
+          "type": "string"
+      }
+  }
+}

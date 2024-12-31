@@ -66,7 +66,23 @@
             0
           ]
         }
-      }
+      },
+      "examples": [
+        {
+          "deviceName": "egl-90",
+          "api": 0,
+          "slot": 1,
+          "subSlot": 0
+        },
+        {
+          "deviceName": "egl-90",
+          "api": 0,
+          "slot": 1,
+          "subSlot": 0,
+          "propertyName": "actual value",
+          "propertyIndex": 0
+        }
+      ]
     }
   }
 }

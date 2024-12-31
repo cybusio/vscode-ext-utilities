@@ -68,7 +68,23 @@
             }
           }
         }
-      }
+      },
+      "examples": [
+        {
+          "url": "mariadb://user:pass@example.com:5432/dbname"
+        },
+        {
+          "url": "mariadb://user:pass@example.com:5432/dbname",
+          "probeConnectionDelay": 10000,
+          "logLevel": "error",
+          "trustAllCertificates": true,
+          "connectionStrategy": {
+            "initialDelay": 1000,
+            "maxDelay": 5000,
+            "incrementFactor": 2
+          }
+        }
+      ]
     }
   }
 }

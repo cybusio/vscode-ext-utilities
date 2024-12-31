@@ -109,7 +109,21 @@
             "* * * January,September Sunday"
           ]
         }
-      }
+      },
+      "examples": [
+        {
+          "fc": 2,
+          "address": 0,
+          "length": 4,
+          "dataType": "floatLE"
+        },
+        {
+          "fc": 3,
+          "address": 1,
+          "length": 8,
+          "dataType": "floatLEWS"
+        }
+      ]
     }
   }
 }

@@ -45,7 +45,18 @@
             "* * * January,September Sunday"
           ]
         }
-      }
+      },
+      "examples": [
+        {
+          "query": "INSERT INTO test (some_column) VALUES ($some_column)"
+        },
+        {
+          "query": "INSERT INTO test (some_column) VALUES ($some_column)",
+          "queryValues": "($id, $name, $age)",
+          "interval": 1000,
+          "cronExpression": "1,2,4,5 * * * *"
+        }
+      ]
     }
   }
 }

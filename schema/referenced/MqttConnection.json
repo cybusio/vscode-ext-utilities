@@ -332,6 +332,25 @@
           "description": "Application specific key value pairs (mqtt5 only)"
         }
       },
+      "examples": [
+        {
+          "host": "127.0.0.1",
+          "port": 1883
+        },
+        {
+          "scheme": "mqtts",
+          "host": "127.0.0.1",
+          "port": 1883
+        },
+        {
+          "scheme": "mqtts",
+          "host": "127.0.0.1",
+          "port": 1883,
+          "mutualAuthentication": true,
+          "clientCert": "-----BEGIN CERTIFICATE-----\n-----END CERTIFICATE-----",
+          "clientPrivateKey": "-----BEGIN PRIVATE KEY-----\n-----END PRIVATE KEY-----"
+        }
+      ],
       "if": {
         "required": [
           "mutualAuthentication"

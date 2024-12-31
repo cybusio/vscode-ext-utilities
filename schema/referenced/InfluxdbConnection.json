@@ -208,7 +208,19 @@
             }
           }
         }
-      }
+      },
+      "examples": [
+        {
+          "host": "localhost",
+          "port": 8086,
+          "precision": "ms",
+          "maxRetryDelay": 180000,
+          "minRetryDelay": 5000,
+          "retryJitter": 200,
+          "maxBufferLines": 100000,
+          "maxRetries": 3
+        }
+      ]
     }
   }
 }

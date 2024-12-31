@@ -23,7 +23,12 @@
           "description": "Signal for the device",
           "examples": [2]
         }
-      }
+      },
+      "examples": [
+        {
+          "signal": "AnalogIn_Connector1.Signal1"
+        }
+      ]
     }
   }
 }

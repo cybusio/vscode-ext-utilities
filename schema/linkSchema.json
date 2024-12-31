@@ -1,22 +1,48 @@
 {
-  "type": "object",
-  "description": "Schema for resources link\n",
-  "additionalProperties": false,
-  "required": [
-      "name",
-      "href"
-  ],
-  "properties": {
-      "ingressRoute": {
-          "type": "string",
-          "description": "reference to an ingress route"
-      },
-      "name": {
-          "type": "string",
-          "minLength": 2
-      },
-      "href": {
-          "type": "string"
-      }
-  }
+    "type": "object",
+    "title": "Link",
+    "description": "Schema for resources link\n. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-link",
+    "additionalProperties": false,
+    "required": [
+        "name",
+        "href"
+    ],
+    "properties": {
+        "ingressRoute": {
+            "title": "Ingress route",
+            "type": "string",
+            "description": "reference to an ingress route.\ndocs:https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-link#ingressroute",
+            "default": [
+                "!ref <IngressRouteResourceName>"
+            ]
+        },
+        "name": {
+            "title": "Name",
+            "description": "The name of the link.\ndocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-link#name",
+            "type": "string",
+            "minLength": 2,
+            "default": "<linkName>"
+        },
+        "href": {
+            "title": "Href",
+            "description": "The href of the link.\ndocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-link#href",
+            "type": "string",
+            "examlples": [
+                "",
+                "https://github.com"
+            ],
+            "pattern": "^(https?)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]"
+        }
+    },
+    "examples": [
+        {
+            "name": "github",
+            "href": "https://github.com"
+        },
+        {
+            "name": "google",
+            "href": "",
+            "ingressRoute": "!ref <IngressRouteResourceName>"
+        }
+    ]
 }

@@ -41,7 +41,16 @@
           "title": "Deprecated (Validate query)",
           "description": "Deprecated: This property has no effect anymore, please remove it from your files (Previous description: Validate the syntax of the SQL query)"
         }
-      }
+      },
+      "examples": [
+        {
+          "query": "INSERT INTO test (some_column) VALUES (@some_column)"
+        },
+        {
+          "query": "INSERT INTO test (some_column) VALUES (@some_column)",
+          "interval": 1000
+        }
+      ]
     }
   }
 }

@@ -22,7 +22,13 @@
           "examples": ["sample"],
           "default": ["sample"]
         }
-      }
+      },
+      "examples": [
+        {
+          "key": "Xact",
+          "type": "sample"
+        }
+      ]
     }
   }
 }

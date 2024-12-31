@@ -71,7 +71,23 @@
             "put"
           ]
         }
-      }
+      },
+      "examples": [
+        {
+          "path": "/some/api",
+          "headers": {
+            "Content-type": "application/json"
+          },
+          "query": {
+            "user": "cybus"
+          },
+          "method": "post"
+        },
+        {
+          "path": "/some/api",
+          "method": "get"
+        }
+      ]
     }
   }
 }

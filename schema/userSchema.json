@@ -1,6 +1,7 @@
 {
   "type": "object",
   "description": "Schema for resources user\n",
+  "title": "User",
   "additionalProperties": false,
   "properties": {
       "password": {

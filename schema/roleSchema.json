@@ -1,5 +1,6 @@
 {
   "type": "object",
+  "title": "Role",
   "description": "Schema for resources role\n",
   "additionalProperties": false,
   "required": [

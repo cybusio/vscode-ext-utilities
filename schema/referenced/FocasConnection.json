@@ -11,7 +11,7 @@
           "type": "string",
           "title": "Hostname",
           "description": "The device host name. It can be an IP address or a hostname.",
-          "examples": ["192.168.2.114"]
+          "examples": ["192.168.2.114", "example.org"]
         },
         "port": {
           "$id": "/properties/port",
@@ -49,8 +49,14 @@
               "minimum": 2
             }
           }
-        }        
-      }
+        } 
+      },
+      "examples": [
+        {
+          "host": "192.168.2.114",
+          "port": 8193
+        }
+      ]
     }
   }
 }

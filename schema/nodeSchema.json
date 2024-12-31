@@ -1,5 +1,6 @@
 {
   "type": "object",
+  "title": "Node",
   "description": "Schema for resource node\n",
   "additionalProperties": true,
   "properties": {

@@ -40,7 +40,13 @@
           "title": "Password",
           "description": "Only needed with an increased access mode (user level) parameter, when writing to a variable in the device."
         }
-      }
+      },
+      "examples": [
+        {
+          "type": "event",
+          "name": "MIStartIn"
+        }
+      ]
     }
   }
 }

@@ -87,7 +87,28 @@
           "minimum": 10000,
           "default": 300000
         }
-      }
+      },
+      "examples": [
+        {
+          "method": "subscribe",
+          "params": [
+            {
+              "id": "1",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "type": "poll",
+          "method": "read",
+          "params": [
+            {
+              "id": "1",
+              "value": "1"
+            }
+          ]
+        }
+      ]
     }
   }
 }

@@ -13,7 +13,12 @@
           "description": "Identifies an individual data point",
           "examples": ["machineState"]
         }
-      }
+      },
+      "examples": [
+        {
+          "tag": "machineState"
+        }
+      ]
     }
   }
 }

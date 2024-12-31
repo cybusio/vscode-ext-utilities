@@ -100,7 +100,14 @@
             4
           ]
         }
-      }
+      },
+      "examples": [
+        {
+          "objectType": "analog-input",
+          "objectInstance": 1,
+          "property": "present-value"
+        }
+      ]
     }
   }
 }

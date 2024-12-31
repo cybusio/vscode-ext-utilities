@@ -124,7 +124,31 @@
             }
           }
         }
-      }
+      },
+      "examples": [
+        {
+          "topic": "topic_name"
+        },
+        {
+          "topic": "topic_name",
+          "properties": {
+            "contentType": "application/json",
+            "userProperties": {
+              "key": "value"
+            }
+          }
+        },
+        {
+          "topic": "topic_name",
+          "properties": {
+            "contentType": "application/json",
+            "userProperties": {
+              "key": "value"
+            }
+          },
+          "qos": 1
+        }
+      ]
     }
   }
 }

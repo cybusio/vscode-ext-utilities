@@ -1,76 +1,113 @@
 {
-  "type": "object",
-  "description": "Schema for resources ingress routes\n",
-  "additionalProperties": true,
-  "required": [
-      "container"
-  ],
-  "properties": {
-      "container": {
-          "type": "string",
-          "description": "reference to the container resource"
-      },
-      "type": {
-          "type": "string",
-          "default": "http",
-          "enum": [
-              "http",
-              "tcp"
-          ]
-      }
-  },
-  "allOf": [
-      {
-          "if": {
-              "properties": {
-                  "type": {
-                      "const": "http"
-                  }
-              }
-          },
-          "then": {
-              "properties": {
-                  "slug": {
-                      "type": "string",
-                      "pattern": "^[a-z-]+",
-                      "maxLength": 20
-                  },
-                  "target": {
-                      "type": "object",
-                      "additionalProperties": false,
-                      "required": [
-                          "path"
-                      ],
-                      "properties": {
-                          "port": {
-                              "type": "integer",
-                              "default": 80
-                          },
-                          "path": {
-                              "type": "string"
-                          }
-                      }
-                  },
-                  "headers": {
-                      "type": "array",
-                      "items": {
-                          "type": "string"
-                      }
-                  }
-              },
-              "else": {
-                  "properties": {
-                      "containerPort": {
-                          "type": "integer",
-                          "description": "The port on the container (upstream to ingress)"
-                      },
-                      "connectwarePort": {
-                          "type": "integer",
-                          "description": "The port on the connectware (downstream to ingress)"
-                      }
-                  }
-              }
-          }
-      }
-  ]
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "Ingress Route",
+    "description": "Schema for resources ingress routes.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-ingressroute",
+    "additionalProperties": true,
+    "required": [
+        "container"
+    ],
+    "properties": {
+        "container": {
+            "type": "string",
+            "description": "reference to the container resource.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-ingressroute#container"
+        },
+        "type": {
+            "type": "string",
+            "default": "http",
+            "enum": [
+                "http",
+                "tcp"
+            ]
+        }
+    },
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "type": {
+                        "const": "http"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "slug": {
+                        "title": "Slug",
+                        "description": "Last part of the ingress route.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-ingressroute#slug",
+                        "type": "string",
+                        "pattern": "^[a-z-]+",
+                        "maxLength": 20,
+                        "examples": [
+                            "web",
+                            "api"
+                        ]
+                    },
+                    "target": {
+                        "title": "Target",
+                        "description": "The target of the ingress route.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-ingressroute#target",
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "path"
+                        ],
+                        "properties": {
+                            "port": {
+                                "type": "integer",
+                                "default": 80
+                            },
+                            "path": {
+                                "type": "string"
+                            }
+                        },
+                        "examples": [
+                            {
+                                "path": "/",
+                                "port": 80
+                            }
+                        ]
+                    },
+                    "headers": {
+                        "title": "Headers",
+                        "description": "HTTP Headers that are added to all requests",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "examples": [
+                            [
+                                "Content-type: application/json"
+                            ],
+                            [
+                                "X-My-Custom-Header: value",
+                                "X-My-Custom-Header-2: value"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "type": {
+                        "const": "tcp"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "containerPort": {
+                        "type": "integer",
+                        "description": "The port on the container (upstream to ingress)"
+                    },
+                    "connectwarePort": {
+                        "type": "integer",
+                        "description": "The port on the connectware (downstream to ingress)"
+                    }
+                }
+            }
+        }
+        
+    ]
 }

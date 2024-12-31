@@ -130,7 +130,12 @@
             "* * * January,September Sunday"
           ]
         }
-      }
+      },
+      "examples": [
+        {
+          "tag": "Random.Real4"
+        }
+      ]
     }
   }
 }

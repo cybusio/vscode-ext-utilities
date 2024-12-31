@@ -55,7 +55,12 @@
           "items": {
             "type": "string"
           },
-          "description": "array of browsenames to variables defined in the Eventtype"
+          "description": "array of browsenames to variables defined in the Eventtype",
+          "examples": [
+            [
+              "CurrentTime",
+              "StepUp"
+            ]]
         },
         "eventTypes": {
           "$id": "/properties/eventTypes",
@@ -65,7 +70,11 @@
           "items": {
             "type": "string"
           },
-          "description": "lists node ids of OPC UA defined eventtypes in the server namespace as nodeId definition strings"
+          "description": "lists node ids of OPC UA defined eventtypes in the server namespace as nodeId definition strings",
+          "examples": [
+            "ns=2;i=2258",
+            "ns=2;s=StepUp"
+          ]
         },
         "browsePathPrefix": {
           "$id": "/properties/browsePathPrefix",
@@ -114,7 +123,15 @@
           "minimum": 10e3,
           "default": 300e3
         }
-      }
+      },
+      "examples": [
+        {
+          "nodeId": "ns=2;s=StepUp"
+        },
+        {
+          "browsePath": "0:CurrentTime"
+        }
+      ]
     }
   }
 }

@@ -1,151 +1,223 @@
 {
-  "$schema": "https://json-schema.org/draft-07/schema",
-  "type": "object",
-  "description": "Schema for resource mapping\n",
-  "additionalProperties": false,
-  "required": [
-      "mappings"
-  ],
-  "definitions": {
-      "subPub": {
-          "type": "object",
-          "anyOf": [
-              {
-                  "properties": {
-                      "endpoint": {
-                        "type": "string"
-                      }
-                  },
-                  "required": [
-                      "endpoint"
-                  ]
-              },
-              {
-                  "properties": {
-                      "topic": {
-                        "type": "string"
-                      }
-                  },
-                  "required": [
-                      "topic"
-                  ]
-              }
-          ],
-          "additionalProperties": false,
-          "properties": {
-              "endpoint": {
-                  "$id": "properties/endpoint",
-                  "type": "string"
-              },
-              "topic": {
-                  "$id": "properties/topic",
-                  "type": "string"
-              },
-              "connection": {
-                  "type": "string"
-              },
-              "qos": {
-                  "type": "integer",
-                  "default": 0,
-                  "description": "Quality of service for mqtt messages"
-              },
-              "retain": {
-                  "type": "boolean",
-                  "default": false,
-                  "description": "Whether the last message should be retained (last-value-cached) on the internal broker"
-              },
-              "label": {
-                  "type": "string",
-                  "description": "A label to be used when subscribing to multiple endpoints in a single mapping"
-              }
-          }
-      },
-      "CybusRule": {
-        "$ref": "./objects/CybusRule.json"
-      }
-  },
-  "properties": {
-      "agentName": {
-          "type": "string",
-          "default": "protocol-mapper"
-      },
-      "mappings": {
-          "type": "array",
-          "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": [
-                  "subscribe",
-                  "publish"
-              ],
-              "properties": {
-                  "subscribe": {
-                      "anyOf": [
-                          {
-                              "$ref": "#/definitions/subPub"
-                          },
-                          {
-                              "type": "array",
-                              "items": {
-                                  "$ref": "#/definitions/subPub"
-                              }
-                          }
-                      ]
-                  },
-                  "publish": {
-                      "$ref": "#/definitions/subPub"
-                  },
-                  "rules": {
-                      "type": "array",
-                      "items": {
-                          "$ref": "#/definitions/CybusRule"
-                      }
-                  }
-              }
-          }
-      },
-      "targetState": {
-          "type": "string",
-          "enum": [
-              "enabled",
-              "disabled"
-          ],
-          "default": "enabled"
-      },
-      "inputBuffering": {
-          "type": "object",
-          "title": "Input buffering properties",
-          "description": "Properties to define the behaviour of the input buffering",
-          "additionalProperties": false,
-          "properties": {
-              "enabled": {
-                  "title": "Enable Buffering",
-                  "type": "boolean",
-                  "description": "Whether input buffering should be enabled or not",
-                  "default": false
-              },
-              "maxConcurrentMessages": {
-                  "title": "Maximum concurrent messages",
-                  "type": "integer",
-                  "description": "Maximum number of concurrently processed messages as long as the input buffer queue is non-empty.",
-                  "default": 2
-              },
-              "maxInputBufferSize": {
-                  "title": "Maximum input buffer size",
-                  "type": "integer",
-                  "description": "Maximum number of input messages that are queued in the input buffer. Exceeding messages will be discarded. Adjust this to a higher value if you are handling bursty traffic.",
-                  "default": 5000
-              },
-              "waitingTimeOnEmptyQueue": {
-                  "title": "Waiting time during empty queue",
-                  "type": "integer",
-                  "description": "Waiting time in milliseconds after the input buffer queue ran empty and before checking again for newly queued input messages. Regardless of this value, on non-empty input buffer queue all messages will be processed without waiting time in between until the queue is empty again.",
-                  "default": 10
-              }
-          }
-      },
-      "rules":{
-        "$ref": "#/definitions/CybusRule"
-      }
-  }
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "type": "object",
+    "title": "Mapping",
+    "description": "Mapping Details: A mapping is a mapping between from endpoints or topics and to endpoints or topics\n docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-mapping#mapping-concept",
+    "additionalProperties": false,
+    "required": [
+        "mappings"
+    ],
+    "definitions": {
+        "subPub": {
+            "anyOf": [
+                {
+                    "properties": {
+                        "endpoint": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "endpoint"
+                    ]
+                },
+                {
+                    "properties": {
+                        "topic": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "topic"
+                    ]
+                }
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "endpoint": {
+                    "$id": "properties/endpoint",
+                    "title": "Endpoint",
+                    "description": "The endpoint to subscribe to or publish to, you can use the !ref keyword to reference an endpoint by name or id",
+                    "type": "string",
+                    "examples": [
+                        "!ref <EndpointResouceName>",
+                        "!ref <EndpointResouceId>"
+                    ]
+                },
+                "topic": {
+                    "$id": "properties/topic",
+                    "title": "Topic",
+                    "description": "A topic to subscribe to or publish to, you may opptionally use topic wildcards.\ndocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-mapping#wildcards",
+                    "type": "string",
+                    "examples": [
+                        "/topic/1",
+                        "/topic/2"
+                    ]
+                },
+                "connection": {
+                    "type": "string",
+                    "title": "Connection",
+                    "description": "The connection to use, you may use the !ref keyword to reference a connection by name or id",
+                    "examples": [
+                        "!ref <ConnectionResouceName>",
+                        "!ref <ConnectionResouceId>"
+                    ]
+                },
+                "qos": {
+                    "type": "integer",
+                    "default": 0,
+                    "description": "Quality of service of broker communication. 0 = at-most-once, 1 = at-least-once, 2 = exactly-once"
+                },
+                "retain": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Whether the last message should be retained (last-value-cached) on the internal broker"
+                },
+                "label": {
+                    "type": "string",
+                    "description": "Labels serve as optional keys for organizing output objects\n\tIf no label is defined, the topic itself is used as the key by default.\n- Dynamic Label Construction:\n\tlearn more: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-mapping#mappings",
+                    "examples": [
+                        "myLabel"
+                    ]
+                }
+            }
+        },
+        "CybusRule": {
+            "$ref": "./objects/CybusRule.json"
+        }
+    },
+    "properties": {
+        "agentName": {
+            "type": "string",
+            "default": "protocol-mapper"
+        },
+        "mappings": {
+            "title": "Mappings",
+            "description": "The list of mappings between endpoints and topics.\ndocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-mapping#mappings",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "subscribe": {
+                        "title": "Subscribe",
+                        "description": "Subscribe to an endpoint or topic, you may subscribe to one or many topics/ endpoints.\ndocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-mapping#mapping-concept",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "$ref": "#/definitions/subPub"
+                            },
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/subPub"
+                                }
+                            }
+                        ],
+                        "examples": [
+                            "\n\t\tendpoint: !ref <EndpointResouceName>",
+                            "\n\t\ttopic: /topic/x",
+                            "\n\t\t- topic: /topic/2\n\t\t- endpoint: !ref <EndpointResouceName>"
+                        ]
+                    },
+                    "publish": {
+                        "title": "Publish",
+                        "description": "Subscribe/ Publish to an endpoint or topic, you may publish to one topics/ endpoints.\ndocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-mapping#mapping-concept",
+                        "type": "object",
+                        "$ref": "#/definitions/subPub",
+                        "examples": [
+                            "\n\t\tendpoint: !ref <EndpointResouceName>",
+                            "\n\t\ttopic: /topic/x"
+                        ]
+                    },
+                    "rules": {
+                        "type": "array",
+                        "title": "Rules",
+                        "description": "Rules to be applied to the mapping.\ndocs:\n - https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-mapping#rules,\n- https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-mapping#cybus-rule",
+                        "items": {
+
+                            "$ref": "#/definitions/CybusRule"
+                        },
+                        "additionalItems": true,
+                        "examples": [
+                            "\n\t- transform:\n\t\t\texpression: ",
+                            "\n\t- burst:\n\t\t\tinterval: 1000 \n\t\t\tmaxSize: 10",
+                            "\n\t- collect: {}\n\t- transform:\n\t\t\texpression: ",
+                            "\n\t- stash:\n\t\t\tlabel: Cache\n\t- transform:\n\t\t\texpression: "
+                        ]
+                    }
+                },
+                "examples": [
+                        "- subscribe:\n\n\tpublish:",
+                        "- subscribe:\n\n\tpublish:\n\n\trules:"
+                ],
+                "required": [
+                    "publish",
+                    "subscribe"
+                ]
+            },
+            "default": [
+                "subscribe:\n\n\t\tpublish:"
+            ],
+            "examples": [
+                [
+                    "subscribe:\n\n\t\tpublish:"
+                    
+                ],
+                [
+                    "subscribe:\n\n\t\tpublish:\n\n\t\trules:"
+                    
+                ]
+            ]
+        },
+        "targetState": {
+            "type": "string",
+            "title": "Target state",
+            "description": "The target state of the mapping.\n docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-mapping#target-state",
+            "enum": [
+                "enabled",
+                "disabled"
+            ],
+            "default": "enabled"
+        },
+        "inputBuffering": {
+            "type": "object",
+            "title": "Input buffering properties",
+            "description": "Properties to define the behaviour of the input buffering.\ndocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-mapping#input-buffering",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "title": "Enable Buffering",
+                    "type": "boolean",
+                    "description": "Whether input buffering should be enabled or not",
+                    "default": false
+                },
+                "maxConcurrentMessages": {
+                    "title": "Maximum concurrent messages",
+                    "type": "integer",
+                    "description": "Maximum number of concurrently processed messages as long as the input buffer queue is non-empty.",
+                    "default": 2
+                },
+                "maxInputBufferSize": {
+                    "title": "Maximum input buffer size",
+                    "type": "integer",
+                    "description": "Maximum number of input messages that are queued in the input buffer. Exceeding messages will be discarded. Adjust this to a higher value if you are handling bursty traffic.",
+                    "default": 5000
+                },
+                "waitingTimeOnEmptyQueue": {
+                    "title": "Waiting time during empty queue",
+                    "type": "integer",
+                    "description": "Waiting time in milliseconds after the input buffer queue ran empty and before checking again for newly queued input messages. Regardless of this value, on non-empty input buffer queue all messages will be processed without waiting time in between until the queue is empty again.",
+                    "default": 10
+                }
+            },
+            "examples": [
+                {
+                    "enabled": true,
+                    "maxConcurrentMessages": 2,
+                    "maxInputBufferSize": 5000,
+                    "waitingTimeOnEmptyQueue": 10
+                }
+            ]
+        }
+    }
 }

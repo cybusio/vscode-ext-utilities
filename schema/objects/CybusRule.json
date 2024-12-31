@@ -2,6 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "CybusRule",
   "type": "object",
+  "additionalProperties": false,
   "propertyNames": {
     "enum": [
       "parse",
@@ -43,6 +44,7 @@
   "$defs": {
     "parse": {
       "title": "parse",
+      "description": "Parse/ Decode incoming BINARY data into an expected format.\ndocs: https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#parse",
       "$id": "/rule/parse",
       "type": "object",
       "required": [
@@ -52,6 +54,7 @@
       "properties": {
         "format": {
           "type": "string",
+          "description": "The expected format of the incoming data.\n docs:\n- https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#format",
           "enum": [
             "json",
             "utf8",
@@ -75,11 +78,14 @@
             "toBase64",
             "fromBase64"
           ]
-        }
-      }
+        },
+        "default": "json"
+      },
+      "default": "\n\t\tformat: json"
     },
     "transform": {
-      "title": "transform",
+      "title": "Transform",
+      "description": "Transform (REWRITE) subscribed data using jsonata expression before it is published.\ndocs: https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#transform",
       "$id": "/rule/transform",
       "type": "object",
       "additionalProperties": false,
@@ -88,12 +94,31 @@
       ],
       "properties": {
         "expression": {
-          "type": "string"
+          "title": "expression",
+          "type": "string",
+          "description": "Jsonata expression:\n docs:\n- https://docs.jsonata.org/overview.html\n- https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#expression-1",
+          "examples": [
+            "|\n\t\t",
+            "|\n\t\t{\n\t\t\t$.value\n\t\t}"
+          ],
+          "additionalProperties": false
         }
-      }
+      },
+      "default": {
+        "expression": "|\n\t\t"
+      },
+      "examples": [
+        {
+          "expression": "|\n\t\t{\n\t\t\t$.value\n\t\t}"
+        },
+        {
+          "expression": "|\n\t\t{\n\t\t\tProcessingTime:\t($.endTime - $.startTime)\n\t\t}"
+        }
+      ]
     },
     "filter": {
       "title": "filter",
+      "description": "Filter incoming data using jsonata expression, if the expression returns false, the message will be skipped.\ndocs: https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#filter",
       "$id": "/rule/filter",
       "type": "object",
       "additionalProperties": false,
@@ -102,12 +127,19 @@
       ],
       "properties": {
         "expression": {
-          "type": "string"
+          "type": "string",
+          "description": "Jsonata expression:\n docs:\n- https://docs.jsonata.org/overview.html/\n- https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#expression",
+          "default": "$number($.value) > 90",
+          "additionalProperties": false
         }
+      },
+      "default": {
+        "expression": "$number($.value) > 90"
       }
     },
     "setContextVars": {
       "title": "setContextVars",
+      "description": "Set JSON context variables.\ndocs: https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#setcontextvars",
       "$id": "/rule/setContextVars",
       "type": "object",
       "additionalProperties": false,
@@ -118,15 +150,39 @@
         "setMissingAsUndefined": {
           "type": "boolean",
           "default": false,
-          "description": "If true, set missing values as 'undefined', otherwise throw an error and reject this erroneous message."
+          "description": "If true, set missing values as 'undefined', otherwise throw an error and reject this erroneous message.\ndocs: https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#setmissingasundefined"
         },
         "vars": {
-          "type": "object"
+          "type": "object",
+          "description": "Context variables to be set. should be given as a key value pairs of any type.\n docs:\n- https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#vars",
+          "default": {
+            "key": "value",
+            "key2": {
+              "subkey": "subvalue"
+            },
+            "key3": [
+              "value1",
+              "value2"
+            ]
+          }
+        }
+      },
+      "default": {
+        "vars": {
+          "key": "value",
+          "key2": {
+            "subkey": "subvalue"
+          },
+          "key3": [
+            "value1",
+            "value2"
+          ]
         }
       }
     },
     "cov": {
       "title": "changeOfValue",
+      "description": "Triggers message forwarding when the value of a given key changes.\ndocs: https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#cov",
       "$id": "/rule/cov",
       "type": "object",
       "additionalProperties": false,
@@ -135,18 +191,23 @@
       ],
       "properties": {
         "key": {
-          "anyOf": [
+          "oneOf": [
             {
               "title": "stringKey",
-              "type": "string"
+              "type": "string",
+              "description": "A string key of the data item.",
+              "default": "<KeyName>"
             },
             {
               "title": "integerKey",
-              "type": "integer"
+              "type": "integer",
+              "description": "An integer key of the data item.",
+              "default": "0"
             },
             {
               "title": "arrayOfKeys",
               "type": "array",
+              "description": "An array of keys of the data items.",
               "items": {
                 "title": "stringOrIntegerKey",
                 "anyOf": [
@@ -157,15 +218,21 @@
                     "type": "integer"
                   }
                 ]
-              }
+              },
+              "default": [
+                "<KeyName>",
+                0
+              ]
             }
           ]
         },
         "deadband": {
-          "type": "number"
+          "type": "number",
+          "description": "The deadband(minimum considered change) value.\n docs: https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#deadband"
         },
         "deadbandMode": {
           "type": "string",
+          "description": "The deadband mode. relative will be calculated relative to the last value.\n docs: https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#deadbandmode",
           "enum": [
             "absolute",
             "relative"
@@ -174,42 +241,67 @@
         "label": {
           "type": "string"
         }
+      },
+      "default": {
+        "key": "KeyName",
+        "deadband": 0,
+        "deadbandMode": "absolute",
+        "label": "myLabel"
       }
     },
     "burst": {
       "title": "burst",
+      "description": "Bursts incoming data into batches.\ndocs: https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#burst",
       "$id": "/rule/burst",
       "type": "object",
       "properties": {
         "interval": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Interval in milliseconds between batches.\n docs:\n- https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#interval"
         },
         "maxSize": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Maximum size of each batch.\n docs:\n- https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#maxsize"
         },
-        "label":{
-          "type": "string"
+        "label": {
+          "type": "string",
+          "description": "\ndocs: https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#label"
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "examples": [
+        "\n\t\tinterval: 1000 \n\t\tmaxSize: 10 \n\t\tlabel: myLabel"
+      ]
     },
     "stash": {
       "title": "stash",
       "$id": "/rule/stash",
+      "description": "Caches incoming data as a context variable within the next message.\ndocs: https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#stash",
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "label": {
-          "type": "string"
+          "title": "label",
+          "description": "A label to access the stashed value using \"$last(<label>)\": \ndocs: https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#label-2",
+          "type": "string",
+          "default": "cache"
         }
-      }
+      },
+      "examples": [
+        {
+          "label": "cache"
+        },
+        {
+          "label": "lastMessage"
+        }
+      ]
     },
     "collect": {
       "title": "collect",
+      "description": "Collects subscribed data into an array of objects.\ndocs: https://docs.cybus.io/documentation/services/rule-engine/data-processing-rules#collect",
       "$id": "/rule/collect",
-      "type": "object",
       "additionalProperties": false,
-      "properties": {}
+      "default": "{}"
     }
   }
 }

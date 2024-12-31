@@ -167,7 +167,44 @@
             }
           }
         }
-      }
+      },
+      "examples": [
+        {
+          "host": "127.0.0.1",
+          "port": 4840
+        },
+        {
+          "host": "127.0.0.1",
+          "port": 4840,
+          "resourcePath": "1",
+          "username": "user",
+          "password": "password"
+        },
+        {
+          "host": "127.0.0.1",
+          "port": 4840,
+          "resourcePath": "1",
+          "username": "user",
+          "password": "password",
+          "certificateFile": "path/to/cybus_client.crt",
+          "privateKeyFile": "path/to/cybus_client.key",
+          "options": {
+            "messageSecurityMode": "SignAndEncrypt",
+            "securityPolicy": "Aes128_Sha256_RsaOaep"
+          }
+        },
+        {
+          "host": "127.0.0.1",
+          "port": 4840,
+          "resourcePath": "1",
+          "username": "user",
+          "password": "password",
+          "certificateFile": "path/to/cybus_client.crt",
+          "options": {
+            "messageSecurityMode": "Sign"
+          }
+        }
+      ]
     }
   }
 }

@@ -231,7 +231,33 @@
           "clientCert",
           "clientPrivateKey"
         ]
-      }
+      },
+      "examples": [
+        {
+          "host": "127.0.0.1",
+          "port": 80
+        },
+        {
+          "scheme": "https",
+          "host": "127.0.0.1",
+          "port": 443,
+          "connectionStrategy": {
+            "initialDelay": 1000,
+            "maxDelay": 5000,
+            "incrementFactor": 2
+          }
+        },
+        {
+          "scheme": "https",
+          "host": "127.0.0.1",
+          "port": 443,
+          "mutualAuthentication": true,
+          "caCert": "<caCert>",
+          "clientCert": "<clientCert>",
+          "clientPrivateKey": "<clientPrivateKey>"
+        }
+      ]
+    
     }
   }
 }

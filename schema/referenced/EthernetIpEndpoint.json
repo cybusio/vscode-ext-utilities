@@ -41,7 +41,19 @@
             "BOOL"
           ]
         }
-      }
+      },
+      "examples": [
+        {
+          "tagName": "contTag",
+          "programName": "prog.progTag",
+          "tagType": "REAL"
+        },
+        {
+          "tagName": "arrayTag[0]",
+          "programName": "prog.progTag",
+          "tagType": "REAL"
+        }
+      ]
     }
   }
 }

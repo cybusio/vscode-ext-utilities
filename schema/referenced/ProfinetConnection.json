@@ -60,7 +60,12 @@
             }
           }
         }
-      }
+      },
+      "examples": [
+        {
+          "localInterface": "eth0"
+        }
+      ]
     }
   }
 }

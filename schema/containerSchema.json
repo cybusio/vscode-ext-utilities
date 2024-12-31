@@ -1,159 +1,274 @@
 {
-  "type": "object",
-  "description": "Schema for resources container\n",
-  "additionalProperties": false,
-  "required": [
-      "image"
-  ],
-  "properties": {
-      "image": {
-          "description": "Location of the required container image. Can either be a public docker hub repository or an image located at the Cybus registry.\n",
-          "type": "string"
-      },
-      "volumes": {
-          "description": "A reference to a volume resource that should be attached to this container",
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-              "type": "string"
-          }
-      },
-      "command": {
-          "type": "array",
-          "items": {
-              "type": "string"
-          }
-      },
-      "entrypoint": {
-          "type": "array",
-          "items": {
-              "type": "string"
-          }
-      },
-      "workingDir": {
-          "type": "string"
-      },
-      "environment": {
-          "description": "Object of environment variables defining undetermined values of the executed application.",
-          "type": "object",
-          "patternProperties": {
-              "^[A-Za-z ]+": {
-                  "type": [
-                      "string",
-                      "integer",
-                      "boolean"
-                  ]
-              }
-          }
-      },
-      "labels": {
-          "type": "object"
-      },
-      "restart": {
-          "description": "The behavior to apply when the container exits.",
-          "type": "string",
-          "default": "unless-stopped",
-          "enum": [
-              "no",
-              "always",
-              "on-failure",
-              "unless-stopped"
-          ]
-      },
-      "ports": {
-          "description": "Defines port mappings between host and container OS",
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-              "type": "string"
-          }
-      },
-      "capAdd": {
-          "type": "array",
-          "items": {
-              "type": "string",
-              "enum": [
-                  "ALL",
-                  "AUDIT_CONTROL",
-                  "AUDIT_WRITE",
-                  "CHOWN",
-                  "DAC_OVERRIDE",
-                  "DAC_READ_SEARCH",
-                  "FOWNER",
-                  "FSETID",
-                  "IPC_LOCK",
-                  "IPC_OWNER",
-                  "KILL",
-                  "LEASE",
-                  "LINUX_IMMUTABLE",
-                  "MAC_ADMIN",
-                  "MAC_OVERRIDE",
-                  "MKNOD",
-                  "NET_ADMIN",
-                  "NET_BIND_SERVICE",
-                  "NET_BROADCAST",
-                  "NET_RAW",
-                  "SETFCAP",
-                  "SETGID",
-                  "SETPCAP",
-                  "SETUID",
-                  "SYSLOG",
-                  "SYS_ADMIN",
-                  "SYS_BOOT",
-                  "SYS_CHROOT",
-                  "SYS_MODULE",
-                  "SYS_NICE",
-                  "SYS_PACCT",
-                  "SYS_PTRACE",
-                  "SYS_RAWIO",
-                  "SYS_RESOURCE",
-                  "SYS_TIME",
-                  "SYS_TTY_CONFIG",
-                  "WAKE_ALARM"
-              ]
-          }
-      },
-      "devices": {
-          "type": "array",
-          "items": {
-              "type": "object",
-              "required": [
-                  "PathOnHost",
-                  "PathInContainer",
-                  "CgroupPermissions"
-              ],
-              "properties": {
-                  "PathOnHost": {
-                      "type": "string"
-                  },
-                  "PathInContainer": {
-                      "type": "string"
-                  },
-                  "CgroupPermissions": {
-                      "type": "string"
-                  }
-              }
-          }
-      },
-      "privileged": {
-          "description": "Defines whether the container is privileged",
-          "type": "boolean",
-          "default": false
-      },
-      "cpus": {
-          "description": "Specify how much of the available CPU resources a container can use. If zero, no limit is set. If you want to set a limit here by specifying a non-zero value, For instance, if the host machine has two CPUs and you set cpus to 1.5, the container is guaranteed at most one and a half of the CPUs.",
-          "type": "number",
-          "default": 0
-      },
-      "memory": {
-          "description": "The maximum amount of memory the container can use, in bytes. If zero, no limit is set. If you set a limit (by specifying a non-zero value here) the minimum allowed value is 4194304 bytes (equal to 4 megabyte).",
-          "type": "integer",
-          "default": 0
-      },
-      "ulimit": {
-          "description": "Specify how many open files per processes are allowed inside the container. If not provided it defaults to the value configured by the Docker service for max open files. If provided both soft and hard ulimit NOFILES is set to this value (if the Docker host allows this property to be set).",
-          "type": "integer",
-          "minimum": 1024
-      }
-  }
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "Container",
+    "description": "Schema for resources container\n",
+    "additionalProperties": false,
+    "required": [
+        "image"
+    ],
+    "properties": {
+        "image": {
+            "title": "Image",
+            "description": "link of the required container image. Can either be a public docker hub repository or an image located at the Cybus registry.\n",
+            "type": "string",
+            "examples": [
+                "alpine:latest",
+                "registry.cybus.io/cybus-services/baz-dashboard:0.2.0"
+            ]
+        },
+        "volumes": {
+            "title": "Volumes",
+            "description": "A List of references to a volume resources that should be attached to this container.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-container#volumes",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string"
+            },
+            "examples": [
+               ["!ref <VolumeResourceName>"],
+               ["!sub <VolumeResourceName>:/path/to/folder"],
+               ["!ref <VolumeResourceName>", "!sub <VolumeResourceName>:/path/to/folder"]
+            ]
+        },
+        "command": {
+            "title": "Command",
+            "description": "The command to run in the container. It can be either a string or an array of strings.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-container#command",
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "type": "string"
+                }
+            ],
+            "examples": [
+                "echo 'hello world'",
+                [
+                    "echo 'hello world'",
+                    "apt update",
+                    "apt install -y curl"
+                ]
+            ]
+        },
+        "entrypoint": {
+            "title": "Entrypoint",
+            "description": "The entry point for the container array of strings.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-container#entrypoint",
+            "type": ["array", "string"],
+            "items": {
+                "type": "string"
+            }
+        },
+        "workingDir": {
+            "title": "WorkingDir",
+            "description": "The working directory for the container.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-container#workingdir",
+            "type": "string",
+            "examples": [
+                "/app"
+            ]
+        },
+        "environment": {
+            "description": "Environment variables defining undetermined values of the executed application. \nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-container#environment",
+            "type": "object",
+            "patternProperties": {
+                "^[A-Za-z ]+": {
+                    "type": [
+                        "string",
+                        "integer",
+                        "number",
+                        "boolean"
+                    ]
+                }
+            },
+            "examples": [
+                {
+                    "key1": "value1",
+                    "key2": 0
+                },
+                {
+                    "key1": true,
+                    "key2": "value2"
+                }
+            ]
+        },
+        "labels": {
+            "title": "Labels",
+            "description": "User-defined key/value metadata.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-container#labels",
+            "type": "object"
+        },
+        "restart": {
+            "title": "Restart",
+            "description": "The behavior to apply when the container exits.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-container#restart",
+            "type": "string",
+            "default": "unless-stopped",
+            "enum": [
+                "no",
+                "always",
+                "on-failure",
+                "unless-stopped"
+            ]
+        },
+        "ports": {
+            "title": "Ports",
+            "description": "Defines port mappings between host and container OS.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-container#ports",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string"
+            },
+            "examples": [
+                [
+                    "8080:80",
+                    "8081:81"
+                ]
+            ]
+        },
+        "capAdd": {
+            "title": "CapAdd",
+            "description": "A list of kernel capabilities to add to the container.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-container#capadd",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "ALL",
+                    "AUDIT_CONTROL",
+                    "AUDIT_WRITE",
+                    "CHOWN",
+                    "DAC_OVERRIDE",
+                    "DAC_READ_SEARCH",
+                    "FOWNER",
+                    "FSETID",
+                    "IPC_LOCK",
+                    "IPC_OWNER",
+                    "KILL",
+                    "LEASE",
+                    "LINUX_IMMUTABLE",
+                    "MAC_ADMIN",
+                    "MAC_OVERRIDE",
+                    "MKNOD",
+                    "NET_ADMIN",
+                    "NET_BIND_SERVICE",
+                    "NET_BROADCAST",
+                    "NET_RAW",
+                    "SETFCAP",
+                    "SETGID",
+                    "SETPCAP",
+                    "SETUID",
+                    "SYSLOG",
+                    "SYS_ADMIN",
+                    "SYS_BOOT",
+                    "SYS_CHROOT",
+                    "SYS_MODULE",
+                    "SYS_NICE",
+                    "SYS_PACCT",
+                    "SYS_PTRACE",
+                    "SYS_RAWIO",
+                    "SYS_RESOURCE",
+                    "SYS_TIME",
+                    "SYS_TTY_CONFIG",
+                    "WAKE_ALARM"
+                ]
+            },
+            "examples": [
+                [
+                    "NET_ADMIN",
+                    "SYS_ADMIN"
+                ]
+            ]
+        },
+        "devices": {
+            "title": "Devices",
+            "description": "A list of devices to add to the container.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-container#devices",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "PathOnHost",
+                    "PathInContainer",
+                    "CgroupPermissions"
+                ],
+                "properties": {
+                    "PathOnHost": {
+                        "type": "string"
+                    },
+                    "PathInContainer": {
+                        "type": "string"
+                    },
+                    "CgroupPermissions": {
+                        "type": "string"
+                    }
+                }
+            },
+            "examples": [
+                [
+                    {
+                        "PathOnHost": "/dev/video0",
+                        "PathInContainer": "/dev/video0",
+                        "CgroupPermissions": "rwm"
+                    }
+                ]
+            ]
+        },
+        "privileged": {
+            "title": "Privileged",
+            "description": "Defines whether the container is privileged.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-container#privileged",
+            "type": "boolean",
+            "default": false
+        },
+        "cpus": {
+            "title": "Cpus",
+            "description": "Specify how much of the available CPU resources a container can use. If zero, no limit is set. If you want to set a limit here by specifying a non-zero value, For instance, if the host machine has two CPUs and you set cpus to 1.5, the container is guaranteed at most one and a half of the CPUs.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-container#cpus",
+            "type": "number",
+            "default": 0
+        },
+        "memory": {
+            "title": "Memory",
+            "description": "The maximum amount of memory the container can use, in bytes. If zero, no limit is set. If you set a limit (by specifying a non-zero value here) the minimum allowed value is 4194304 bytes (equal to 4 megabyte). \nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-container#memory",
+            "type": "integer",
+            "default": 0
+        },
+        "ulimit": {
+            "title": "Ulimit",
+            "description": "Specify how many open files per processes are allowed inside the container. If not provided it defaults to the value configured by the Docker service for max open files. If provided both soft and hard ulimit NOFILES is set to this value (if the Docker host allows this property to be set). \nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-container#ulimit",
+            "type": "integer",
+            "minimum": 1024
+        }
+    },
+    "examples": [
+        {
+            "image": "alpine:latest",
+            "ports": [
+                "8080:80"
+            ]
+        },
+        {
+            "image": "registry.cybus.io/cybus-services/baz-dashboard:0.2.0",
+            "ports": [
+                "8080:80"
+            ],
+            "environment": {
+                "DB_HOST": "localhost",
+                "DB_PORT": "5432",
+                "DB_NAME": "baz",
+                "DB_USER": "baz",
+                "DB_PASSWORD": "baz"
+            }
+        },
+        {
+            "image": "registry.cybus.io/cybus-services/baz-dashboard:0.2.0",
+            "ports": [
+                "8080:80"
+            ],
+            "devices": [
+                {
+                    "PathOnHost": "/dev/video0",
+                    "PathInContainer": "/dev/video0",
+                    "CgroupPermissions": "rwm"
+                }
+            ]
+        }
+    ]
 }

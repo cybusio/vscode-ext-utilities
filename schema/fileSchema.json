@@ -1,5 +1,6 @@
 {
   "type": "object",
+  "title": "File",
   "description": "Schema for file volume\n",
   "additionalProperties": false,
   "required": [

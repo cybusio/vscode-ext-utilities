@@ -98,7 +98,17 @@
             }
           }
         }
-      }
+      },
+      "examples": [
+        {
+          "host": "localhost",
+          "port": 4840,
+          "domain": "WORKGROUP",
+          "username": "user",
+          "password": "user",
+          "classId": "F8582CF2-88FB-11D0-B850-00C0F0104305"
+        }
+      ]
     }
   }
 }

@@ -45,7 +45,16 @@
           "description": "Only for subscribe: Where to let the consumer start consuming messages. If true, start from the beginning of the topic. If false, start at the end.",
           "default": false
         }
-      }
+      },
+      "examples": [
+        {
+          "topic": "topic_name"
+        },
+        {
+          "topic": "topic_name",
+          "fromBeginning": true
+        }
+      ]
     }
   }
 }

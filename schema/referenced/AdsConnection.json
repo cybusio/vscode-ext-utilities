@@ -7,7 +7,11 @@
       "description": "Ada Connection",
       "examples": [
         {
-          "$ref": "localAddress"
+          "localAddress": "244.178.44.111",
+          "localPort": 32750,
+          "host": "244.178.44.111",
+          "port": 851,
+          "netId": "244.178.44.111.1.1"
         }
       ],
       "type": "object",

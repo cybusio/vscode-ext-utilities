@@ -1,5 +1,6 @@
 {
   "type": "object",
-  "description": "Schema for resources volume\n",
+  "title": "Volume",
+  "description": "Schema for resources volume.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-volume",
   "additionalProperties": false
 }

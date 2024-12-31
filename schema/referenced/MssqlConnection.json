@@ -133,7 +133,43 @@
             }
           }
         }
-      }
+      },
+      "examples": [
+        {
+          "host": "localhost",
+          "port": 1433,
+          "username": "sa",
+          "password": "password",
+          "database": "master"
+        },
+        {
+          "host": "localhost",
+          "port": 1433,
+          "username": "sa",
+          "password": "password",
+          "database": "master",
+          "protocol": "7_4",
+          "useEncryption": true,
+          "assumeUTC": true
+        },
+        {
+          "host": "localhost",
+          "port": 1433,
+          "username": "sa",
+          "password": "password",
+          "database": "master",
+          "protocol": "7_4",
+          "connectTimeout": 15000,
+          "requestTimeout": 15000,
+          "cancelTimeout": 5000,
+          "maxPoolSize": 5,
+          "connectionStrategy": {
+            "initialDelay": 1000,
+            "maxDelay": 30000,
+            "incrementFactor": 2
+          }
+        }
+      ]
     }
   }
 }

@@ -21,7 +21,16 @@
           "description": "Selector for the field to be mapped",
           "examples": ["00BCDD"]
         }
-      }
+      },
+      "examples": [
+        {
+          "mac": "00BCDD"
+        },
+        {
+          "mac": "00BCDD",
+          "field": "t1"
+        }
+      ]
     }
   }
 }

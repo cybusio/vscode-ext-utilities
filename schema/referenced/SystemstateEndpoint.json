@@ -13,7 +13,12 @@
           "description": "The resource ID of which the state transitions should be listened to. You must use the full resource identifier that consists of serviceId and resourceId, like so: 'myService-myConnection'",
           "examples": ["someService-someResource"]
         }
-      }
+      },
+      "examples": [
+        {
+          "resourceId": "someService-someResource"
+        }
+      ]
     }
   }
 }

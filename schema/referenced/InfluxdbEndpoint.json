@@ -58,7 +58,21 @@
           "type": "object",
           "description": "An optional object made up of key value pairs. These constant tags are merged with the tags from the message."
         }
-      }
+      },
+      "examples": [
+        {
+          "query": "from(bucket:\"my-bucket\") |> range(start: -1h) |> filter(fn: (r) => r._measurement == \"temperature\")"
+        },
+        {
+          "measurement": "exhaust_temperature",
+          "fields": {
+            "unit": "C"
+          },
+          "tags": {
+            "location": "engine_room"
+          }
+        }
+      ]
     }
   }
 }

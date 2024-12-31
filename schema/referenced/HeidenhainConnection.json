@@ -88,7 +88,19 @@
             }
           }
         }
-      }
+      },
+      "examples": [
+        {
+          "agent": "heidenhain-agent-1",
+          "ipAddress": "localhost",
+          "cncType": "tnc640",
+          "domain": "edge.cybus",
+          "plcPassword": "807667",
+          "tablePassword": "807667",
+          "usrPassword": "807667",
+          "sysPassword": "807667"
+        }
+      ]
     }
   }
 }

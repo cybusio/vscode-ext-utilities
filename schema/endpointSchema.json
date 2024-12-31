@@ -1,8 +1,27 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Endpoint Resource",
     "type": "object",
-    "description": "Endpoint Resource: Required properties are 1_the protocol, 2_the connection resource and 3_the endpoint function (read, subscribe or write) \n",
-    "additionalProperties": true,
+    "description": "Endpoint Resource details: a read, subscribe or write property must be defined.\ndocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+    // do not allow additional properties, only allow properties defined in the schema and in propertyNames
+    "propertyNames": {
+        "enum": [
+            "protocol",
+            "connection",
+            "qos",
+            "agentName",
+            "retain",
+            "targetState",
+            "read",
+            "subscribe",
+            "write",
+            "inputBuffering",
+            "buffering",
+            "rules",
+            "topic",
+            "topicPrefix"
+        ]
+    },
     "definitions": {
         "AdsEndpoint": {
             "$ref": "referenced/AdsEndpoint.json#/definitions/address"
@@ -117,10 +136,7 @@
             "title": "Physical address of an existing connection resource",
             "description": "refrence a connection resource or type your conntion hostName",
             "examples": [
-                "<hostName>",
-                "test.mosquitto.org",
-                "!ref <YourConnectionResourceName>",
-                "!ref myMqttConnection"
+                "!ref <ConnectionResourceName>"
             ],
             "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.]*$"
         },
@@ -143,232 +159,27 @@
             ],
             "default": "enabled",
             "examples": [
-                "disabled"
+                "disabled",
+                "enabled"
             ]
         }
     },
     "required": [
         "protocol",
         "connection"
-        ],
-
+    ],
     "oneOf": [
         {
-            "propertyNames": {
-                "enum": [
-                    "protocol",
-                    "connection",
-                    "targetState",
-                    "agentName",
-                    "read",
-                    //"write",
-                    //"subscribe",
-                    "topic",
-                    "topicPrefix",
-                    "qos",
-                    "retain",
-                    "rules",
-                    "inputBuffering"
-                ]
-            },
-            "properties": {
-                "inputBuffering": {
-                    "type": "object",
-                    "title": "Input buffering properties",
-                    "description": "Properties to define the behaviour of the input buffering",
-                    "additionalProperties": false,
-                    "properties": {
-                        "enabled": {
-                            "title": "Enable Buffering",
-                            "type": "boolean",
-                            "description": "Whether input buffering should be enabled or not",
-                            "default": false
-                        },
-                        "maxConcurrentMessages": {
-                            "title": "Maximum concurrent messages",
-                            "type": "integer",
-                            "description": "Maximum number of concurrently processed messages as long as the input buffer queue is non-empty.",
-                            "default": 2
-                        },
-                        "maxInputBufferSize": {
-                            "title": "Maximum input buffer size",
-                            "type": "integer",
-                            "description": "Maximum number of input messages that are queued in the input buffer. Exceeding messages will be discarded. Adjust this to a higher value if you are handling bursty traffic.",
-                            "default": 5000
-                        },
-                        "waitingTimeOnEmptyQueue": {
-                            "title": "Waiting time during empty queue",
-                            "type": "integer",
-                            "description": "Waiting time in milliseconds after the input buffer queue ran empty and before checking again for newly queued input messages. Regardless of this value, on non-empty input buffer queue all messages will be processed without waiting time in between until the queue is empty again.",
-                            "default": 10
-                        }
-                    }
-                },
-                "rules": {
-                    "type": "array",
-                    "title": "Rules to be applied to the endpoint",
-                    "items": {
-                        "$ref": "#/definitions/CybusRule"
-                    }
-                },
-                "topic": {
-                    "type": "string",
-                    "title": "Custom topic this endpoint should use",
-                    "pattern": "^[^#+]*$",
-                    "examples": [
-                        "hall1/sensor1"
-                    ]
-                },
-                "topicPrefix": {
-                    "type": "string",
-                    "title": "Prefixes all topics",
-                    "pattern": "^[^#+]*$",
-                    "examples": [
-                        "cybus"
-                    ]
-                }
-            },
             "required": [
                 "read"
             ]
         },
         {
-            "propertyNames": {
-                "enum": [
-                    "protocol",
-                    "connection",
-                    "targetState",
-                    "agentName",
-                    //"read",
-                    //"write",
-                    "subscribe",
-                    "topic",
-                    "topicPrefix",
-                    "qos",
-                    "retain",
-                    "rules",
-                    "inputBuffering"
-                ]
-            },
-            "properties": {
-                "inputBuffering": {
-                    "type": "object",
-                    "title": "Input buffering properties",
-                    "description": "Properties to define the behaviour of the input buffering",
-                    "additionalProperties": false,
-                    "properties": {
-                        "enabled": {
-                            "title": "Enable Buffering",
-                            "type": "boolean",
-                            "description": "Whether input buffering should be enabled or not",
-                            "default": false
-                        },
-                        "maxConcurrentMessages": {
-                            "title": "Maximum concurrent messages",
-                            "type": "integer",
-                            "description": "Maximum number of concurrently processed messages as long as the input buffer queue is non-empty.",
-                            "default": 2
-                        },
-                        "maxInputBufferSize": {
-                            "title": "Maximum input buffer size",
-                            "type": "integer",
-                            "description": "Maximum number of input messages that are queued in the input buffer. Exceeding messages will be discarded. Adjust this to a higher value if you are handling bursty traffic.",
-                            "default": 5000
-                        },
-                        "waitingTimeOnEmptyQueue": {
-                            "title": "Waiting time during empty queue",
-                            "type": "integer",
-                            "description": "Waiting time in milliseconds after the input buffer queue ran empty and before checking again for newly queued input messages. Regardless of this value, on non-empty input buffer queue all messages will be processed without waiting time in between until the queue is empty again.",
-                            "default": 10
-                        }
-                    }
-                },
-                "rules": {
-                    "type": "array",
-                    "title": "Rules to be applied to the endpoint",
-                    "items": {
-                        "$ref": "#/definitions/CybusRule"
-                    }
-                },
-                "topic": {
-                    "type": "string",
-                    "title": "Custom topic this endpoint should use",
-                    "pattern": "^[^#+]*$",
-                    "examples": [
-                        "hall1/sensor1"
-                    ]
-                },
-                "topicPrefix": {
-                    "type": "string",
-                    "title": "Prefixes all topics",
-                    "pattern": "^[^#+]*$",
-                    "examples": [
-                        "cybus"
-                    ]
-                }
-            },
             "required": [
                 "subscribe"
             ]
         },
         {
-            "propertyNames": {
-                "enum": [
-                    "protocol",
-                    "connection",
-                    "targetState",
-                    "agentName",
-                    //"read",
-                    "write",
-                    //"subscribe",
-                    "topic",
-                    "topicPrefix",
-                    "qos",
-                    "retain",
-                    "rules",
-                    "inputBuffering",
-                    "buffering"
-                ]
-            },
-            "properties": {
-                "buffering": {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "title": "Output Buffering for write endpoints",
-                    "properties": {
-                        "enabled": {
-                            "type": "boolean",
-                            "title": "Enable Buffering",
-                            "default": false
-                        },
-                        "keepOrder": {
-                            "type": "boolean",
-                            "title": "Keep Delivery Order",
-                            "default": true
-                        },
-                        "burstInterval": {
-                            "type": "number",
-                            "title": "Burst Interval",
-                            "default": 100
-                        },
-                        "burstSize": {
-                            "type": "number",
-                            "title": "Burst Size",
-                            "default": 1
-                        },
-                        "bufferMaxSize": {
-                            "type": "number",
-                            "title": "Buffer Max Size",
-                            "default": 100000
-                        },
-                        "bufferMaxAge": {
-                            "type": "number",
-                            "title": "Buffer Max Age",
-                            "default": 86400
-                        }
-                    }
-                }
-            },
             "required": [
                 "write"
             ]
@@ -389,12 +200,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/AdsEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/AdsEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/AdsEndpoint"
                     }
                 }
@@ -414,12 +231,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/BacnetEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/BacnetEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/BacnetEndpoint"
                     }
                 }
@@ -439,12 +262,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/EthernetIpEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/EthernetIpEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/EthernetIpEndpoint"
                     }
                 }
@@ -464,9 +293,13 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/FocasEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/FocasEndpoint"
                     }
                 }
@@ -486,12 +319,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/GenericVrpcEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/GenericVrpcEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/GenericVrpcEndpoint"
                     }
                 }
@@ -511,12 +350,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HbmdaqEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HbmdaqEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HbmdaqEndpoint"
                     }
                 }
@@ -536,12 +381,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HeidenhainEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HeidenhainEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HeidenhainEndpoint"
                     }
                 }
@@ -561,12 +412,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HttpEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HttpEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HttpEndpoint"
                     }
                 }
@@ -586,12 +443,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/InfluxdbEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/InfluxdbEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/InfluxdbEndpoint"
                     }
                 }
@@ -611,6 +474,8 @@
             "then": {
                 "properties": {
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/KafkaEndpoint"
                     }
                 }
@@ -630,12 +495,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ModbusEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ModbusEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ModbusEndpoint"
                     }
                 }
@@ -655,12 +526,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/MqttEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/MqttEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/MqttEndpoint"
                     }
                 }
@@ -680,12 +557,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/MssqlEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/MssqlEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/MssqlEndpoint"
                     }
                 }
@@ -705,12 +588,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/OpcdaEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/OpcdaEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/OpcdaEndpoint"
                     }
                 }
@@ -730,12 +619,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/OpcuaEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/OpcuaEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/OpcuaEndpoint"
                     }
                 }
@@ -755,12 +650,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ProfinetEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ProfinetEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ProfinetEndpoint"
                     }
                 }
@@ -780,12 +681,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/S7Endpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/S7Endpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/S7Endpoint"
                     }
                 }
@@ -805,12 +712,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ShdrEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ShdrEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ShdrEndpoint"
                     }
                 }
@@ -830,12 +743,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SinumerikEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SinumerikEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SinumerikEndpoint"
                     }
                 }
@@ -855,12 +774,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SopasEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SopasEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SopasEndpoint"
                     }
                 }
@@ -880,12 +805,18 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SqlEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SqlEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SqlEndpoint"
                     }
                 }
@@ -905,9 +836,13 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SystemstateEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SystemstateEndpoint"
                     }
                 }
@@ -927,16 +862,287 @@
             "then": {
                 "properties": {
                     "read": {
+                        "title": "Read details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/WermaEndpoint"
                     },
                     "subscribe": {
+                        "title": "Subscribe details",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/WermaEndpoint"
                     },
                     "write": {
+                        "title": "Write details",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/WermaEndpoint"
                     }
                 }
             }
+        },
+        {
+            "if": {
+                "required": [
+                    "write"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "buffering": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "title": "Output Buffering for write endpoints",
+                        "properties": {
+                            "enabled": {
+                                "type": "boolean",
+                                "title": "Enable Buffering",
+                                "default": false
+                            },
+                            "keepOrder": {
+                                "type": "boolean",
+                                "title": "Keep Delivery Order",
+                                "default": true
+                            },
+                            "burstInterval": {
+                                "type": "number",
+                                "title": "Burst Interval",
+                                "default": 100
+                            },
+                            "burstSize": {
+                                "type": "number",
+                                "title": "Burst Size",
+                                "default": 1
+                            },
+                            "bufferMaxSize": {
+                                "type": "number",
+                                "title": "Buffer Max Size",
+                                "default": 100000
+                            },
+                            "bufferMaxAge": {
+                                "type": "number",
+                                "title": "Buffer Max Age",
+                                "default": 86400
+                            }
+                        }
+                    }
+                },
+                "propertyNames": {
+                    "enum": [
+                        "protocol",
+                        "connection",
+                        "qos",
+                        "agentName",
+                        "retain",
+                        "targetState",
+                        "write",
+                        "inputBuffering",
+                        "buffering",
+                        "rules",
+                        "topic",
+                        "topicPrefix"
+                    ]
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "read"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "inputBuffering": {
+                        "type": "object",
+                        "title": "Input buffering properties",
+                        "description": "Properties to define the behaviour of the input buffering",
+                        "additionalProperties": false,
+                        "properties": {
+                            "enabled": {
+                                "title": "Enable Buffering",
+                                "type": "boolean",
+                                "description": "Whether input buffering should be enabled or not",
+                                "default": false
+                            },
+                            "maxConcurrentMessages": {
+                                "title": "Maximum concurrent messages",
+                                "type": "integer",
+                                "description": "Maximum number of concurrently processed messages as long as the input buffer queue is non-empty.",
+                                "default": 2
+                            },
+                            "maxInputBufferSize": {
+                                "title": "Maximum input buffer size",
+                                "type": "integer",
+                                "description": "Maximum number of input messages that are queued in the input buffer. Exceeding messages will be discarded. Adjust this to a higher value if you are handling bursty traffic.",
+                                "default": 5000
+                            },
+                            "waitingTimeOnEmptyQueue": {
+                                "title": "Waiting time during empty queue",
+                                "type": "integer",
+                                "description": "Waiting time in milliseconds after the input buffer queue ran empty and before checking again for newly queued input messages. Regardless of this value, on non-empty input buffer queue all messages will be processed without waiting time in between until the queue is empty again.",
+                                "default": 10
+                            }
+                        },
+                        "examples": [
+                            {
+                                "enabled": true,
+                                "maxConcurrentMessages": 2,
+                                "maxInputBufferSize": 5000,
+                                "waitingTimeOnEmptyQueue": 10
+                            }
+                        ]
+                    },
+                    "rules": {
+                        "type": "array",
+                        "title": "Rules to be applied to the endpoint",
+                        "items": {
+                            "$ref": "#/definitions/CybusRule"
+                        },
+                        "examples": [
+                            [
+                                {
+                                    "topic": "cybus/#"
+                                }
+                            ]
+                        ]
+                    },
+                    "topic": {
+                        "type": "string",
+                        "title": "Custom topic this endpoint should use",
+                        "pattern": "^[^#+]*$",
+                        "examples": [
+                            "hall1/sensor1"
+                        ]
+                    },
+                    "topicPrefix": {
+                        "type": "string",
+                        "title": "Prefixes all topics",
+                        "pattern": "^[^#+]*$",
+                        "examples": [
+                            "cybus"
+                        ]
+                    }
+                },
+                "propertyNames": {
+                    "enum": [
+                        "protocol",
+                        "connection",
+                        "qos",
+                        "agentName",
+                        "retain",
+                        "targetState",
+                        "read",
+                        "inputBuffering",
+                        "buffering",
+                        "rules",
+                        "topic",
+                        "topicPrefix"
+                    ]
+                }
+            }
+        },
+        {
+            "if": {
+                "required": [
+                    "subscribe"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "inputBuffering": {
+                        "type": "object",
+                        "title": "Input buffering properties",
+                        "description": "Properties to define the behaviour of the input buffering",
+                        "additionalProperties": false,
+                        "properties": {
+                            "enabled": {
+                                "title": "Enable Buffering",
+                                "type": "boolean",
+                                "description": "Whether input buffering should be enabled or not",
+                                "default": false
+                            },
+                            "maxConcurrentMessages": {
+                                "title": "Maximum concurrent messages",
+                                "type": "integer",
+                                "description": "Maximum number of concurrently processed messages as long as the input buffer queue is non-empty.",
+                                "default": 2
+                            },
+                            "maxInputBufferSize": {
+                                "title": "Maximum input buffer size",
+                                "type": "integer",
+                                "description": "Maximum number of input messages that are queued in the input buffer. Exceeding messages will be discarded. Adjust this to a higher value if you are handling bursty traffic.",
+                                "default": 5000
+                            },
+                            "waitingTimeOnEmptyQueue": {
+                                "title": "Waiting time during empty queue",
+                                "type": "integer",
+                                "description": "Waiting time in milliseconds after the input buffer queue ran empty and before checking again for newly queued input messages. Regardless of this value, on non-empty input buffer queue all messages will be processed without waiting time in between until the queue is empty again.",
+                                "default": 10
+                            }
+                        }
+                    },
+                    "rules": {
+                        "type": "array",
+                        "title": "Rules to be applied to the endpoint",
+                        "items": {
+                            "$ref": "#/definitions/CybusRule"
+                        }
+                    },
+                    "topic": {
+                        "type": "string",
+                        "title": "Custom topic this endpoint should use",
+                        "pattern": "^[^#+]*$",
+                        "examples": [
+                            "hall1/sensor1"
+                        ]
+                    },
+                    "topicPrefix": {
+                        "type": "string",
+                        "title": "Prefixes all topics",
+                        "pattern": "^[^#+]*$",
+                        "examples": [
+                            "cybus"
+                        ]
+                    }
+                },
+                "propertyNames": {
+                    "enum": [
+                        "protocol",
+                        "connection",
+                        "qos",
+                        "agentName",
+                        "retain",
+                        "targetState",
+                        "subscribe",
+                        "inputBuffering",
+                        "buffering",
+                        "rules",
+                        "topic",
+                        "topicPrefix"
+                    ]
+                }
+            }
         }
-    ]
+    ],
+    "examples": [
+        {
+            "protocol": "",
+            "connection": "!ref <ConnectionResourceName>",
+            "read": {}
+        },
+        {
+            "protocol": "",
+            "connection": "!ref <ConnectionResourceName>",
+            "subscribe": {}
+        },
+        {
+            "protocol": "",
+            "connection": "!ref <ConnectionResourceName>",
+            "write": {}
+        }
+    ],
+    "errorMessage": {
+        "required": "One of read, subscribe or write must be provided",
+        "oneOf": "Exactly one of read, subscribe or write must be provided",
+        "additionalProperties": "Custom properties are not allowed"
+    }
 }

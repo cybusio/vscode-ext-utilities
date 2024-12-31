@@ -12,7 +12,8 @@
           "$id": "/properties/host",
           "type": "string",
           "title": "Hostname",
-          "description": "The hostname or IP address of the controller"
+          "description": "The hostname or IP address of the controller",
+          "examples": ["127.0.0.1", "localhost", "38.0.101.76"]
         },
         "slot": {
           "$id": "/properties/slot",
@@ -58,7 +59,20 @@
             }
           }
         }
-      }
+      },
+      "examples": [
+        {
+          "host": "38.0.101.76",
+          "slot": 0,
+          "scanRate": 200,
+          "scanRetryDelay": 2000,
+          "connectionStrategy": {
+            "initialDelay": 1e3,
+            "maxDelay": 30e3,
+            "incrementFactor": 2
+          }
+        }
+      ]
     }
   }
 }

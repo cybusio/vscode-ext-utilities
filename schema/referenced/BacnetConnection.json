@@ -59,7 +59,13 @@
             }
           }
         }
-      }
+      },
+      "examples": [
+        {
+          "deviceInstance": 27335,
+          "deviceAddress": "89.0.142.86"
+        }
+      ]
     }
   }
 }

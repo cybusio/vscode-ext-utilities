@@ -75,7 +75,16 @@
           "minimum": 1,
           "default": 1
         }
-      }
+      },
+      "examples": [
+        {
+          "symbolName": "Main.byByte[4]"
+        },
+        {
+          "symbolName": "Main.byByte[4]",
+          "interval": 1500
+        }
+      ]
     }
   }
 }

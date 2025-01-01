@@ -89,6 +89,7 @@
       "$id": "/rule/transform",
       "type": "object",
       "additionalProperties": false,
+      "contentMediaType": "application/json",
       "required": [
         "expression"
       ],
@@ -104,16 +105,11 @@
           "additionalProperties": false
         }
       },
-      "default": {
-        "expression": "|\n\t\t"
-      },
+      "default": " \n\t\texpression: |\n\t\t"
+      ,
       "examples": [
-        {
-          "expression": "|\n\t\t{\n\t\t\t$.value\n\t\t}"
-        },
-        {
-          "expression": "|\n\t\t{\n\t\t\tProcessingTime:\t($.endTime - $.startTime)\n\t\t}"
-        }
+        "\n\t\texpression: |\n\t\t\t{\n\t\t\t$.value\n\t\t\t}",
+        "\n\t\texpression: |\n\t\t\t{\n\t\t\tProcessingTime:\t($.endTime - $.startTime)\n\t\t\t}"
       ]
     },
     "filter": {

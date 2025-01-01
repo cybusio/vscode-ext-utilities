@@ -3,8 +3,6 @@
   "$id": "AdsConnection",
   "definitions": {
     "connection": {
-      "title": "Ada Connection",
-      "description": "Ada Connection",
       "examples": [
         {
           "localAddress": "244.178.44.111",
@@ -44,8 +42,7 @@
           "type": "integer",
           "title": "Router TCP Port",
           "description": "The ADS Router TCP port",
-          "default": 48898,
-          "examples": [48898]
+          "default": 48898
         },
         "port": {
           "$id": "/properties/port",

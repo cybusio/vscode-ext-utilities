@@ -272,7 +272,8 @@
           "type": "",
           "properties": {}
         }
-      ]
+      ],
+      "additionalProperties": false
     }
   },
   "properties": {
@@ -340,10 +341,8 @@
         "version": {
           "description": "Version of the commissioning file schema",
           "type": "string",
-          "enum": [
-            "1"
-          ],
           "default": "1"
+          
         }
       }
     },

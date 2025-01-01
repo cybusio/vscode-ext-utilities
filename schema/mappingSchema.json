@@ -9,7 +9,7 @@
     ],
     "definitions": {
         "subPub": {
-            "anyOf": [
+            "oneOf": [
                 {
                     "properties": {
                         "endpoint": {

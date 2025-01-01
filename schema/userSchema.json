@@ -1,50 +1,56 @@
 {
-  "type": "object",
-  "description": "Schema for resources user\n",
-  "title": "User",
-  "additionalProperties": false,
-  "properties": {
-      "password": {
-          "type": "string",
-          "minLength": 5
-      },
-      "roles": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-              "type": "string"
-          }
-      },
-      "permissions": {
-          "type": "array",
-          "items": {
-              "type": "object",
-              "required": [
-                  "resource",
-                  "operation",
-                  "context"
-              ],
-              "properties": {
-                  "resource": {
-                      "type": "string"
-                  },
-                  "operation": {
-                      "type": "string",
-                      "enum": [
-                          "read",
-                          "write",
-                          "readWrite"
-                      ]
-                  },
-                  "context": {
-                      "type": "string",
-                      "enum": [
-                          "mqtt",
-                          "http"
-                      ]
-                  }
-              }
-          }
-      }
-  }
+    "type": "object",
+    "description": "Schema for resources user.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/resources/cybus-user",
+    "title": "User",
+    "additionalProperties": false,
+    "properties": {
+        "password": {
+            "title": "Password",
+            "description": "The password for the user.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/resources/cybus-user#password",              
+            "type": "string",
+            "minLength": 5
+        },
+        "roles": {
+            "title": "Roles",
+            "description": "The roles for the user.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/resources/cybus-user#roles",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string"
+            }
+        },
+        "permissions": {
+            "title": "Permissions",
+            "description": "The permissions for the user.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/resources/cybus-user#permissions",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "resource",
+                    "operation",
+                    "context"
+                ],
+                "properties": {
+                    "resource": {
+                        "type": "string"
+                    },
+                    "operation": {
+                        "type": "string",
+                        "enum": [
+                            "read",
+                            "write",
+                            "readWrite"
+                        ]
+                    },
+                    "context": {
+                        "type": "string",
+                        "enum": [
+                            "mqtt",
+                            "http"
+                        ]
+                    }
+                }
+            }
+        }
+    }
 }

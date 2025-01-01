@@ -3,7 +3,7 @@
   "type": "object",
   "title": "Server",
   "additionalProperties": false,
-  "description": "Schema for resource server\\n",
+  "description": "Schema for resource server.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-server",
   "properties": {
       "type": {
           "type": "string",

@@ -2,8 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Endpoint Resource",
     "type": "object",
-    "description": "Endpoint Resource details: a read, subscribe or write property must be defined.\ndocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
-    // do not allow additional properties, only allow properties defined in the schema and in propertyNames
+    "description": "Endpoint Resource details: a read, subscribe or write property must be defined.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
     "propertyNames": {
         "enum": [
             "protocol",
@@ -137,8 +136,7 @@
             "description": "refrence a connection resource or type your conntion hostName",
             "examples": [
                 "!ref <ConnectionResourceName>"
-            ],
-            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.]*$"
+            ]
         },
         "qos": {
             "type": "integer",
@@ -201,17 +199,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/AdsEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/AdsEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/AdsEndpoint"
                     }
                 }
@@ -232,17 +230,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/BacnetEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/BacnetEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/BacnetEndpoint"
                     }
                 }
@@ -263,17 +261,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/EthernetIpEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/EthernetIpEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/EthernetIpEndpoint"
                     }
                 }
@@ -294,12 +292,12 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/FocasEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/FocasEndpoint"
                     }
                 }
@@ -320,17 +318,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/GenericVrpcEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/GenericVrpcEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/GenericVrpcEndpoint"
                     }
                 }
@@ -351,17 +349,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HbmdaqEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HbmdaqEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HbmdaqEndpoint"
                     }
                 }
@@ -382,17 +380,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HeidenhainEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HeidenhainEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HeidenhainEndpoint"
                     }
                 }
@@ -413,17 +411,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HttpEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HttpEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/HttpEndpoint"
                     }
                 }
@@ -444,17 +442,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/InfluxdbEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/InfluxdbEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/InfluxdbEndpoint"
                     }
                 }
@@ -475,7 +473,7 @@
                 "properties": {
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/KafkaEndpoint"
                     }
                 }
@@ -496,17 +494,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ModbusEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ModbusEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ModbusEndpoint"
                     }
                 }
@@ -527,17 +525,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/MqttEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/MqttEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/MqttEndpoint"
                     }
                 }
@@ -558,17 +556,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/MssqlEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/MssqlEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/MssqlEndpoint"
                     }
                 }
@@ -589,17 +587,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/OpcdaEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/OpcdaEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/OpcdaEndpoint"
                     }
                 }
@@ -620,17 +618,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/OpcuaEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/OpcuaEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/OpcuaEndpoint"
                     }
                 }
@@ -651,17 +649,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ProfinetEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ProfinetEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ProfinetEndpoint"
                     }
                 }
@@ -682,17 +680,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/S7Endpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/S7Endpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/S7Endpoint"
                     }
                 }
@@ -713,17 +711,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ShdrEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ShdrEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/ShdrEndpoint"
                     }
                 }
@@ -744,17 +742,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SinumerikEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SinumerikEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SinumerikEndpoint"
                     }
                 }
@@ -775,17 +773,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SopasEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SopasEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SopasEndpoint"
                     }
                 }
@@ -806,17 +804,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SqlEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SqlEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SqlEndpoint"
                     }
                 }
@@ -837,12 +835,12 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SystemstateEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/SystemstateEndpoint"
                     }
                 }
@@ -863,17 +861,17 @@
                 "properties": {
                     "read": {
                         "title": "Read details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/WermaEndpoint"
                     },
                     "subscribe": {
                         "title": "Subscribe details",
-                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Read details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/WermaEndpoint"
                     },
                     "write": {
                         "title": "Write details",
-                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
+                        "description": "Write details; you may only provide one of read, subscribe or write per endpoint. Docs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-endpoint#subscribe-read-write",
                         "$ref": "#/definitions/WermaEndpoint"
                     }
                 }

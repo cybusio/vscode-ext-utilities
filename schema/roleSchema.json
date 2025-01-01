@@ -1,14 +1,15 @@
 {
   "type": "object",
   "title": "Role",
-  "description": "Schema for resources role\n",
+  "description": "Schema for resources role.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-role",
   "additionalProperties": false,
   "required": [
       "permissions"
   ],
   "properties": {
       "permissions": {
-          "description": "The permissions associated to this role",
+          "title": "Permissions",
+          "description": "The permissions associated to this role.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-role#permissions",
           "type": "array",
           "items": {
               "type": "object",

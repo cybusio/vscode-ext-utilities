@@ -19,8 +19,7 @@
           "type": "integer",
           "title": "Local Port",
           "description": "Local port used to receive data",
-          "default": 47808,
-          "examples": [47808]
+          "default": 47808
         },
         "deviceInstance": {
           "$id": "/properties/deviceInstance",

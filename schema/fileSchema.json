@@ -1,35 +1,59 @@
 {
-  "type": "object",
-  "title": "File",
-  "description": "Schema for file volume\n",
-  "additionalProperties": false,
-  "required": [
-      "volume",
-      "filepath",
-      "content"
-  ],
-  "properties": {
-      "volume": {
-          "type": "string",
-          "description": "The reference to the docker volume to which this file should be written"
-      },
-      "filepath": {
-          "type": "string",
-          "description": "The absolute path and filename of the file to be written inside the volume"
-      },
-      "content": {
-          "type": "string",
-          "description": "The content of the file as a base64 encoded string"
-      },
-      "writeMode": {
-          "type": "string",
-          "enum": [
-              "create",
-              "overwrite",
-              "append"
-          ],
-          "default": "create",
-          "description": "Choosing the writing mode when writing the file. Create - Create the\nfile with given content if not existing, but if existing, check whether\nit has the given content, and if it has a different content, throw an\nerror (i.e. don’t overwrite any different content). Overwrite - Create\nthe file with the given content, either creating it newly or overwriting\na previously existing file. Append - Append the given content to the\nfile. If it already exists, the given content is appended. If it does\nnot exist, the file is newly created with the given content.\n"
-      }
-  }
+    "type": "object",
+    "title": "File",
+    "description": "File Resource details representing a file to be written in a volume. \nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-file",
+    "additionalProperties": false,
+    "required": [
+        "volume",
+        "filepath",
+        "content"
+    ],
+    "properties": {
+        "volume": {
+            "type": "string",
+            "title": "Volume",
+            "description": "The reference to the docker volume to which this file should be written",
+            "examples": [
+                "!ref <VolumeResourceName>",
+                "!sub <VolumeResourceName>:/path/to/folder"
+            ]
+        },
+        "filepath": {
+            "type": "string",
+            "title": "Filepath",
+            "description": "The absolute path and filename of the file to be written inside the volume",
+            "examples": [
+                "/path/to/file.json"
+            ]
+        },
+        "content": {
+            "type": "string",
+            "title": "Content",
+            "description": "The content of the file as a base64 encoded string",
+            "examples": [
+                "e30=",
+                "{\"key\":\"value\"}",
+                "[\"value1\",\"value2\"]"
+            ]
+        },
+        "writeMode": {
+            "type": "string",
+            "title": "Write mode",
+            "enum": [
+                "create",
+                "overwrite",
+                "append"
+            ],
+            "default": "create",
+            "description": "Choosing the writing mode when writing the file. Create - Create the\nfile with given content if not existing, but if existing, check whether\nit has the given content, and if it has a different content, throw an\nerror (i.e. don’t overwrite any different content). Overwrite - Create\nthe file with the given content, either creating it newly or overwriting\na previously existing file. Append - Append the given content to the\nfile. If it already exists, the given content is appended. If it does\nnot exist, the file is newly created with the given content.\n"
+        }
+    },
+    "examples": [
+        {
+            "volume": "cybus",
+            "filepath": "/cybus/config.json",
+            "content": "[\"value1\",\"value2\"]",
+            "writeMode": "create"
+        }
+    ]
 }

@@ -1,7 +1,7 @@
 {
   "type": "object",
   "title": "Node",
-  "description": "Schema for resource node\n",
+  "description": "A single data point that is managed by a server. An external client may read data from a node, or write data to a node.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-node",
   "additionalProperties": true,
   "properties": {
       "type": {
@@ -19,7 +19,7 @@
       },
       "properties": {
           "type": "object",
-          "description": "Resource configuration",
+          "description": "Resource configuration.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-node",
           "additionalProperties": true,
           "properties": {
               "parent": {

@@ -3,6 +3,7 @@
     "$id": "https://example.com/schemas/ConnectionSchema",
     "type": "object",
     "title": "Connection Resource",
+    "description": "Connection properties, like protocol type and connection details.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection",
     "definitions": {
         "AdsConnection": {
             "$ref": "referenced/AdsConnection.json#/definitions/connection"
@@ -113,7 +114,10 @@
         },
         "agentName": {
             "type": "string",
-            "description": "Name of the protocol-mapper agent"
+            "description": "Name of the protocol-mapper agent",
+            "examples": [
+                "protocol-mapper"
+            ]
         }
     },
     "required": [
@@ -132,7 +136,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/AdsConnection"
                     }
                 }
@@ -149,7 +153,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/BacnetConnection"
                     }
                 }
@@ -166,7 +170,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/EthernetIpConnection"
                     }
                 }
@@ -183,7 +187,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/FocasConnection"
                     }
                 }
@@ -200,7 +204,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/GenericVrpcConnection"
                     }
                 }
@@ -217,7 +221,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/HbmdaqConnection"
                     }
                 }
@@ -234,7 +238,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/HeidenhainConnection"
                     }
                 }
@@ -251,7 +255,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/HttpConnection"
                     }
                 }
@@ -268,7 +272,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/InfluxdbConnection"
                     }
                 }
@@ -285,7 +289,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/KafkaConnection"
                     }
                 }
@@ -302,7 +306,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/ModbusConnection"
                     }
                 }
@@ -319,7 +323,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/MqttConnection"
                     }
                 }
@@ -336,7 +340,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/MssqlConnection"
                     }
                 }
@@ -353,7 +357,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/OpcdaConnection"
                     }
                 }
@@ -370,7 +374,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/OpcuaConnection"
                     }
                 }
@@ -387,7 +391,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/ProfinetConnection"
                     }
                 }
@@ -404,7 +408,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/S7Connection"
                     }
                 }
@@ -421,7 +425,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/ShdrConnection"
                     }
                 }
@@ -438,7 +442,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/SinumerikConnection"
                     }
                 }
@@ -455,7 +459,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/SopasConnection"
                     }
                 }
@@ -472,7 +476,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/SqlConnection"
                     }
                 }
@@ -489,7 +493,7 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/SystemstateConnection"
                     }
                 }
@@ -506,16 +510,17 @@
             "then": {
                 "properties": {
                     "connection": {
-                        "description": "connection details, like ip, port, etc.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
+                        "description": "connection details, like ip, port, etc.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection#connection",
                         "$ref": "#/definitions/WermaConnection"
                     }
                 }
             }
         }
     ],
-    "examples": [{
-        "protocol": "",
-        "connection": {}
-    }],
-    "description": "Connection properties, like protocol type and connection details.\ndoc: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-connection"
+    "examples": [
+        {
+            "protocol": "",
+            "connection": {}
+        }
+    ]
 }

@@ -166,23 +166,6 @@
         "protocol",
         "connection"
     ],
-    "oneOf": [
-        {
-            "required": [
-                "read"
-            ]
-        },
-        {
-            "required": [
-                "subscribe"
-            ]
-        },
-        {
-            "required": [
-                "write"
-            ]
-        }
-    ],
     "allOf": [
         {
             "if": {

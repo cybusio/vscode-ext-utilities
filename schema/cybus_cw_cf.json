@@ -56,7 +56,7 @@
       "properties": {
         "type": {
           "type": "string",
-          "description": "the type of the resource",
+          "description": "the type of the resource.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources",
           "enum": [
             "Cybus::Container",
             "Cybus::Endpoint",
@@ -273,7 +273,13 @@
           "properties": {}
         }
       ],
-      "additionalProperties": false
+      "patternProperties": {
+        "properties": {
+          "type": "object",
+          "title": "properties",
+          "description": "properties of the resource.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources"
+        }
+      }
     }
   },
   "properties": {

@@ -128,7 +128,11 @@
         "agentName": {
             "type": "string",
             "description": "Obsolete - this value is no longer being used. The agentName of the referenced connection is used always.",
-            "default": "protocol-mapper"
+            "default": "protocol-mapper",
+            "examples": [
+                "protocol-mapper",
+                "<AgentName>"
+            ]
         },
         "connection": {
             "type": "string",

@@ -19,6 +19,66 @@
                 "http",
                 "tcp"
             ]
+        },
+        "target": {
+            "title": "Target",
+            "description": "The target of the ingress route.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-ingressroute#target",
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "path"
+            ],
+            "properties": {
+                "port": {
+                    "type": "integer",
+                    "default": 80
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "examples": [
+                {
+                    "path": "/",
+                    "port": 80
+                }
+            ]
+        },
+        "headers": {
+            "title": "Headers",
+            "description": "HTTP Headers that are added to all requests",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "examples": [
+                [
+                    "Content-type: application/json"
+                ],
+                [
+                    "X-My-Custom-Header: value",
+                    "X-My-Custom-Header-2: value"
+                ]
+            ]
+        },
+        "slug": {
+            "title": "Slug",
+            "description": "Last part of the ingress route.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-ingressroute#slug",
+            "type": "string",
+            "pattern": "^[a-z-]+",
+            "maxLength": 20,
+            "examples": [
+                "web",
+                "api"
+            ]
+        },
+        "containerPort": {
+            "type": "integer",
+            "description": "The port on the container (upstream to ingress)"
+        },
+        "connectwarePort": {
+            "type": "integer",
+            "description": "The port on the connectware (downstream to ingress)"
         }
     },
     "allOf": [
@@ -31,60 +91,7 @@
                 }
             },
             "then": {
-                "properties": {
-                    "slug": {
-                        "title": "Slug",
-                        "description": "Last part of the ingress route.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-ingressroute#slug",
-                        "type": "string",
-                        "pattern": "^[a-z-]+",
-                        "maxLength": 20,
-                        "examples": [
-                            "web",
-                            "api"
-                        ]
-                    },
-                    "target": {
-                        "title": "Target",
-                        "description": "The target of the ingress route.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources/cybus-ingressroute#target",
-                        "type": "object",
-                        "additionalProperties": false,
-                        "required": [
-                            "path"
-                        ],
-                        "properties": {
-                            "port": {
-                                "type": "integer",
-                                "default": 80
-                            },
-                            "path": {
-                                "type": "string"
-                            }
-                        },
-                        "examples": [
-                            {
-                                "path": "/",
-                                "port": 80
-                            }
-                        ]
-                    },
-                    "headers": {
-                        "title": "Headers",
-                        "description": "HTTP Headers that are added to all requests",
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "examples": [
-                            [
-                                "Content-type: application/json"
-                            ],
-                            [
-                                "X-My-Custom-Header: value",
-                                "X-My-Custom-Header-2: value"
-                            ]
-                        ]
-                    }
-                }
+                "required": ["slug"]
             }
         },
         {
@@ -96,18 +103,11 @@
                 }
             },
             "then": {
-                "properties": {
-                    "containerPort": {
-                        "type": "integer",
-                        "description": "The port on the container (upstream to ingress)"
-                    },
-                    "connectwarePort": {
-                        "type": "integer",
-                        "description": "The port on the connectware (downstream to ingress)"
-                    }
-                }
+                "required": [
+                    "containerPort",
+                    "connectwarePort"
+                ]
             }
         }
-        
     ]
 }

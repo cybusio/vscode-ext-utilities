@@ -279,7 +279,8 @@
           "title": "properties",
           "description": "properties of the resource.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/resources"
         }
-      }
+      },
+      "additionalProperties": false
     }
   },
   "properties": {

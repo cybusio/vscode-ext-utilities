@@ -25,7 +25,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-write is a ethernetip resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "ethernetip_resource_endpoint-read-snippet": {
     "prefix": "snippet:ethernetip:resource:endpoint-read",
@@ -53,7 +53,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-read is a ethernetip resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "ethernetip_resource_connection-snippet": {
     "prefix": "snippet:ethernetip:resource:connection",
@@ -82,7 +82,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "connection is a ethernetip resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "ethernetip_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:ethernetip:resource:endpoint-subscribe",
@@ -110,7 +110,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-subscribe is a ethernetip resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "ethernetip_bridge_read-write-template": {
     "prefix": "template:ethernetip:bridge:read-write",
@@ -165,7 +165,7 @@
       "        tagType: DINT"
     ],
     "description": "read-write is a ethernetip bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "openprotocol_resource_role-snippet": {
     "prefix": "snippet:openprotocol:resource:role",
@@ -192,7 +192,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "role is a openprotocol resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "openprotocol_resource_connection-snippet": {
     "prefix": "snippet:openprotocol:resource:connection",
@@ -236,7 +236,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "connection is a openprotocol resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "openprotocol_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:openprotocol:resource:endpoint-subscribe",
@@ -265,7 +265,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-subscribe is a openprotocol resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "openprotocol_bridge_multi_endpoints-template": {
     "prefix": "template:openprotocol:bridge:multi_endpoints",
@@ -517,7 +517,7 @@
       "        context: mqtt"
     ],
     "description": "multi_endpoints is a openprotocol bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "grafana_resource_ingressroute-snippet": {
     "prefix": "snippet:grafana:resource:ingressroute",
@@ -552,7 +552,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "ingressroute is a grafana resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "grafana_resource_volume-snippet": {
     "prefix": "snippet:grafana:resource:volume",
@@ -575,7 +575,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "volume is a grafana resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "grafana_resource_container-snippet": {
     "prefix": "snippet:grafana:resource:container",
@@ -609,7 +609,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "container is a grafana resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "grafana_resource_link-snippet": {
     "prefix": "snippet:grafana:resource:link",
@@ -641,7 +641,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "link is a grafana resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "grafana_app_deploy-template": {
     "prefix": "template:grafana:app:deploy",
@@ -726,7 +726,7 @@
       "  #----------------------------------------------------------------------------"
     ],
     "description": "deploy is a grafana app template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "http_resource_endpoint-write-snippet": {
     "prefix": "snippet:http:resource:endpoint-write",
@@ -775,7 +775,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-write is a http resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "http_resource_connection-azure_datalake-snippet": {
     "prefix": "snippet:http:resource:connection-azure_datalake",
@@ -801,7 +801,7 @@
       "      host: !ref azureStorageHost"
     ],
     "description": "connection-azure_datalake is a http resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "http_resource_connection-teams-snippet": {
     "prefix": "snippet:http:resource:connection-teams",
@@ -825,7 +825,7 @@
       "      host: !ref webhookHost"
     ],
     "description": "connection-teams is a http resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "http_resource_connection-tls-snippet": {
     "prefix": "snippet:http:resource:connection-tls",
@@ -861,7 +861,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "connection-tls is a http resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "http_resource_connection-snippet": {
     "prefix": "snippet:http:resource:connection",
@@ -916,7 +916,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "connection is a http resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "http_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:http:resource:endpoint-subscribe",
@@ -945,7 +945,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-subscribe is a http resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "http_edgeToEdge_teams_notification-to_mqtt-template": {
     "prefix": "template:http:edgeToEdge:teams_notification-to_mqtt",
@@ -1008,7 +1008,7 @@
       "            expression: '{\"text\": value ? $string(value) : \"All Deviations cleared.\"}'"
     ],
     "description": "teams_notification-to_mqtt is a http edgeToEdge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "http_edgeToEdge_to_sql-template": {
     "prefix": "template:http:edgeToEdge:to_sql",
@@ -1105,7 +1105,7 @@
       "          endpoint: !ref sqlQuery"
     ],
     "description": "to_sql is a http edgeToEdge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "http_edgeToEdge_azure-datalake-template": {
     "prefix": "template:http:edgeToEdge:azure-datalake",
@@ -1201,7 +1201,7 @@
       "              }"
     ],
     "description": "azure-datalake is a http edgeToEdge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "http_edgeToEdge_to_opcua-template": {
     "prefix": "template:http:edgeToEdge:to_opcua",
@@ -1324,7 +1324,7 @@
       "              }"
     ],
     "description": "to_opcua is a http edgeToEdge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mqtt_resource_endpoint-write-snippet": {
     "prefix": "snippet:mqtt:resource:endpoint-write",
@@ -1365,7 +1365,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-write is a mqtt resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mqtt_resource_connection-azure_iothub-template": {
     "prefix": "template:mqtt:resource:connection-azure_iothub",
@@ -1421,7 +1421,7 @@
       "        keepalive: 3600"
     ],
     "description": "connection-azure_iothub is a mqtt resource template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mqtt_resource_connection-azure_event_grid-template": {
     "prefix": "template:mqtt:resource:connection-azure_event_grid",
@@ -1491,7 +1491,7 @@
       "        clientPrivateKey: !ref client_key"
     ],
     "description": "connection-azure_event_grid is a mqtt resource template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mqtt_resource_connection-tls-snippet": {
     "prefix": "snippet:mqtt:resource:connection-tls",
@@ -1547,7 +1547,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "connection-tls is a mqtt resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mqtt_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:mqtt:resource:endpoint-subscribe",
@@ -1574,7 +1574,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-subscribe is a mqtt resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mqtt_resource_connection-azure_event_grid-snippet": {
     "prefix": "snippet:mqtt:resource:connection-azure_event_grid",
@@ -1616,7 +1616,7 @@
       "      clientPrivateKey: !ref client_key"
     ],
     "description": "connection-azure_event_grid is a mqtt resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mqtt_resource_connection-mtls-snippet": {
     "prefix": "snippet:mqtt:resource:connection-mtls",
@@ -1669,7 +1669,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "connection-mtls is a mqtt resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mqtt_bridge_azure_eventgrid-wirte-template": {
     "prefix": "template:mqtt:bridge:azure_eventgrid-wirte",
@@ -1776,7 +1776,7 @@
       "            identifier: !ref identifier_param"
     ],
     "description": "azure_eventgrid-wirte is a mqtt bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mqtt_bridge_azure_eventgrid-write-snippet": {
     "prefix": "snippet:mqtt:bridge:azure_eventgrid-write",
@@ -1863,7 +1863,7 @@
       "          identifier: !ref identifier_param"
     ],
     "description": "azure_eventgrid-write is a mqtt bridge snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mqtt_bridge_azure_eventgrid-multiple_sessions_write-snippet": {
     "prefix": "snippet:mqtt:bridge:azure_eventgrid-multiple_sessions_write",
@@ -1980,7 +1980,7 @@
       "        topic: !sub \"${Cybus::MqttRoot}/$connectionId/set\""
     ],
     "description": "azure_eventgrid-multiple_sessions_write is a mqtt bridge snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mqtt_bridge_azure_eventgrid-multiple_sessions_write-template": {
     "prefix": "template:mqtt:bridge:azure_eventgrid-multiple_sessions_write",
@@ -2108,7 +2108,7 @@
       "          topic: !sub \"${Cybus::MqttRoot}/$connectionId/set\""
     ],
     "description": "azure_eventgrid-multiple_sessions_write is a mqtt bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mqtt_bridge_publisher-tls-template": {
     "prefix": "template:mqtt:bridge:publisher-tls",
@@ -2155,7 +2155,7 @@
       "        topic: some/test1"
     ],
     "description": "publisher-tls is a mqtt bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mqtt_bridge_azure_eventgrid-snippet": {
     "prefix": "snippet:mqtt:bridge:azure_eventgrid",
@@ -2214,7 +2214,7 @@
       "      topic: contosotopics/topic1     # Writing to Azure event grid, target topic"
     ],
     "description": "azure_eventgrid is a mqtt bridge snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mqtt_bridge_subsciber-tls-template": {
     "prefix": "template:mqtt:bridge:subsciber-tls",
@@ -2261,7 +2261,7 @@
       "        topic: some/test1"
     ],
     "description": "subsciber-tls is a mqtt bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mqtt_edgeToEdge_azure_iothub-template": {
     "prefix": "template:mqtt:edgeToEdge:azure_iothub",
@@ -2346,7 +2346,7 @@
       "          endpoint: !ref d2cEndpoint"
     ],
     "description": "azure_iothub is a mqtt edgeToEdge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mariadb_resource_ingressroute-snippet": {
     "prefix": "snippet:mariadb:resource:ingressroute",
@@ -2377,7 +2377,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "ingressroute is a mariadb resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mariadb_resource_volume-snippet": {
     "prefix": "snippet:mariadb:resource:volume",
@@ -2399,7 +2399,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "volume is a mariadb resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mariadb_resource_connection-snippet": {
     "prefix": "snippet:mariadb:resource:connection",
@@ -2430,7 +2430,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "connection is a mariadb resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mariadb_resource_container-snippet": {
     "prefix": "snippet:mariadb:resource:container",
@@ -2458,7 +2458,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "container is a mariadb resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mariadb_bridge_mariadb_write-template": {
     "prefix": "template:mariadb:bridge:mariadb_write",
@@ -2595,7 +2595,7 @@
       "            expression: $.value[0].specSheet"
     ],
     "description": "mariadb_write is a mariadb bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "mariadb_app_deploy-snippet": {
     "prefix": "snippet:mariadb:app:deploy",
@@ -2646,7 +2646,7 @@
       "        MARIADB_ROOT_PASSWORD: admin"
     ],
     "description": "deploy is a mariadb app snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "s7_resource_endpoint-write-snippet": {
     "prefix": "snippet:s7:resource:endpoint-write",
@@ -2677,7 +2677,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-write is a s7 resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "s7_resource_connection-snippet": {
     "prefix": "snippet:s7:resource:connection",
@@ -2711,7 +2711,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "connection is a s7 resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "s7_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:s7:resource:endpoint-subscribe",
@@ -2739,7 +2739,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-subscribe is a s7 resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "s7_bridge_read-write-template": {
     "prefix": "template:s7:bridge:read-write",
@@ -2808,7 +2808,7 @@
       "        address: DB10,X0.0"
     ],
     "description": "read-write is a s7 bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "s7_edgeToEdge_with_s7-template": {
     "prefix": "template:s7:edgeToEdge:with_s7",
@@ -2870,7 +2870,7 @@
       "          endpoint: !ref s7EndpointDB1000Write"
     ],
     "description": "with_s7 is a s7 edgeToEdge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "testing_edgeToEdge_minimal_clock-template": {
     "prefix": "template:testing:edgeToEdge:minimal_clock",
@@ -2902,7 +2902,7 @@
       "            expression: $now()"
     ],
     "description": "minimal_clock is a testing edgeToEdge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "opcua_resource_endpoint-write-snippet": {
     "prefix": "snippet:opcua:resource:endpoint-write",
@@ -2940,7 +2940,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-write is a opcua resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "opcua_resource_connection_tls-template": {
     "prefix": "template:opcua:resource:connection_tls",
@@ -3021,7 +3021,7 @@
       "          messageSecurityMode: !ref opcua_security_mode"
     ],
     "description": "connection_tls is a opcua resource template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "opcua_resource_endpoint-read-snippet": {
     "prefix": "snippet:opcua:resource:endpoint-read",
@@ -3054,7 +3054,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-read is a opcua resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "opcua_resource_connection-snippet": {
     "prefix": "snippet:opcua:resource:connection",
@@ -3102,7 +3102,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "connection is a opcua resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "opcua_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:opcua:resource:endpoint-subscribe",
@@ -3131,7 +3131,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-subscribe is a opcua resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "opcua_resource_connection_tls-snippet": {
     "prefix": "snippet:opcua:resource:connection_tls",
@@ -3197,10 +3197,10 @@
       "        messageSecurityMode: !ref opcua_security_mode"
     ],
     "description": "connection_tls is a opcua resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
-  "opcua_bridge_write-array-snippet": {
-    "prefix": "snippet:opcua:bridge:write-array",
+  "opcua_bridge_write-array-template": {
+    "prefix": "template:opcua:bridge:write-array",
     "body": [
       "description: >",
       "  OPC UA Write Array",
@@ -3265,20 +3265,18 @@
       "      write:",
       "        nodeId: ns=2;s=Demo.Static.Arrays.Structure"
     ],
-    "description": "write-array is a opcua bridge snippet",
-    "scope": "yaml"
+    "description": "write-array is a opcua bridge template",
+    "isFileTemplate": true
   },
-  "opcua_bridge_read-events-snippet": {
-    "prefix": "snippet:opcua:bridge:read-events",
+  "opcua_bridge_read-array-template": {
+    "prefix": "template:opcua:bridge:read-array",
     "body": [
       "description: >",
-      "  OPC UA Events minimal",
-      "",
+      "  OPC UA Array Minimal",
       "metadata:",
       "",
-      "  name: OPC UA Events minimal",
-      "  version: 0.0.1",
-      "  icon: https://www.cybus.io/wp-content/uploads/2019/03/Cybus-logo-Claim-lang.svg",
+      "  name: Int 64 OPC UA Array Minimal",
+      "  version: 1.0.0",
       "  provider: cybus",
       "  homepage: https://www.cybus.io",
       "",
@@ -3287,17 +3285,12 @@
       "  opcuaHost:",
       "    type: string",
       "    description: OPC UA Host Address",
-      "    default: uademo.prosysopc.com",
+      "    default: opcuaserver.com",
       "",
       "  opcuaPort:",
       "    type: integer",
       "    description: OPC UA Host Port",
-      "    default: 53530",
-      "",
-      "  opcuaResourcePath:",
-      "    type: string",
-      "    description: OPC UA Host Resource Path",
-      "    default: /OPCUA/SimulationServer",
+      "    default: 48010",
       "",
       "resources:",
       "",
@@ -3310,31 +3303,32 @@
       "        port: !ref opcuaPort",
       "        #username: myUsername",
       "        #password: myPassword",
-      "        resourcePath: !ref opcuaResourcePath",
-      "        checkHostReachable: true",
       "",
-      "  MyLevelAlarm:",
+      "  Int64Array:",
       "    type: Cybus::Endpoint",
       "    properties:",
       "      protocol: Opcua",
-      "      topic: MyLevelAlarm",
       "      connection: !ref opcuaConnection",
+      "      topic: Int64Array",
+      "      retain: true",
       "      subscribe:",
-      "        nodeId: ns=6;s=MyLevel.Alarm",
-      "        eventTypes:",
-      "        - i=9482",
-      "        fields:",
-      "        - EventType",
-      "        - Message",
-      "        - Severity",
-      "        - SourceName",
-      "        - ReceiveTime"
+      "        nodeId: ns=2;s=Demo.Static.Arrays.Int64",
+      "",
+      "  UInt64Array:",
+      "    type: Cybus::Endpoint",
+      "    properties:",
+      "      protocol: Opcua",
+      "      connection: !ref opcuaConnection",
+      "      topic: UInt64Array",
+      "      retain: true",
+      "      subscribe:",
+      "        nodeId: ns=2;s=Demo.Static.Arrays.UInt64"
     ],
-    "description": "read-events is a opcua bridge snippet",
-    "scope": "yaml"
+    "description": "read-array is a opcua bridge template",
+    "isFileTemplate": true
   },
-  "opcua_bridge_read-snippet": {
-    "prefix": "snippet:opcua:bridge:read",
+  "opcua_bridge_read-template": {
+    "prefix": "template:opcua:bridge:read",
     "body": [
       "#------------------------------------------------------------------------------",
       "# Meta Data",
@@ -3454,18 +3448,20 @@
       "            # Publish combined data to connectware",
       "          topic: !sub '${Cybus::MqttRoot}/${MODEL_NAME}/combined'"
     ],
-    "description": "read is a opcua bridge snippet",
-    "scope": "yaml"
+    "description": "read is a opcua bridge template",
+    "isFileTemplate": true
   },
-  "opcua_bridge_read-array-snippet": {
-    "prefix": "snippet:opcua:bridge:read-array",
+  "opcua_bridge_read-events-template": {
+    "prefix": "template:opcua:bridge:read-events",
     "body": [
       "description: >",
-      "  OPC UA Array Minimal",
+      "  OPC UA Events minimal",
+      "",
       "metadata:",
       "",
-      "  name: Int 64 OPC UA Array Minimal",
-      "  version: 1.0.0",
+      "  name: OPC UA Events minimal",
+      "  version: 0.0.1",
+      "  icon: https://www.cybus.io/wp-content/uploads/2019/03/Cybus-logo-Claim-lang.svg",
       "  provider: cybus",
       "  homepage: https://www.cybus.io",
       "",
@@ -3474,12 +3470,17 @@
       "  opcuaHost:",
       "    type: string",
       "    description: OPC UA Host Address",
-      "    default: opcuaserver.com",
+      "    default: uademo.prosysopc.com",
       "",
       "  opcuaPort:",
       "    type: integer",
       "    description: OPC UA Host Port",
-      "    default: 48010",
+      "    default: 53530",
+      "",
+      "  opcuaResourcePath:",
+      "    type: string",
+      "    description: OPC UA Host Resource Path",
+      "    default: /OPCUA/SimulationServer",
       "",
       "resources:",
       "",
@@ -3492,29 +3493,28 @@
       "        port: !ref opcuaPort",
       "        #username: myUsername",
       "        #password: myPassword",
+      "        resourcePath: !ref opcuaResourcePath",
+      "        checkHostReachable: true",
       "",
-      "  Int64Array:",
+      "  MyLevelAlarm:",
       "    type: Cybus::Endpoint",
       "    properties:",
       "      protocol: Opcua",
+      "      topic: MyLevelAlarm",
       "      connection: !ref opcuaConnection",
-      "      topic: Int64Array",
-      "      retain: true",
       "      subscribe:",
-      "        nodeId: ns=2;s=Demo.Static.Arrays.Int64",
-      "",
-      "  UInt64Array:",
-      "    type: Cybus::Endpoint",
-      "    properties:",
-      "      protocol: Opcua",
-      "      connection: !ref opcuaConnection",
-      "      topic: UInt64Array",
-      "      retain: true",
-      "      subscribe:",
-      "        nodeId: ns=2;s=Demo.Static.Arrays.UInt64"
+      "        nodeId: ns=6;s=MyLevel.Alarm",
+      "        eventTypes:",
+      "        - i=9482",
+      "        fields:",
+      "        - EventType",
+      "        - Message",
+      "        - Severity",
+      "        - SourceName",
+      "        - ReceiveTime"
     ],
-    "description": "read-array is a opcua bridge snippet",
-    "scope": "yaml"
+    "description": "read-events is a opcua bridge template",
+    "isFileTemplate": true
   },
   "opcua_edgeToEdge_handshake-to_opcua-template": {
     "prefix": "template:opcua:edgeToEdge:handshake-to_opcua",
@@ -3752,7 +3752,7 @@
       "          endpoint: !ref ReqIdRead"
     ],
     "description": "handshake-to_opcua is a opcua edgeToEdge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "opcua_edgeToEdge_quality_check-from_influxdb-template": {
     "prefix": "template:opcua:edgeToEdge:quality_check-from_influxdb",
@@ -4051,7 +4051,7 @@
       "              )"
     ],
     "description": "quality_check-from_influxdb is a opcua edgeToEdge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "opcua_edgeToEdge_tox_feedback-template": {
     "prefix": "template:opcua:edgeToEdge:tox_feedback",
@@ -4157,7 +4157,7 @@
       "            expression: '{\"value\": part.id}'"
     ],
     "description": "tox_feedback is a opcua edgeToEdge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "opcua_edgeToEdge_batch_record-to_mssql-template": {
     "prefix": "template:opcua:edgeToEdge:batch_record-to_mssql",
@@ -4277,7 +4277,7 @@
       "              }"
     ],
     "description": "batch_record-to_mssql is a opcua edgeToEdge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "influxdb_resource_endpoint-write-snippet": {
     "prefix": "snippet:influxdb:resource:endpoint-write",
@@ -4309,7 +4309,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-write is a influxdb resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "influxdb_resource_ingressroute-snippet": {
     "prefix": "snippet:influxdb:resource:ingressroute",
@@ -4341,7 +4341,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "ingressroute is a influxdb resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "influxdb_resource_volume-snippet": {
     "prefix": "snippet:influxdb:resource:volume",
@@ -4364,7 +4364,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "volume is a influxdb resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "influxdb_resource_connection-snippet": {
     "prefix": "snippet:influxdb:resource:connection",
@@ -4402,7 +4402,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "connection is a influxdb resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "influxdb_resource_container-snippet": {
     "prefix": "snippet:influxdb:resource:container",
@@ -4443,7 +4443,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "container is a influxdb resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "influxdb_resource_link-snippet": {
     "prefix": "snippet:influxdb:resource:link",
@@ -4478,7 +4478,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "link is a influxdb resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "influxdb_app_deploy-template": {
     "prefix": "template:influxdb:app:deploy",
@@ -4615,7 +4615,7 @@
       "          endpoint: !ref randomData_Write"
     ],
     "description": "deploy is a influxdb app template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "influxdb_edgeToEdge_with_grafana-template": {
     "prefix": "template:influxdb:edgeToEdge:with_grafana",
@@ -4776,7 +4776,7 @@
       "          endpoint: !ref influx_Write"
     ],
     "description": "with_grafana is a influxdb edgeToEdge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "kafka_resource_endpoint-write-snippet": {
     "prefix": "snippet:kafka:resource:endpoint-write",
@@ -4803,7 +4803,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-write is a kafka resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "kafka_resource_connection-snippet": {
     "prefix": "snippet:kafka:resource:connection",
@@ -4834,7 +4834,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "connection is a kafka resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "kafka_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:kafka:resource:endpoint-subscribe",
@@ -4862,7 +4862,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-subscribe is a kafka resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "kafka_resource_connection-mtls-snippet": {
     "prefix": "snippet:kafka:resource:connection-mtls",
@@ -4893,7 +4893,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "connection-mtls is a kafka resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "kafka_bridge_consumer-template": {
     "prefix": "template:kafka:bridge:consumer",
@@ -4942,7 +4942,7 @@
       "        topic: some_test_topic"
     ],
     "description": "consumer is a kafka bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "kafka_bridge_snowflake-write-template": {
     "prefix": "template:kafka:bridge:snowflake-write",
@@ -5008,7 +5008,7 @@
       "        bufferMaxAge: !ref buffer_maxAge"
     ],
     "description": "snowflake-write is a kafka bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "kafka_bridge_producer-template": {
     "prefix": "template:kafka:bridge:producer",
@@ -5055,7 +5055,7 @@
       "        topic: some_test_topic"
     ],
     "description": "producer is a kafka bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "kafka_edgeToEdge_snowflake-wirte-template": {
     "prefix": "template:kafka:edgeToEdge:snowflake-wirte",
@@ -5085,7 +5085,7 @@
       "            expression: '{\"value\":{\"value\":$string($)}}'"
     ],
     "description": "snowflake-wirte is a kafka edgeToEdge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "focas_resource_endpoint-read-snippet": {
     "prefix": "snippet:focas:resource:endpoint-read",
@@ -5111,7 +5111,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-read is a focas resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "focas_resource_connection-snippet": {
     "prefix": "snippet:focas:resource:connection",
@@ -5146,7 +5146,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "connection is a focas resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "focas_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:focas:resource:endpoint-subscribe",
@@ -5179,7 +5179,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-subscribe is a focas resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "focas_bridge_download-template": {
     "prefix": "template:focas:bridge:download",
@@ -5221,7 +5221,7 @@
       "        method: program_download"
     ],
     "description": "download is a focas bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "focas_bridge_machine_service-template": {
     "prefix": "template:focas:bridge:machine_service",
@@ -5561,7 +5561,7 @@
       "              }"
     ],
     "description": "machine_service is a focas bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "focas_bridge_read-template": {
     "prefix": "template:focas:bridge:read",
@@ -5610,7 +5610,7 @@
       "        dataLength: 10"
     ],
     "description": "read is a focas bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "bacnet_resource_endpoint-write-snippet": {
     "prefix": "snippet:bacnet:resource:endpoint-write",
@@ -5638,7 +5638,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-write is a bacnet resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "bacnet_resource_connection-snippet": {
     "prefix": "snippet:bacnet:resource:connection",
@@ -5683,7 +5683,7 @@
       "        incrementFactor: !ref factorReconnectDelay"
     ],
     "description": "connection is a bacnet resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "bacnet_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:bacnet:resource:endpoint-subscribe",
@@ -5714,7 +5714,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-subscribe is a bacnet resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "bacnet_resource_connection-template": {
     "prefix": "template:bacnet:resource:connection",
@@ -5780,7 +5780,7 @@
       "          incrementFactor: !ref factorReconnectDelay"
     ],
     "description": "connection is a bacnet resource template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "bacnet_bridge_read-write-template": {
     "prefix": "template:bacnet:bridge:read-write",
@@ -5853,7 +5853,7 @@
       "        property: present-value"
     ],
     "description": "read-write is a bacnet bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "modbus_resource_endpoint-write-snippet": {
     "prefix": "snippet:modbus:resource:endpoint-write",
@@ -5884,7 +5884,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-write is a modbus resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "modbus_resource_connection-snippet": {
     "prefix": "snippet:modbus:resource:connection",
@@ -5937,7 +5937,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "connection is a modbus resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "modbus_resource_endpoint-subscribe-snippet": {
     "prefix": "snippet:modbus:resource:endpoint-subscribe",
@@ -5969,7 +5969,7 @@
       "# --------------------------------------------------#"
     ],
     "description": "endpoint-subscribe is a modbus resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "modbus_resource_connection-template": {
     "prefix": "template:modbus:resource:connection",
@@ -6025,7 +6025,7 @@
       "          incrementFactor: !ref factorReconnectDelay"
     ],
     "description": "connection is a modbus resource template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "modbus_bridge_generic_write-template": {
     "prefix": "template:modbus:bridge:generic_write",
@@ -6109,7 +6109,7 @@
       "        dataType: int16BE"
     ],
     "description": "generic_write is a modbus bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "modbus_bridge_generic_read-template": {
     "prefix": "template:modbus:bridge:generic_read",
@@ -6193,7 +6193,7 @@
       "        dataType: int16BE"
     ],
     "description": "generic_read is a modbus bridge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "modbus_edgeToEdge_generic-read_write-template": {
     "prefix": "template:modbus:edgeToEdge:generic-read_write",
@@ -6320,7 +6320,7 @@
       "          endpoint: !ref writeRegister"
     ],
     "description": "generic-read_write is a modbus edgeToEdge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "http_server_resource_server-snippet": {
     "prefix": "snippet:http_server:resource:server",
@@ -6331,7 +6331,7 @@
       "    basePath: /cybustest"
     ],
     "description": "server is a http_server resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "http_server_resource_route-snippet": {
     "prefix": "snippet:http_server:resource:route",
@@ -6344,7 +6344,7 @@
       "    route: /getRoute"
     ],
     "description": "route is a http_server resource snippet",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "http_server_app_all_routes-template": {
     "prefix": "template:http_server:app:all_routes",
@@ -6385,7 +6385,7 @@
       "      route: /getRoute"
     ],
     "description": "all_routes is a http_server app template",
-    "scope": "yaml"
+    "isFileTemplate": true
   },
   "http_server_edgeToEdge_with_http-template": {
     "prefix": "template:http_server:edgeToEdge:with_http",
@@ -6449,6 +6449,6 @@
       "          topic: destination/topic"
     ],
     "description": "with_http is a http_server edgeToEdge template",
-    "scope": "yaml"
+    "isFileTemplate": true
   }
 }

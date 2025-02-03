@@ -281,6 +281,280 @@
         }
       },
       "additionalProperties": false
+    },
+    "parameterSchema": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "array"
+          ],
+          "description": "The data type for the parameter."
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 4000,
+          "description": "A description of the parameter shown in the admin UI.",
+          "examples": [
+            "This text is shown in the admin UI"
+          ]
+        },
+        "enum": {
+          "type": "array",
+          "items": {
+            "type": [
+              "string",
+              "number",
+              "integer",
+              "boolean"
+            ]
+          },
+          "description": "Allowed values for the parameter. in other words, list of possible values for the parameter."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "string"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "default": {
+                "type": "string",
+                "description": "A default value for the parameter if no value is specified. make sure the type of the default value matches the type of the parameter.",
+                "examples": [
+                  "string default value"
+                ]
+              },
+              "minLength": {
+                "type": "integer",
+                "description": "The minimum number of characters for string values.",
+                "minimum": 0,
+                "default": 0
+              },
+              "maxLength": {
+                "type": "integer",
+                "description": "The maximum number of characters for string values.",
+                "minimum": 0,
+                "default": 100
+              },
+              "pattern": {
+                "type": "string",
+                "description": "A regex pattern the string value must match."
+              },
+              "format": {
+                "type": "string",
+                "description": "A predefined format the string value must match.",
+                "enum": [
+                  "date",
+                  "date-time",
+                  "uri",
+                  "email",
+                  "hostname",
+                  "ipv4",
+                  "ipv6",
+                  "regex"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "string",
+                  "number",
+                  "integer",
+                  "boolean",
+                  "array"
+                ],
+                "description": "The data type for the parameter."
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 4000,
+                "description": "A description of the parameter shown in the admin UI.",
+                "examples": [
+                  "This text is shown in the admin UI"
+                ]
+              },
+              "enum": {
+                "type": "array",
+                "items": {
+                  "type": [
+                    "string",
+                    "number",
+                    "integer",
+                    "boolean"
+                  ]
+                },
+                "description": "Allowed values for the parameter. in other words, list of possible values for the parameter."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "number"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "default": {
+                "type": "number",
+                "description": "A default value for the parameter if no value is specified. make sure the type of the default value matches the type of the parameter.",
+                "examples": [
+                  0.0,
+                  10.4
+                ]
+              },
+              "minimum": {
+                "type": "number",
+                "description": "The minimum value for number or integer types."
+              },
+              "maximum": {
+                "type": "number",
+                "description": "The maximum value for number or integer types."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "string",
+                  "number",
+                  "integer",
+                  "boolean",
+                  "array"
+                ],
+                "description": "The data type for the parameter."
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 4000,
+                "description": "A description of the parameter shown in the admin UI.",
+                "examples": [
+                  "This text is shown in the admin UI"
+                ]
+              },
+              "enum": {
+                "type": "array",
+                "items": {
+                  "type": [
+                    "string",
+                    "number",
+                    "integer",
+                    "boolean"
+                  ]
+                },
+                "description": "Allowed values for the parameter. in other words, list of possible values for the parameter."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "array"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "default": {
+                "type": "array",
+                "description": "A default value for the parameter if no value is specified. make sure the type of the default value matches the type of the parameter.",
+                "examples": [
+                  [
+                    1,
+                    2,
+                    3
+                  ],
+                  [
+                    "a",
+                    "b",
+                    "c"
+                  ]
+                ]
+              },
+              "items": {
+                "type": "object",
+                "description": "Describes the types of the array’s items.",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "string",
+                      "number",
+                      "integer",
+                      "boolean"
+                    ]
+                  }
+                }
+              },
+              "minItems": {
+                "type": "integer",
+                "description": "The minimum number of items in the array.",
+                "minimum": 0
+              },
+              "maxItems": {
+                "type": "integer",
+                "description": "The maximum number of items in the array.",
+                "minimum": 0
+              },
+              "uniqueItems": {
+                "type": "boolean",
+                "description": "If true, the array must have unique items."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "string",
+                  "number",
+                  "integer",
+                  "boolean",
+                  "array"
+                ],
+                "description": "The data type for the parameter."
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 4000,
+                "description": "A description of the parameter shown in the admin UI.",
+                "examples": [
+                  "This text is shown in the admin UI"
+                ]
+              },
+              "enum": {
+                "type": "array",
+                "items": {
+                  "type": [
+                    "string",
+                    "number",
+                    "integer",
+                    "boolean"
+                  ]
+                },
+                "description": "Allowed values for the parameter. in other words, list of possible values for the parameter."
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      ]
     }
   },
   "properties": {
@@ -349,7 +623,6 @@
           "description": "Version of the commissioning file schema",
           "type": "string",
           "default": "1"
-          
         }
       }
     },
@@ -364,7 +637,11 @@
       },
       "examples": [
         {
-          "BaseTopic": "town/factory/hall/line"
+          "BaseTopic": "town/factory/hall/line",
+          "options": {
+            "cert": "-----BEGIN CERTIFICATE-----\nMIIDxTCCAr2gAwIBAgIENdH...\n-----END CERTIFICATE-----",
+            "key": "-----BEGIN PRIVATE KEY-----\n-----END PRIVATE KEY-----"
+          }
         }
       ]
     },
@@ -372,188 +649,25 @@
       "type": "object",
       "title": "parameters",
       "description": "Variable Parameters could be configured in the UI and referenced in resources with !ref, !sub or !merge.\nDocs: https://docs.cybus.io/documentation/services/service-commissioning-files/structure-of-service-commissioning-files/parameters",
-      "properties": {},
-      "patternProperties": {
-        "^.*$": {
-          "type": "object",
-          "required": [
-            "type"
-          ],
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "string",
-                "number",
-                "integer",
-                "boolean",
-                "array"
-              ],
-              "description": "The data type for the parameter."
-            },
-            "description": {
-              "type": "string",
-              "maxLength": 4000,
-              "description": "A description of the parameter shown in the admin UI.",
-              "examples": [
-                "This text is shown in the admin UI"
-              ]
-            },
-            "enum": {
-              "type": "array",
-              "items": {
-                "type": [
-                  "string",
-                  "number",
-                  "integer",
-                  "boolean"
-                ]
-              },
-              "description": "Allowed values for the parameter. in other words, list of possible values for the parameter."
-            }
-          },
-          "allOf": [
-            {
-              "if": {
-                "properties": {
-                  "type": {
-                    "const": "string"
-                  }
-                }
-              },
-              "then": {
-                "properties": {
-                  "default": {
-                    "type": "string",
-                    "description": "A default value for the parameter if no value is specified. make sure the type of the default value matches the type of the parameter.",
-                    "examples": [
-                      "string default value"
-                    ]
-                  },
-                  "minLength": {
-                    "type": "integer",
-                    "description": "The minimum number of characters for string values.",
-                    "minimum": 0,
-                    "default": 0
-                  },
-                  "maxLength": {
-                    "type": "integer",
-                    "description": "The maximum number of characters for string values.",
-                    "minimum": 0,
-                    "default": 100
-                  },
-                  "pattern": {
-                    "type": "string",
-                    "description": "A regex pattern the string value must match."
-                  },
-                  "format": {
-                    "type": "string",
-                    "description": "A predefined format the string value must match.",
-                    "enum": [
-                      "date",
-                      "date-time",
-                      "uri",
-                      "email",
-                      "hostname",
-                      "ipv4",
-                      "ipv6",
-                      "regex"
-                    ]
-                  }
-                }
-              }
-            },
-            {
-              "if": {
-                "properties": {
-                  "type": {
-                    "const": "number"
-                  }
-                }
-              },
-              "then": {
-                "properties": {
-                  "default": {
-                    "type": "number",
-                    "description": "A default value for the parameter if no value is specified. make sure the type of the default value matches the type of the parameter.",
-                    "examples": [
-                      0.0,
-                      10.4
-                    ]
-                  },
-                  "minimum": {
-                    "type": "number",
-                    "description": "The minimum value for number or integer types."
-                  },
-                  "maximum": {
-                    "type": "number",
-                    "description": "The maximum value for number or integer types."
-                  }
-                }
-              }
-            },
-            {
-              "if": {
-                "properties": {
-                  "type": {
-                    "const": "array"
-                  }
-                }
-              },
-              "then": {
-                "properties": {
-                  "default": {
-                    "type": "array",
-                    "description": "A default value for the parameter if no value is specified. make sure the type of the default value matches the type of the parameter.",
-                    "examples": [
-                      [
-                        1,
-                        2,
-                        3
-                      ],
-                      [
-                        "a",
-                        "b",
-                        "c"
-                      ]
-                    ]
-                  },
-                  "items": {
-                    "type": "object",
-                    "description": "Describes the types of the array’s items.",
-                    "properties": {
-                      "type": {
-                        "type": "string",
-                        "enum": [
-                          "string",
-                          "number",
-                          "integer",
-                          "boolean"
-                        ]
-                      }
-                    }
-                  },
-                  "minItems": {
-                    "type": "integer",
-                    "description": "The minimum number of items in the array.",
-                    "minimum": 0
-                  },
-                  "maxItems": {
-                    "type": "integer",
-                    "description": "The maximum number of items in the array.",
-                    "minimum": 0
-                  },
-                  "uniqueItems": {
-                    "type": "boolean",
-                    "description": "If true, the array must have unique items."
-                  }
-                }
-              }
-            }
-          ]
+      "properties": {
+        "ExampleParameter": {
+          "$ref": "#/definitions/parameterSchema"
+        },
+        "ExampleParameter2": {
+          "$ref": "#/definitions/parameterSchema"
+        },
+        "ExampleParameter3": {
+          "$ref": "#/definitions/parameterSchema"
         }
       },
-      "additionalProperties": false,
+      "patternProperties": {
+        "^.*$": {
+          "$ref": "#/definitions/parameterSchema"
+        }
+      },
+      "additionalProperties": {
+        "$ref": "#/definitions/parameterSchema"
+      },
       "examples": [
         {
           "ExampleParameter": {

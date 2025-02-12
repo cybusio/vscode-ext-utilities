@@ -355,8 +355,8 @@
     "description": "write is a ads bridge template",
     "isFileTemplate": true
   },
-  "ads_edgeToEdge_to_ads-snippet": {
-    "prefix": "snippet:ads:edgeToEdge:to_ads",
+  "ads_edgeToEdge_to_ads-template": {
+    "prefix": "template:ads:edgeToEdge:to_ads",
     "body": [
       "description: >",
       "  Sample ADS service commissioning file",
@@ -446,7 +446,7 @@
       "        publish:",
       "          endpoint: !ref adsQuery2"
     ],
-    "description": "to_ads is a ads edgeToEdge snippet",
+    "description": "to_ads is a ads edgeToEdge template",
     "isFileTemplate": true
   },
   "ethernetip_resource_endpoint-write-snippet": {
